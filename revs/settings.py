@@ -83,13 +83,13 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 from socket import gethostname
 hostname = gethostname()
 
-if "SoomMacBook-Air.local" in hostname:
+if "SoomMacBook-Air" in hostname:
     # デバッグ環境
     DEBUG = True 
     DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
         }
     }
     ALLOWED_HOSTS = ['*'] 
@@ -104,11 +104,10 @@ else:
         'default': dj_database_url.config()
     }
     ALLOWED_HOSTS = ['*']
-    MEDIA_URL = '/media/'
     DEFAULT_FILE_STORAGE = "revs.storages.MediaStorage"
     PUBLIC_MEDIA_LOCATION = 'media/'
     MEDIA_ROOT = os.path.join(BASE_DIR, 'media')  
-    MEDIA_URL = f"https://beermarksmedia.s3-ap-northeast-1.amazonaws.com/media/"  
+    MEDIA_URL = "https://beermarksmedia.s3-ap-northeast-1.amazonaws.com/media/"  
 
 
 
