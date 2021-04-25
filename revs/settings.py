@@ -17,7 +17,10 @@ import dj_database_url
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-
+AWS_ACCESS_KEY_ID = "AKIA46DKMER3VJ3PXIOC"
+AWS_SECRET_ACCESS_KEY = "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"
+AWS_STORAGE_BACKET_NAME = "beermarksmedia"
+AWS_DEFAULT_ACL = "public-read"
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
@@ -44,6 +47,7 @@ INSTALLED_APPS = [
     'post.apps.PostConfig',
     'users.apps.UsersConfig',
     'product.apps.ProductConfig',
+    'storages'
 ]
 
 MIDDLEWARE = [
@@ -94,6 +98,9 @@ if "SoomMacBook-Air.local" in hostname:
         }
     }
     ALLOWED_HOSTS = ['*'] 
+
+    MEDIA_URL = '/media/'
+    MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 else:
     # 本番環境
     DEBUG = True
@@ -103,8 +110,7 @@ else:
         'default': dj_database_url.config()
     }
     ALLOWED_HOSTS = ['*']
-
-
+    DEFAULT_FILE_STORAGE = "revs.storages.MediaStore"
 
 
 # Password validation
@@ -149,9 +155,7 @@ STATICFILES_DIRS = (
     os.path.join(BASE_DIR, "static"),
 )
 
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-MEDIA_URL = '/media/'
-
 LOGIN_URL = "login"
 
 AUTH_USER_MODEL = 'users.User'
+
