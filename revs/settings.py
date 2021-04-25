@@ -23,11 +23,11 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-#SECRET_KEY = '61^vb8kfk3(ob_ym5vtj*wg9uj=a75hr#m_q^q!6cdts_2n06*'
-SECRET_KEY = '*****'
+SECRET_KEY = '61^vb8kfk3(ob_ym5vtj*wg9uj=a75hr#m_q^q!6cdts_2n06*'
+
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ["*"]
 
@@ -141,8 +141,3 @@ MEDIA_URL = '/media/'
 LOGIN_URL = "login"
 
 AUTH_USER_MODEL = 'users.User'
-
-if not DEBUG:
-    SECRET_KEY = os.environ['SECRET_KEY']
-    import django_heroku
-    django_heroku.settings(locals())
