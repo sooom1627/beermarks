@@ -153,11 +153,11 @@ STATICFILES_DIRS = (
 
 AWS_ACCESS_KEY_ID = "AKIA46DKMER3VJ3PXIOC"
 AWS_SECRET_ACCESS_KEY = "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"
-AWS_STORAGE_BACKET_NAME = "beermarksmedia"
-AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com'
+AWS_STORAGE_BUCKET_NAME = "beermarksmedia"
+AWS_S3_CUSTOM_DOMAIN = f'{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com'
 AWS_DEFAULT_ACL = "public-read"
 AWS_S3_OBJECT_PARAMETERS = {
-    'CacheControl': 'max-age=86400',  # 1日はそのキャッシュを使う
+    'CacheControl': 'max-age=86400',  
 }
 
 LOGIN_URL = "login"
