@@ -106,7 +106,9 @@ else:
     ALLOWED_HOSTS = ['*']
     MEDIA_URL = '/media/'
     DEFAULT_FILE_STORAGE = "revs.storages.MediaStorage"
-    PUBLIC_MEDIA_LOCATION = 'media'
+    PUBLIC_MEDIA_LOCATION = 'media/'
+    MEDIA_ROOT = os.path.join(BASE_DIR, 'media')  
+    MEDIA_URL = f"https://beermarksmedia.s3-ap-northeast-1.amazonaws.com/media/"  
 
 
 
