@@ -93,6 +93,8 @@ if "SoomMacBook-Air.local" in hostname:
         }
     }
     ALLOWED_HOSTS = ['*'] 
+    MEDIA_URL = '/media/'
+    MEDIA_ROOT = os.path.join(BASE_DIR, 'media')    
 else:
     # 本番環境
     DEBUG = True
@@ -102,6 +104,8 @@ else:
         'default': dj_database_url.config()
     }
     ALLOWED_HOSTS = ['*']
+    DEFAULT_FILE_STORAGE = "revs.storages.MediaStorage"
+    PUBLIC_MEDIA_LOCATION = 'media'
 
 
 
@@ -155,11 +159,6 @@ AWS_DEFAULT_ACL = "public-read"
 AWS_S3_OBJECT_PARAMETERS = {
     'CacheControl': 'max-age=86400',  # 1日はそのキャッシュを使う
 }
-
-MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-
-DEFAULT_FILE_STORAGE = "revs.storages.MediaStorage"
 
 LOGIN_URL = "login"
 
