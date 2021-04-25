@@ -104,6 +104,7 @@ else:
         'default': dj_database_url.config()
     }
     ALLOWED_HOSTS = ['*']
+    MEDIA_URL = '/media/'
     DEFAULT_FILE_STORAGE = "revs.storages.MediaStorage"
     PUBLIC_MEDIA_LOCATION = 'media'
 
