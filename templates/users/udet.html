@@ -1,0 +1,73 @@
+{% extends 'base.html' %}
+{% block content %}
+  <div class="container">
+    <div class="pageTitle text-center">
+      <p>Collections</p>
+      <h2>{{ object.username }}のお気に入り</h2>
+    </div>
+    <section class="lattest-product-area pb-40 category-list">
+      <div class="row pt-5 pb-5">
+        {% for item in object.faved_p_user.all %}
+          <div class="col-md-6 col-lg-4">
+            <div class="card text-center card-product">
+              <div class="card-product__img">
+                <img class="card-img" src="../../media/{{ item.product.ppic }}" alt=""/>
+                <ul class="card-product__imgOverlay">
+                  <li>
+                    <button>
+                      <i class="fas fa-beer"></i>
+                    </i>
+                  </button>
+                </li>
+                <li>
+                  <button>
+                    <i class="far fa-heart"></i>
+                  </button>
+                </li>
+              </ul>
+            </div>
+            <div class="card-body">
+              <p>{{ item.product.brand }}</p>
+              <p class="card-product__title">
+                <a href="{% url 'detail' item.product.pk %}">{{ item.product.pname }}</a>
+              </p>
+              <p class="card-product__price">{{ item.product.ptype }}</p>
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    </section>
+  </div>
+
+{% endblock content %}
+{% block ext_js %}
+
+  <script type="text/javascript">
+    $(document).ready(function (event) {
+      $(document).on('click', '#favp', function (event) {
+        event.preventDefault();
+        $.ajax({
+          headers: {
+            'X-CSRFToken': csrftoken
+          },
+          type: 'POST',
+          url: "{% url 'favp' %}",
+          data: {
+            'product_id': $(this).attr('name')
+          },
+          dataType: 'json',
+          success: function (response) {
+            selector = document.getElementsByName(response.product_id);
+            if (response.faved) {
+              $(selector).html("<i class='fas fa-lg fa-heart'></i>");
+            } else {
+              $(selector).html("<i class='far fa-lg fa-heart'></i>");
+            }
+            selector2 = document.getElementsByName(response.product_id + "-count");
+            $(selector2).text(response.count);
+          }
+        });
+      });
+    });
+  </script>
+{% endblock ext_js %}

@@ -1,0 +1,23 @@
+{% if products.has_other_pages %}
+  <div class="pagination d-flex w-100 align-items-center flex-row justify-content-center pb-5">
+    <ul class="pagination">
+      {% for page_num in pages.paginator.page_range %}
+        {% if page_num %}
+          {% if page_num == pages.number %}
+            <a href="#" class="is-active">
+              <li>{{ page_num }}</li>
+            </a>
+          {% else %}
+            <a href="?page={{page_num}}" class="">
+              <li>{{ page_num }}</li>
+            </a>
+          {% endif %}
+        {% else %}
+          <li class="disabled">
+            <a class="page-link text-secondary d-inline-block text-muted" href="#">・・・</a>
+          </li>
+        {% endif %}
+      {% endfor %}
+    </ul>
+  </div>
+{% endif %}
