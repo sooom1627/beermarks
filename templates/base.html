@@ -24,7 +24,9 @@
       <div class="wrapper">
         <!-- Sidebar -->
         <nav id="sidebar">
-          <div class="sidebar-header text-center"></div>
+          <div class="sidebar-header text-center">
+            {% include './templates/svg/logo_beermarks.svg' %}
+          </div>
           <ul class="list-unstyled components text-center">
             {% block side_img %}{% endblock side_img %}
             <p>{{user.username}}</p>
