@@ -84,9 +84,9 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 from socket import gethostname
 hostname = gethostname()
 
-if "soom-MacBook Air" in hostname:
+if "SoomMacBook-Air.local" in hostname:
     # デバッグ環境
-    #DEBUG = True 
+    DEBUG = True 
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.sqlite3',
@@ -96,7 +96,7 @@ if "soom-MacBook Air" in hostname:
     ALLOWED_HOSTS = ['*'] 
 else:
     # 本番環境
-    #DEBUG = False
+    DEBUG = False
     import dj_database_url
     db_from_env = dj_database_url.config()
     DATABASES = {
