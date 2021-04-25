@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% block side_img %}
-  <image class="nav_icon" src="../media/{{user.upic}}"/>
+  <image class="nav_icon" src="{{user.upic.url}}"/>
 {% endblock side_img %}
 {% block content %}
   <div class="container text-center">

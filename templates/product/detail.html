@@ -12,7 +12,7 @@
       <div class="row s_product_inner">
         <div class="col-lg-6">
           <div class="single-prd-item text-center">
-            <img class="img-fluid" src="../../media/{{object.ppic}}" alt=""/>
+            <img class="img-fluid" src="{{object.ppic.url}}" alt=""/>
             <!-- <img class="backpic" src="../../media/{{object.pPic}}" alt=""/> -->
           </div>
         </div>
@@ -73,7 +73,7 @@
                   <div class="review_item">
                     <div class="media">
                       <div class="d-flex">
-                        <img src="../../media/{{ review.user.upic }}" alt=""/>
+                        <img src="{{ review.user.upic.url }}" alt=""/>
                       </div>
                       <div class="media-body">
                         <h4>{{ review.user.username }}</h4>

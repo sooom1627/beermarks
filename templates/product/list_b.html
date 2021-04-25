@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% block side_img %}
-  <image class="nav_icon" src="../media/{{user.upic}}"/>
+  <image class="nav_icon" src="{{user.upic.url}}"/>
 {% endblock side_img %}
 {% block content %}
   <div class="container text-center">
@@ -14,7 +14,7 @@
           <div class="col-md-6 col-lg-4">
             <div class=" card text-center card-product">
               <div class="card-product__img">
-                <img class="card-img" src="../../media/{{ brand.bpic }}" alt=""/>
+                <img class="card-img" src="{{ brand.bpic.url }}" alt=""/>
                 <ul class="card-product__imgOverlay">
                   <li>
                     <form action="{% url 'favp' %}" method="POST">{% csrf_token %}
