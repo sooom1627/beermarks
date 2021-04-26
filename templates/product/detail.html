@@ -60,7 +60,11 @@
                 <div class="col-12 mb-3">
                   <div class="box_total">
                     <h5>Overall</h5>
-                    <h4>4.0</h4>
+                    {% if avg == None %}
+                      <h4>-</h4>
+                    {% else %}
+                      <h4>{{ avg }}</h4>
+                    {% endif %}
                     <h6>レビュー：{{ object.drunk_product.count }}</h6>
                   </div>
                 </div>
@@ -68,46 +72,48 @@
               <div class="review_list">
                 {% for review in object.drunk_product.all %}
                   <div class="review_item">
-                    <div class="media">
-                      <div class="d-flex">
-                        <img src="{{ review.user.upic.url }}" alt=""/>
+                    <div class="media row">
+                      <div class="col-sm-7">
+                        <div class="d-flex">
+                          <img src="{{ review.user.upic.url }}" alt=""/>
+                        </div>
+                        <div class="media-body">
+                          <h4>{{ review.user.username }}</h4>
+                          {% if review.rate == 5 %}
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                          {% elif review.rate == 4 %}
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star disable"></i>
+                          {% elif review.rate == 3 %}
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star disable"></i>
+                            <i class="fa fa-star disable"></i>
+                          {% elif review.rate == 2 %}
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star disable"></i>
+                            <i class="fa fa-star disable"></i>
+                            <i class="fa fa-star disable"></i>
+                          {% elif review.rate == 1 %}
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star disable"></i>
+                            <i class="fa fa-star disable"></i>
+                            <i class="fa fa-star disable"></i>
+                            <i class="fa fa-star disable"></i>
+                          {% endif %}
+                          <i>{{ review.rate }}</i>
+                        </div>
                       </div>
-                      <div class="media-body">
-                        <h4>{{ review.user.username }}</h4>
-                        {% if review.rate == 5 %}
-                          <i class="fa fa-star"></i>
-                          <i class="fa fa-star"></i>
-                          <i class="fa fa-star"></i>
-                          <i class="fa fa-star"></i>
-                          <i class="fa fa-star"></i>
-                        {% elif review.rate == 4 %}
-                          <i class="fa fa-star"></i>
-                          <i class="fa fa-star"></i>
-                          <i class="fa fa-star"></i>
-                          <i class="fa fa-star"></i>
-                          <i class="fa fa-star disable"></i>
-                        {% elif review.rate == 3 %}
-                          <i class="fa fa-star"></i>
-                          <i class="fa fa-star"></i>
-                          <i class="fa fa-star"></i>
-                          <i class="fa fa-star disable"></i>
-                          <i class="fa fa-star disable"></i>
-                        {% elif review.rate == 2 %}
-                          <i class="fa fa-star"></i>
-                          <i class="fa fa-star"></i>
-                          <i class="fa fa-star disable"></i>
-                          <i class="fa fa-star disable"></i>
-                          <i class="fa fa-star disable"></i>
-                        {% elif review.rate == 1 %}
-                          <i class="fa fa-star"></i>
-                          <i class="fa fa-star disable"></i>
-                          <i class="fa fa-star disable"></i>
-                          <i class="fa fa-star disable"></i>
-                          <i class="fa fa-star disable"></i>
-                        {% endif %}
-                        <i>{{ review.rate }}</i>
-                      </div>
-                      <div>
+                      <div class="col-sm-5">
                         <p>{{ review.day }}</p>
                       </div>
                     </div>
