@@ -96,7 +96,6 @@ label { color: var(--iq-dark); }
 /* Definition Lists */
 dl dd { margin-bottom: 15px; }
 dl dd:last-child { margin-bottom: 0px; }
-th { }
 .table-striped tbody tr:nth-of-type(odd){background: var(--iq-body-bg);}
 
 /*----------------------------------------------
