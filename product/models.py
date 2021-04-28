@@ -3,7 +3,7 @@ from django.db import models
 
 class Brand(models.Model):
     bname = models.CharField(max_length=50)
-    bdesc = models.TextField(max_length=300)
+    bdesc = models.TextField(max_length=500)
     bpic = models.ImageField(upload_to='images/brand/', height_field=None, width_field=None, max_length=None)
     bname_search_index = models.TextField(blank=True)
     
@@ -22,7 +22,7 @@ class Product(models.Model):
     pname = models.CharField(max_length=50)
     ptype = models.ForeignKey(Type, on_delete=models.CASCADE)
     brand = models.ForeignKey(Brand, on_delete=models.CASCADE, related_name="brand_n")
-    desc = models.TextField(max_length=200)
+    desc = models.TextField(max_length=500)
     ppic = models.ImageField(upload_to='images/product', height_field=None, width_field=None, max_length=None)
 
     def __str__(self):
