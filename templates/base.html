@@ -20,26 +20,17 @@
     {% endblock %}
 
     <script src="https://kit.fontawesome.com/13f517234e.js" crossorigin="anonymous"></script>
-    <title>Hello, world!</title>
+    <title>beermarks</title>
   </head>
 
   <body>
     {% if request.user.is_authenticated %}
       <div class="wrapper">
-        <div class="iq-sidebar">
+        <div class="iq-sidebar" id="sidebar">
           <div class="iq-sidebar-logo d-flex justify-content-between align-items-center">
             <a href="index.html" class="header-logo">
-              <img src="image/logo_beermarks.png" class="img-fluid rounded-normal" alt=""/>
+              <img src="./media/logo_beermarks.png" class="img-fluid rounded-normal" alt=""/>
             </a>
-            <div class="iq-menu-bt-sidebar">
-              <div class="iq-menu-bt align-self-center">
-                <div class="wrapper-menu">
-                  <div class="main-circle">
-                    <i class="las la-bars"></i>
-                  </div>
-                </div>
-              </div>
-            </div>
           </div>
           <div id="sidebar-scrollbar">
             <nav class="iq-sidebar-menu">
@@ -112,7 +103,9 @@
               <div class="iq-menu-bt d-flex align-items-center">
                 <div class="wrapper-menu">
                   <div class="main-circle">
-                    <i class="las la-bars"></i>
+                    <a id="sidebarCollapse">
+                      <i class="las la-bars"></i>
+                    </a>
                   </div>
                 </div>
                 <div class="iq-navbar-logo d-flex justify-content-between">

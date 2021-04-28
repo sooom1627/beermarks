@@ -32,11 +32,18 @@ def detail(request, pk):
     product = Product.objects.get(pk=pk)
     avg = product.drunk_product.aggregate(Avg("rate"))
     avg = avg["rate__avg"]
+    faved = product.fav_product.filter(user=user)
+    faved_list = 0
+    if faved.exists():
+        faved_list = product.id
 
     context = {
         "object":product,
-        "avg":avg
+        "avg":avg,
+        'faved_list':faved_list,
     }
+    faved_list = []
+    
 
     return render(request, "./product/detail.html", context)
 

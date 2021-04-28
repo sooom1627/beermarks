@@ -29,9 +29,17 @@
                         </a>
                       </div>
                       <div class="iq-circle mr-2">
-                        <a href="javascript:void();">
-                          <i class="ri-heart-fill text-secondary"></i>
-                        </a>
+                        <form action="{% url 'favp' %}" method="POST">{% csrf_token %}
+                          {% if obejcet.pk in faved_list %}
+                            <button id="favp" name="{{object.pk}}">
+                              <i class="ri-heart-fill text-primary"></i>
+                            </button>
+                          {% else %}
+                            <button id="favp" name="{{object.pk}}">
+                              <i class="ri-heart-fill text-secondary"></i>
+                            </button>
+                          {% endif %}
+                        </form>
                       </div>
                       <div class="iq-circle">
                         <a href="#anchor1">
@@ -120,7 +128,6 @@
               <div class="review_box text-center" id="anchor1">
                 <h4>Add a Review</h4>
                 <form action="{% url 'drunk' object.pk %}" class="form-contact form-review rating-form" method="POST">{% csrf_token %}
-                  <input type="hidden" name="csrfmiddlewaretoken" value="BbjbonCk7TfXwDbHx91RosGq6EDVlnrPvnZdQtBNxaWaphzgx7Wjk3lAMNl2ldHl"/>
                   <fieldset class="form-group">
                     <div class="form-item">
                       <input id="rating-5" name="rating" type="radio" value="5"/>
@@ -182,3 +189,33 @@
     </div>
   </div>
 {% endblock content %}
+{% block ext_js %}
+  <script type="text/javascript">
+    $(document).ready(function (event) {
+      $(document).on('click', '#favp', function (event) {
+        event.preventDefault();
+        $.ajax({
+          headers: {
+            'X-CSRFToken': csrftoken
+          },
+          type: 'POST',
+          url: "{% url 'favp' %}",
+          data: {
+            'product_id': $(this).attr('name')
+          },
+          dataType: 'json',
+          success: function (response) {
+            selector = document.getElementById("favp");
+            if (response.faved) {
+              $(selector).html("<i class='ri-heart-fill text-primary'></i>");
+            } else {
+              $(selector).html("<i class='ri-heart-fill text-secondary'></i>");
+            }
+            selector2 = document.getElementsByName(response.product_id + "-count");
+            $(selector2).text("いいね!!：" + response.count + "個");
+          }
+        });
+      });
+    });
+  </script>
+{% endblock ext_js %}

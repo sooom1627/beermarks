@@ -115,6 +115,7 @@ NOTE: This file contains the styling for responsive Template.
 	.without-right-sidebar .iq-footer { width: 100%; }
 	.iq-navbar-logo { padding: 0; }
 	.iq-sidebar { display: inline-block; left: -260px; top: 0px; }
+	.iq-sidebar-active{left:0px !important;}
 	body.two-sidebar.sidebar-main .iq-sidebar .iq-navbar-logo { padding-left: 15px; }
 	body.two-sidebar.sidebar-main .iq-sidebar { width: 260px; z-index: 1000; }
 	body.two-sidebar .iq-top-navbar { width: calc(100% - 85px); left: auto; }
