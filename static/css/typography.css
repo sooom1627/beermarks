@@ -40,8 +40,9 @@ NOTE: This file contains the styling for responsive Template.
 
 /*---------------------------------------------------------------------
 import Css
------------------------------------------------------------------------
+-----------------------------------------------------------------------*/
 @import url("variable.css");
+/*
 @import url("style-customizer.css");
 @import url("owl.carousel.min.css");
 @import url("dripicons.css");
