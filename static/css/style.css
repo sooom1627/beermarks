@@ -432,7 +432,7 @@ body.sidebar-main .content-page { margin-left: 80px; }
 .profile-header-image .profile-img { margin-top: -70px; position: relative; }
 .manufacture-block .iq-card-icon { border-radius: 15px 0 0 15px; }
 .iq-background-image, .background-image-overlap { position: relative; overflow: hidden; z-index: 9; }
-.iq-background-image.image-1::after { background: transparent url(../images/page-img/51.png) no-repeat scroll right bottom; }
+
 
 /* ------------------ */
 .group-icon { margin-top: -70px; }
@@ -516,7 +516,7 @@ button.banner-button { position: absolute; left: auto; right: 21%; bottom: 12px;
 
 /*--------------------------------------
 ----------dashboard-1-------------------*/
-.iq-realeses-back { border-radius: 0px 30px; background: url(../images/dashboard/realease-song/realease-back.jpg) center center no-repeat; position: relative; background-size: cover; }
+.iq-realeses-back { border-radius: 0px 30px; position: relative; background-size: cover; }
 ul.iq-song-slide li p { color: var(--iq-white); line-height: normal; }
 p.iq-music-title, .feature-list h6  { overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 1; -webkit-box-orient: vertical; }
 ul.iq-song-slide li span { color: var(--iq-white) }
@@ -581,7 +581,7 @@ video { width: 100%; height: 100%; }
 /*--------------footer-------------*/
 .player { display: flex; align-items: center; justify-content: center; padding: 10px 0; }
 .details { display: flex; align-items: center; }
-.track-art { margin-right: 25px; height: 40px; width: 40px; background-image: url("https://images.pexels.com/photos/262034/pexels-photo-262034.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260"); background-size: cover; border-radius: 15%; }
+.track-art { margin-right: 25px; height: 40px; width: 40px; background-size: cover; border-radius: 15%; }
 .now-playing { font-size: 1rem; display: none; }
 .track-name { font-size: 18px; line-height: 26px; color: var(--iq-white); }
 .track-artist { font-size: 14px; color: var(--iq-white); }
@@ -603,13 +603,13 @@ i.fa-volume-down, i.fa-volume-up { padding: 10px; color: var(--iq-white); }
 i.fa-play-circle, i.fa-pause-circle, i.fa-step-forward, i.fa-step-backward { cursor: pointer; }
 
 /*-----------------------------------dashboard-3----------------------------------*/
-.iq-song-back { background: url(../images/dashboard/realease-song/realease-back.jpg) center center no-repeat; background-size: cover; position: relative; border-radius: 0px 30px; }
+.iq-song-back { background-size: cover; position: relative; border-radius: 0px 30px; }
 .iq-song-back:after { position: absolute; content: ""; top: 0; left: 0; bottom: 0; right: 0; z-index: 0; background: #01041b; background: -moz-linear-gradient(top, #01041b 0%, #0a0d23 50%, #555766 100%); background: -webkit-linear-gradient(top, #01041b 0%, #0a0d23 50%, #555766 100%); background: linear-gradient(to bottom, #01041b 0%, #0a0d23 50%, #555766 100%); opacity: 0.9; border-radius: 0px 30px; }
 .iq-song-bottom { position: relative; z-index: 99; }
 .player1 { display: flex; align-items: center; justify-content: center; padding: 5px 0; position: relative; z-index: 1;}
 .details1 { display: flex; align-items: center; position: absolute; bottom: auto; top: -321px; left: 5px; }
 .details1.music-list { position: relative; top: 0; bottom: 0; left: 15px; }
-.track-art1 { margin-right: 25px; height: 40px; width: 40px; background-image: url("https://images.pexels.com/photos/262034/pexels-photo-262034.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260"); background-size: cover; border-radius: 15%; }
+.track-art1 { margin-right: 25px; height: 40px; width: 40px; background-size: cover; border-radius: 15%; }
 .now-playing1 { font-size: 1rem; display: none; }
 .track-name1 { font-size: 18px; line-height: 26px; color: var(--iq-white); }
 .track-artist1 { font-size: 14px; color: var(--iq-white); }
@@ -886,7 +886,7 @@ Footer
 -----------------------------------------------------------------------*/
 
 /*body.sidebar-main .iq-footer { margin-left: 80px; }*/
-.bg-banner-image.style-three { height: 150px; background: url('../images/bg-03.jpg'); }
+.bg-banner-image.style-three { height: 150px; }
 .iq-mt--70 { margin-top: -70px }
 .banner-main-text { position: absolute; left: 15%; bottom: 13%; }
 .nav.nav-pills.style-three .nav-link.active:before, .nav.nav-pills.style-three .nav-link:hover:before { display: inline-block; width: 100%; height: 3px; background: var(--iq-color13); content: ""; position: absolute; left: 0; bottom: 0px; }
@@ -1084,7 +1084,7 @@ span.avatar-status { position: absolute; bottom: -10px; top: auto; left: auto; r
 .iq-chat-ui li:last-child a { border: none; }
 .iq-chat-ui li:nth-child(2) a, .iq-chat-ui li:nth-child(6) a { border: none; }
 .chat-sidebar-channel { overflow-y: scroll; overflow-x: hidden; height: calc(100vh - 19rem); margin-bottom: 15px; }
-.chat-data { background: url(../images/page-img/100.jpg) no-repeat scroll center center; background-size: cover; }
+.chat-data { background-size: cover; }
 .chat-header-icons .dropdown-toggle:empty::after { display: none; }
 .chat-header-icons > a, .chat-header-icons > span { width: 40px; height: 40px; font-size: 20px; margin: 0 5px 0 0; color: #f9ae02; display: inline-block; text-align: center; line-height: 40px; border-radius: 15px; cursor: pointer; }
 .chat-content { position: relative; height: calc(100vh - 17rem); text-align: center; padding: 1.4rem; overflow-y: scroll; overflow-x: hidden; }
