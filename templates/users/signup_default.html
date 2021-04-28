@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% block login %}
+
+  <!-- <body class="text-center"> {{ error }} <form class="form-signin" method="POST">{% csrf_token %} <h1 class="h3 mb-3 font-weight-normal">Please sign up</h1> <label for="inputEmail" class="sr-only">user name</label> <input type="text" id="inputEmail" class="form-control" placeholder="username" name="username" required="" autofocus=""> <label for="inputPassword" class="sr-only">Password</label> <input type="password" id="inputPassword" class="form-control" placeholder="Password" name="password" required=""> <button class="btn btn-lg btn-primary btn-block" type="submit">Sign up</button> <p class="mt-5 mb-3 text-muted">© 2017-2019</p> </form> </body> -->
+
+  <section class="login_box_area section-margin">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-6">
+          <div class="login_box_img">
+            <div class="hover">
+              <h4>アカウントを保持していますか?</h4>
+              <p>
+                サイトにログインして、いろいろなビールを楽しもう！！
+              </p>
+              <a class="button button-account" href="{% url 'login' %}">ログインする</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <div class="login_form_inner register_form_inner">
+            <h3>アカウントを作成する</h3>
+            <form class="row login_form" action="#/" method="POST" id="register_form">{% csrf_token %}
+              <div class="col-md-12 form-group">
+                <input type="text" class="form-control" id="name" name="username" placeholder="Username" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Username'"/>
+              </div>
+              <div class="col-md-12 form-group">
+                <input type="password" class="form-control" id="password" name="password" placeholder="Password" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Password'"/>
+              </div>
+              <!-- <div class="col-md-12 form-group"> <input type="email" class="form-control" id="email" name="email" placeholder="Email Address" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Email Address'"/> </div> <div class="col-md-12 form-group"> <input type="text" class="form-control" id="confirmPassword" name="confirmPassword" placeholder="Confirm Password" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Confirm Password'"/> </div> <div class="col-md-12 form-group"> <div class="creat_account"> <input type="checkbox" id="f-option2" name="selector"/> <label for="f-option2">Keep me logged in</label> </div> </div> -->
+              <div class="col-md-12 form-group">
+                <button type="submit" value="submit" class="button button-register w-100">
+                  アカウント作成
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+{% endblock login %}

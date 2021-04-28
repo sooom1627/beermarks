@@ -38,7 +38,7 @@ def detail(request, pk):
         "avg":avg
     }
 
-    return render(request, "./product/detail2.html", context)
+    return render(request, "./product/detail.html", context)
 
 
 @login_required

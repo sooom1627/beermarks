@@ -1,72 +1,39 @@
 {% extends 'base.html' %}
 {% block content %}
-  <div class="container text-center">
-    <div class="pageTitle">
-      <p>Find the Beer</p>
-      <h2>ビールを探す</h2>
-    </div>
-    <div class="d-flex justify-content-center">
-      <form class="form-inline my-2" method="GET" action="{% url 'search' %}">
-        <input type="text" class="form-control" name="q" value="{{request.GET.q}}" placeholder="キーワード検索">
-        <button type="submit" value="search" class="btn btn-primary">検索</button>
-      </form>
-    </div>
-    <section class="lattest-product-area pb-40 category-list">
-      <div class="row pt-5 pb-2">
-        {% for item in products %}
-          <div class="col-md-6 col-lg-4">
-            <div class=" card text-center card-product">
-              <div class="card-product__img">
-                <img class="card-img" src="{{ item.ppic.url }}" alt=""/>
-                <ul class="card-product__imgOverlay">
-                  <li>
-                    {% if item.id in drunk_list %}
-                      <button>
-                        <a href="{% url 'detail' item.pk %}#anchor1">
-                          <i class="fas fa-beer" style="color:#ffc107;">
-                            <span style="color:#ffc107;" class="">飲んだ！</span></i>
-                        </a>
-                      </button>
-                    {% else %}
-                      <button>
-                        <a href="{% url 'detail' item.pk %}#anchor1">
-                          <i class="fas fa-beer">
-                            <span class="font-weight-normal">飲んだ！</span></i>
-                        </a>
-                      </button>
-                    {% endif %}
-                  </li>
-                  <li>
-                    <form action="{% url 'favp' %}" method="POST">{% csrf_token %}
-                      {% if item.id in faved_list %}
-                        <button id="favp" name="{{item.id}}">
-                          <i class="fas fa-lg red_h fa-heart">飲みたい！</i>
-                        </button>
-                      {% else %}
-                        <button id="favp" name="{{item.id}}">
-                          <i class="far fa-lg fa-heart">飲みたい！</i>
-                        </button>
-                      {% endif %}
-                    </form>
-                  </li>
-                </ul>
+  <div class="col-lg-12">
+    <div class="iq-card">
+      <div class="iq-card-header d-flex justify-content-between">
+        <div class="iq-header-title">
+          <h4 class="card-title">Beer List</h4>
+        </div>
+      </div>
+      <div class="iq-card-body">
+        <ul class="list-unstyled row iq-box-hover mb-0">
+          {% for item in products %}
+            <li class="col-xl-3 col-lg-4 col-md-5 iq-music-box">
+              <div class="iq-card">
+                <div class="iq-card-body p-0">
+                  <div class="iq-thumb">
+                    <a href="detail.html">
+                      <img src="{{ item.ppic.url }}" class="img-border-radius img-fluid w-100" style="width:100%;height:160px;" alt=""/>
+                    </a>
+                  </div>
+                  <div class="feature-list text-center">
+                    <a href="{% url 'detail' item.pk %}">
+                      <h6 class="font-weight-600 mb-0">
+                        {{ item.pname }}
+                      </h6>
+                    </a>
+                    <a href="{% url 'branddetail' item.brand.pk %}">
+                      <small class="mb-0">{{ item.brand }}</small>
+                    </a>
+                  </div>
+                </div>
               </div>
-              <div class="card-body">
-                <p>
-                  <a href="{% url 'branddetail' item.brand.pk %}">{{ item.brand }}</a>
-                </p>
-                <p class="card-product__title">
-                  <a href="{% url 'detail' item.pk %}">{{ item.pname }}</a>
-                </p>
-                <p class="card-product__price">
-                  <a>{{ item.ptype }}</a>
-                </p>
-              </div>
-            </div>
-          </div>
-        {% endfor %}
-      </section>
-      {% include "paginate.html" %}
+            </li>
+          {% endfor %}
+        </ul>
+      </div>
     </div>
   </div>
 {% endblock content %}

@@ -1,71 +1,63 @@
 {% extends 'base.html' %}
 {% block content %}
-  <div class="pageTitle text-center">
-    <p>Item Detail</p>
-    <h2></h2>
-  </div>
-  <div class="product_image_area">
-    <div class="container">
-      <div class="row s_product_inner">
-        <div class="col-lg-6">
-          <div class="single-prd-item text-center">
-            <img class="img-fluid" src="{{object.ppic.url}}" alt=""/>
-            <!-- <img class="backpic" src="../../media/{{object.pPic}}" alt=""/> -->
-          </div>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="text-center">
+          <h2 class="mb-3">Detail</h2>
         </div>
-        <div class="col-lg-5 offset-lg-1">
-          <div class="s_product_text">
-            <h2>{{object.pname}}</h2>
-            <h5>{{ object.brand }}</h5>
-            <ul class="list">
-              <li>
-                <a class="active" href="#">
-                  <span>Beer Type</span>
-                  :
-                  {{object.ptype}}</a>
-              </li>
-
-            </ul>
-            <p>
-              {{ object.desc }}
-            </p>
-            <div class="card_area d-flex align-items-center">
-              <a class="icon_btn" href="#">
-                <i class="fas fa-beer" aria-hidden="true"></i>
-              </a>
-              <a class="icon_btn" href="#">
-                <i class="far fa-lg fa-heart"></i>
-              </a>
+        <div class="iq-card">
+          <div class="iq-card-body">
+            <div class="row">
+              <div class="col-lg-6">
+                <img src="{{object.ppic.url}}" class="img-fluid w-100" alt=""/>
+              </div>
+              <div class="col-lg-6" style="position: relative">
+                <div class="d-flex align-items-top justify-content-between iq-music-play-detail">
+                  <div class="music-detail">
+                    <h3 class="mainc">{{object.pname}}</h3>
+                    <span>{{ object.brand }}</span>
+                    <p>
+                      {{ object.desc }}
+                    </p>
+                  </div>
+                  <div class="music-right" style="position: absolute; bottom: 20px; left: 20px">
+                    <div class="d-flex align-items-center">
+                      <div class="iq-circle mr-2 share">
+                        <a href="javascript:void();">
+                          <i class="las la-share-alt-square text-secondary"></i>
+                        </a>
+                      </div>
+                      <div class="iq-circle mr-2">
+                        <a href="javascript:void();">
+                          <i class="ri-heart-fill text-secondary"></i>
+                        </a>
+                      </div>
+                      <div class="iq-circle">
+                        <a href="#anchor1">
+                          <i class="las la-comment text-secondary"></i>
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-    </div>
-  </div>
-  <section class="product_description_area mb-5">
-    <div class="container">
-      <ul class="nav nav-tabs" id="myTab" role="tablist">
-        <li class="nav-item">
-          <a class="nav-link active" id="review-tab" data-toggle="tab" href="#review" role="tab" aria-controls="review" aria-selected="false">Reviews</a>
-        </li>
-        <!-- <li class="nav-item"> <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Specification</a> </li> -->
-      </ul>
-      <div class="tab-content" id="myTabContent">
-        <!-- <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab"> <div class="table-responsive"> <table class="table"> <tbody> <tr> <td> <h5>Width</h5> </td> <td> <h5>128mm</h5> </td> </tr> <tr> <td> <h5>Height</h5> </td> <td> <h5>508mm</h5> </td> </tr> <tr> <td> <h5>Depth</h5> </td> <td> <h5>85mm</h5> </td> </tr> <tr> <td> <h5>Weight</h5> </td> <td> <h5>52gm</h5> </td> </tr> <tr> <td> <h5>Quality checking</h5> </td> <td> <h5>yes</h5> </td> </tr> <tr> <td> <h5>Freshness Duration</h5> </td> <td> <h5>03days</h5> </td> </tr> <tr> <td> <h5>When packeting</h5> </td> <td> <h5>Without touch of hand</h5> </td> </tr> <tr> <td> <h5>Each Box contains</h5> </td> <td> <h5>60pcs</h5> </td> </tr> </tbody> </table> </div> </div> -->
-
-        <div class="tab-pane fade show active" id="review" role="tabpanel" aria-labelledby="review-tab">
+        <div class="col-12">
           <div class="row">
             <div class="col-lg-6">
               <div class="row total_rate">
                 <div class="col-12 mb-3">
-                  <div class="box_total">
-                    <h5>Overall</h5>
+                  <div class="box_total text-center">
+                    <h4>Overall</h4>
                     {% if avg == None %}
-                      <h4>-</h4>
+                      <h3>-</h4>
                     {% else %}
-                      <h4>{{ avg }}</h4>
+                      <h3 style="color: #f9ae02">{{ avg }}</h4>
                     {% endif %}
-                    <h6>レビュー：{{ object.drunk_product.count }}</h6>
+                    <p>レビュー：{{ object.drunk_product.count }}件</p>
                   </div>
                 </div>
               </div>
@@ -75,46 +67,46 @@
                     <div class="media row">
                       <div class="col-sm-7">
                         <div class="d-flex">
-                          <img src="{{ review.user.upic.url }}" alt=""/>
-                        </div>
-                        <div class="media-body">
-                          <h4>{{ review.user.username }}</h4>
-                          {% if review.rate == 5 %}
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                          {% elif review.rate == 4 %}
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star disable"></i>
-                          {% elif review.rate == 3 %}
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star disable"></i>
-                            <i class="fa fa-star disable"></i>
-                          {% elif review.rate == 2 %}
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star disable"></i>
-                            <i class="fa fa-star disable"></i>
-                            <i class="fa fa-star disable"></i>
-                          {% elif review.rate == 1 %}
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star disable"></i>
-                            <i class="fa fa-star disable"></i>
-                            <i class="fa fa-star disable"></i>
-                            <i class="fa fa-star disable"></i>
-                          {% endif %}
-                          <i>{{ review.rate }}</i>
+                          <img src="{{ review.user.upic.url }}" alt="" class="img-fluid rounded-circle" style="width: 50px; height: 50px"/>
+                          <div class="media-body pl-3">
+                            <h4>{{ review.user.username }}</h4>
+                            {% if review.rate == 5 %}
+                              <i class="fa fa-star"></i>
+                              <i class="fa fa-star"></i>
+                              <i class="fa fa-star"></i>
+                              <i class="fa fa-star"></i>
+                              <i class="fa fa-star"></i>
+                            {% elif review.rate == 4 %}
+                              <i class="fa fa-star"></i>
+                              <i class="fa fa-star"></i>
+                              <i class="fa fa-star"></i>
+                              <i class="fa fa-star"></i>
+                              <i class="fa fa-star disable"></i>
+                            {% elif review.rate == 3 %}
+                              <i class="fa fa-star"></i>
+                              <i class="fa fa-star"></i>
+                              <i class="fa fa-star"></i>
+                              <i class="fa fa-star disable"></i>
+                              <i class="fa fa-star disable"></i>
+                            {% elif review.rate == 2 %}
+                              <i class="fa fa-star"></i>
+                              <i class="fa fa-star"></i>
+                              <i class="fa fa-star disable"></i>
+                              <i class="fa fa-star disable"></i>
+                              <i class="fa fa-star disable"></i>
+                            {% elif review.rate == 1 %}
+                              <i class="fa fa-star"></i>
+                              <i class="fa fa-star disable"></i>
+                              <i class="fa fa-star disable"></i>
+                              <i class="fa fa-star disable"></i>
+                              <i class="fa fa-star disable"></i>
+                            {% endif %}
+                            <i>{{ review.rate }}</i>
+                          </div>
                         </div>
                       </div>
                       <div class="col-sm-5">
-                        <p>{{ review.day }}</p>
+                        <small>{{ review.day }}</small>
                       </div>
                     </div>
                     <p>
@@ -125,59 +117,60 @@
               </div>
             </div>
             <div class="col-lg-6">
-              <div class="review_box" id="anchor1">
+              <div class="review_box text-center" id="anchor1">
                 <h4>Add a Review</h4>
                 <form action="{% url 'drunk' object.pk %}" class="form-contact form-review rating-form" method="POST">{% csrf_token %}
+                  <input type="hidden" name="csrfmiddlewaretoken" value="BbjbonCk7TfXwDbHx91RosGq6EDVlnrPvnZdQtBNxaWaphzgx7Wjk3lAMNl2ldHl"/>
                   <fieldset class="form-group">
                     <div class="form-item">
                       <input id="rating-5" name="rating" type="radio" value="5"/>
                       <label for="rating-5" data-value="5">
                         <span class="rating-star">
-                          <i class="fa fa-star-o"></i>
-                          <i class="fa fa-star"></i>
+                          <i class="fa fa-star-o" aria-hidden="true"></i>
+                          <i class="fa fa-star" aria-hidden="true"></i>
                         </span>
                         <span class="ir">5</span>
                       </label>
                       <input id="rating-4" name="rating" type="radio" value="4"/>
                       <label for="rating-4" data-value="4">
                         <span class="rating-star">
-                          <i class="fa fa-star-o"></i>
-                          <i class="fa fa-star"></i>
+                          <i class="fa fa-star-o" aria-hidden="true"></i>
+                          <i class="fa fa-star" aria-hidden="true"></i>
                         </span>
                         <span class="ir">4</span>
                       </label>
                       <input id="rating-3" name="rating" type="radio" value="3"/>
                       <label for="rating-3" data-value="3">
                         <span class="rating-star">
-                          <i class="fa fa-star-o"></i>
-                          <i class="fa fa-star"></i>
+                          <i class="fa fa-star-o" aria-hidden="true"></i>
+                          <i class="fa fa-star" aria-hidden="true"></i>
                         </span>
                         <span class="ir">3</span>
                       </label>
                       <input id="rating-2" name="rating" type="radio" value="2"/>
                       <label for="rating-2" data-value="2">
                         <span class="rating-star">
-                          <i class="fa fa-star-o"></i>
-                          <i class="fa fa-star"></i>
+                          <i class="fa fa-star-o" aria-hidden="true"></i>
+                          <i class="fa fa-star" aria-hidden="true"></i>
                         </span>
                         <span class="ir">2</span>
                       </label>
                       <input id="rating-1" name="rating" type="radio" value="1"/>
                       <label for="rating-1" data-value="1">
                         <span class="rating-star">
-                          <i class="fa fa-star-o"></i>
-                          <i class="fa fa-star"></i>
+                          <i class="fa fa-star-o" aria-hidden="true"></i>
+                          <i class="fa fa-star" aria-hidden="true"></i>
                         </span>
                         <span class="ir">1</span>
                       </label>
                     </div>
                   </fieldset>
                   <div class="form-group">
-                    <textarea class="form-control different-control w-100" name="com" id="textarea" cols="30" rows="5" placeholder="コメントを入力"></textarea>
+                    <textarea class="form-control" name="com" id="textarea" cols="30" rows="5" placeholder="コメントを入力"></textarea>
                   </div>
-                  <div class="form-group text-center text-md-right mt-3">
-                    <button type="submit" value="submit" id="drunk" class="button button--active button-review" name="{{object.id}}">
-                      Submit Now
+                  <div class="form-group text-center mt-3">
+                    <button type="submit" value="submit" id="drunk" class="btn btn-secondary mb-1 px-5 text-center mt-3" name="{{object.id}}">
+                      Post
                     </button>
                   </div>
                 </form>
@@ -187,6 +180,5 @@
         </div>
       </div>
     </div>
-  </section>
-
+  </div>
 {% endblock content %}

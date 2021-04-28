@@ -1,230 +1,166 @@
 {% extends 'base.html' %}
 
 {% block content %}
-  <div class="container">
-    <div class="text-center">
-      <div class="pageTitle">
-        <p>TIME LINE</p>
-        <h2>タイムライン</h2>
-      </div>
-      <div class="">
-        {% for post in posts %}
-          {% if post.drunk is None %}
-            <div class="">
-              <article class="row post_item mb-3 mt-4 p-3">
-                <div class="col-md-7 offset-md-1">
-                  <div class="post_main">
-                    <div class="post_main_pic">
-                      <img src="{{ post.favp.product.ppic.url }}" alt=""/>
-                      <img class="backpic" src="{{ post.favp.product.ppic.url}}" alt=""/>
-                      <ul class="card-product__imgOverlay">
-                        <li>
-                          <button>
-                            {% if post.drunk.product.id in drunk_list %}
-                              <a href="{% url 'detail' post.favp.product.id %}#anchor1">
-                                <i class="fas fa-beer orange">
-                                  <span class="font-weight-normal">飲んだ！</span>
-                                </i>
-                              </a>
-                            {% else %}
-                              <a href="{% url 'detail' post.favp.product.id %}#anchor1">
-                                <i class="fas fa-beer">
-                                  <span class="font-weight-normal">飲んだ！</span>
-                                </i>
-                              </a>
-                            {% endif %}
-                          </button>
-                        </li>
-                        <li>
-                          <form action="{% url 'favp' %}" method="POST">{% csrf_token %}
-                            {% if post.favp.product.id in faved_list %}
-                              <button id="favp" name="{{post.favp.product.id}}">
-                                <i class="fas fa-lg red_h fa-heart">飲みたい！</i>
-                              </button>
-                            {% else %}
-                              <button id="favp" name="{{post.favp.product.id}}">
-                                <i class="far fa-lg fa-heart">飲みたい！</i>
-                              </button>
-                            {% endif %}
-                          </form>
-                        </li>
-
-                      </ul>
-                    </div>
-
-                    <div class="post_details pt-3">
-                      <a href="{% url 'detail' post.favp.product.id  %}">
-                        <h2>{{post.favp.product.pname}}</h2>
-                      </a>
-                    </div>
+  {% for post in posts %}
+    {% if post.drunk is None %}
+      <div class="col-lg-12">
+        <div class="iq-card iq-mb-3">
+          <div class="row no-gutters">
+            <div class="col-md-5">
+              <img src="{{ post.favp.product.ppic.url}}" class="card-img" alt="#"/>
+            </div>
+            <div class="col-md-7" style="position: relative">
+              <div class="iq-card-body" style="padding-bottom: 70px">
+                <div class="d-flex flex-row align-items-center mb-3">
+                  <div class="mr-3">
+                    <img src="{{ post.favp.user.upic.url }}" class="img-fluid rounded-circle" style="width: 40px; height: 40px" alt=""/>
+                  </div>
+                  <div>
+                    <a href="{% url 'udet' post.favp.user.id %}">
+                      <p>{{ post.favp.user }}</p>
+                    </a>
                   </div>
                 </div>
-                <div class="col-md-3  d-flex align-items-center ">
-                  <div class="posts text-left">
-                    <div class="post_tag">
-                      <a href="{% url 'branddetail' post.favp.product.brand.pk %}">{{post.favp.product.brand}}</a>
-                    </br>
-                    <a class="active" href="#">{{ post.favp.product.ptype }}</a>
-                  </div>
-                  <ul class="posts_meta list">
-                    <li>
-                      {% if user.id == post.favp.user.id %}
-                        <a href="{% url 'mypage' user.id %}">
-                          <i class="lnr lnr-user"></i>{{ post.favp.user }}
-                        </a>
-                      {% else %}
-                        <a href="{% url 'udet' post.favp.user.id %}">
-                          <i class="lnr lnr-user"></i>{{ post.favp.user }}
-                        </a>
-                      {% endif %}
-                    </li>
-                    <li>
-                      <p class="count">
-                        <i class="lnr lnr-heart"></i>
-                        <span name="{{post.favp.product.id}}-count">{{ post.favp.product.fav_product.count }}</span>個
-                      </p>
-                    </li>
-                    <li>
-                      <a href="{% url 'detail' post.favp.product.id %}#anchor1">
-                        <i class="lnr lnr-bubble"></i>
-                        <span>{{ post.favp.product.drunk_product.count }}</span>レビュー
-                      </a>
-                    </li>
-                    <li>
-                      <p>
-                        <i class="lnr lnr-calendar-full"></i>
-                        {{ post.favp.day|date:"y/m/d/ H:i" }}
-                      </p>
-                    </li>
-                  </ul>
+                <a href="{% url 'detail' post.favp.product.id  %}">
+                  <h4 class="card-title mainc">{{post.favp.product.pname}}</h4>
+                </a>
+                <h5>{{post.favp.product.brand}}</h5>
+                <p class="card-text">
+                  This is a wider card with supporting text below as a natural lead-in. a little bit longer.
+                </p>
+                <div class="mt-4">
+                  <a href="#" class="btn btn-outline-dark rounded-pill mb-1 px-4 mr-3">{{ post.favp.product.ptype }}</a>
                 </div>
-              </div>
-            </article>
-          </div>
-        {% else %}
-          <article class="row post_item mb-3">
-            <div class="col-md-7 offset-md-1">
-              <div class="post_main">
-                <div class="post_main_pic">
-                  <img src="{{ post.drunk.product.ppic.url }}" alt=""/>
-                  <img class="backpic" src="{{ post.drunk.product.ppic.url}}" alt=""/>
-                  <ul class="card-product__imgOverlay">
-                    <li>
-                      <button>
-                        {% if post.drunk.product.id in drunk_list %}
-                          <a href="{% url 'detail' post.drunk.product.id %}#anchor1">
-                            <i class="fas fa-beer" style="color:#ffc107;">
-                              <span class="font-weight-bold" style="color:#ffc107;">飲んだ！</span>
-                            </i>
-                          </a>
-                        {% else %}
-                          <a href="{% url 'detail' post.drunk.product.id %}#anchor1">
-                            <i class="fas fa-beer">
-                              <span class="font-weight-normal">飲んだ！</span>
-                            </i>
-                          </a>
-                        {% endif %}
-                      </button>
-                    </li>
-                    <li>
+                <p class="card-text text-right" style="position: absolute; bottom: 20px; right: 20px">
+                  <small class="text-muted">{{ post.favp.day|date:"y/m/d/ H:i" }}</small>
+                </p>
+                <div class="" style="position: absolute; bottom: 20px; left: 20px">
+                  <div class="d-flex align-items-center">
+                    <div class="iq-circle mr-2 share">
+                      <a href="javascript:void();">
+                        <i class="las la-share-alt-square text-secondary"></i>
+                      </a>
+                    </div>
+                    <div class="iq-circle mr-2">
                       <form action="{% url 'favp' %}" method="POST">{% csrf_token %}
-                        {% if post.drunk.product.id in faved_list %}
-                          <button id="favp" name="{{post.drunk.product.id}}">
-                            <i class="fas fa-lg red_h fa-heart">飲みたい！</i>
+                        {% if post.favp.product.id in faved_list %}
+                          <button id="favp" name="{{post.favp.product.id}}">
+                            <i class="ri-heart-fill text-primary"></i>
                           </button>
                         {% else %}
-                          <button id="favp" name="{{post.drunk.product.id}}">
-                            <i class="far fa-lg fa-heart">飲みたい！</i>
+                          <button id="favp" name="{{post.favp.product.id}}">
+                            <i class="ri-heart-fill text-secondary"></i>
                           </button>
                         {% endif %}
                       </form>
-                    </li>
-
-                  </ul>
-                </div>
-
-                <div class="post_details pt-3">
-                  <a href="{% url 'detail' post.drunk.product.id  %}">
-                    <h2>{{post.drunk.product.pname}}</h2>
-                  </a>
+                    </div>
+                    <div class="iq-circle">
+                      <a href="#anchor1">
+                        <i class="las la-comment text-secondary"></i>
+                      </a>
+                    </div>
+                  </div>
                 </div>
               </div>
-            </div>
-            <div class="col-md-3  d-flex align-items-center ">
-              <div class="posts text-left">
-                <div class="post_tag">
-                  <a href="#">{{post.drunk.product.brand}}</a>
-                </br>
-                <a class="active" href="#">{{ post.drunk.product.ptype }}</a>
-              </div>
-              <ul class="posts_meta list">
-                <li>
-                  {% if user.id == post.drunk.user.id %}
-                    <a href="{% url 'mypage' user.id %}">
-                      <i class="lnr lnr-user"></i>{{ post.drunk.user }}
-                    </a>
-                  {% else %}
-                    <a href="{% url 'udet' post.drunk.user.id %}">
-                      <i class="lnr lnr-user"></i>{{ post.drunk.user }}
-                    </a>
-                  {% endif %}
-                </li>
-                <li>
-                  <p class="count">
-                    <i class="lnr lnr-heart"></i>
-                    <span name="{{post.drunk.product.id}}-count">{{ post.drunk.product.fav_product.count }}</span>個
-                  </p>
-                </li>
-                <li>
-                  <a href="#">
-                    <i class="lnr lnr-bubble"></i>
-                    <span>{{ post.drunk.product.drunk_product.count }}</span>レビュー
-                  </a>
-                </li>
-                <li>
-                  <p>
-                    <i class="lnr lnr-calendar-full"></i>
-                    {{ post.drunk.day|date:"y/m/d/ H:i" }}
-                  </p>
-                </li>
-              </ul>
             </div>
           </div>
-        </article>
-      {% endif %}
-    {% endfor %}
-  </div>
-</div>
-</div>
+        </div>
+      </div>
+    {% else %}
+      <div class="col-lg-12">
+        <div class="iq-card iq-mb-3">
+          <div class="row no-gutters">
+            <div class="col-md-5">
+              <img src="{{ post.drunk.product.ppic.url }}" class="card-img" alt="#"/>
+            </div>
+            <div class="col-md-7" style="position: relative">
+              <div class="iq-card-body" style="padding-bottom: 70px">
+                <div class="d-flex flex-row align-items-center mb-3">
+                  <div class="mr-3">
+                    <img src="{{ post.drunk.user.upic.url }}" class="img-fluid rounded-circle" style="width: 40px; height: 40px" alt=""/>
+                  </div>
+                  <div>
+                    <a href="{% url 'udet' post.drunk.user.id %}">
+                      <p>{{ post.drunk.user }}</p>
+                    </a>
+                  </div>
+                </div>
+                <a href="{% url 'detail' post.drunk.product.id %}">
+                  <h4 class="card-title mainc">{{post.drunk.product.pname}}</h4>
+                </a>
+                <h5>{{post.drunk.product.brand}}</h5>
+                <p class="card-text">
+                  This is a wider card with supporting text below as a natural lead-in. a little bit longer.
+                </p>
+                <div class="mt-4">
+                  <a href="#" class="btn btn-outline-dark rounded-pill mb-1 px-4 mr-3">{{ post.drunk.product.ptype }}</a>
+                </div>
+                <p class="card-text text-right" style="position: absolute; bottom: 20px; right: 20px">
+                  <small class="text-muted">{{ post.drunk.day|date:"y/m/d/ H:i" }}</small>
+                </p>
+                <div class="" style="position: absolute; bottom: 20px; left: 20px">
+                  <div class="d-flex align-items-center">
+                    <div class="iq-circle mr-2 share">
+                      <a href="javascript:void();">
+                        <i class="las la-share-alt-square text-secondary"></i>
+                      </a>
+                    </div>
+                    <div class="iq-circle mr-2">
+                      <form action="{% url 'favp' %}" method="POST">{% csrf_token %}
+                        {% if post.drunk.product.id in faved_list %}
+                          <button id="favp" name="{{post.drunk.product.id}}">
+                            <i class="ri-heart-fill text-primary"></i>
+                          </button>
+                        {% else %}
+                          <button id="favp" name="{{post.drunk.product.id}}">
+                            <i class="ri-heart-fill text-secondary"></i>
+                          </button>
+                        {% endif %}
+                      </form>
+                    </div>
+                    <div class="iq-circle">
+                      <a href="#anchor1">
+                        <i class="las la-comment text-secondary"></i>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    {% endif %}
+  {% endfor %}
 {% endblock content %}
 {% block ext_js %}
 
-<script type="text/javascript">
-$(document).ready(function (event) {
-  $(document).on('click', '#favp', function (event) {
-    event.preventDefault();
-    $.ajax({
-      headers: {
-        'X-CSRFToken': csrftoken
-      },
-      type: 'POST',
-      url: "{% url 'favp' %}",
-      data: {
-        'product_id': $(this).attr('name')
-      },
-      dataType: 'json',
-      success: function (response) {
-        selector = document.getElementsByName(response.product_id);
-        if (response.faved) {
-          $(selector).html("<i class='fas fa-lg fa-heart'>飲みたい！</i>");
-        } else {
-          $(selector).html("<i class='far fa-lg fa-heart'>飲みたい！</i>");
-        }
-        selector2 = document.getElementsByName(response.product_id + "-count");
-        $(selector2).text(response.count);
-      }
+  <script type="text/javascript">
+    $(document).ready(function (event) {
+      $(document).on('click', '#favp', function (event) {
+        event.preventDefault();
+        $.ajax({
+          headers: {
+            'X-CSRFToken': csrftoken
+          },
+          type: 'POST',
+          url: "{% url 'favp' %}",
+          data: {
+            'product_id': $(this).attr('name')
+          },
+          dataType: 'json',
+          success: function (response) {
+            selector = document.getElementsByName(response.product_id);
+            if (response.faved) {
+              $(selector).html("<i class='ri-heart-fill text-primary'></i>");
+            } else {
+              $(selector).html("<i class='ri-heart-fill text-secondary'></i>");
+            }
+            selector2 = document.getElementsByName(response.product_id + "-count");
+            $(selector2).text("いいね!!：" + response.count + "個");
+          }
+        });
+      });
     });
-  });
-});
-</script>
+  </script>
 {% endblock ext_js %}

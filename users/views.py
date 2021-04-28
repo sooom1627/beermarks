@@ -27,8 +27,10 @@ def signupFunc(request):
     if request.method == "POST":
         username = request.POST["username"]
         password = request.POST["password"]
+        email = request.POST["email"]
         try:
-             user = User.objects.create_user(username, "", password)
+             user = User.objects.create_user(username, email, password)
+             login(request, user)
              return redirect("timeline")
         except IntegrityError:
             return render(request, "signup.html", {"error":"This user is already registerd"})
@@ -43,7 +45,7 @@ def loginFunc(request):
             login(request, user)
             return redirect("timeline")
         else:
-            return render(request, "login.html", {})
+            return render(request, "./users/login.html", {})
     return render(request, "./users/login.html", {})
 
 

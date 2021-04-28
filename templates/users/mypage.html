@@ -1,128 +1,127 @@
 {% extends 'base.html' %}
-{% block side_img %}
-  <image class="nav_icon" src="{{user.upic.url}}"/>
-{% endblock side_img %}
 {% block content %}
-  <div class="container">
-    <div class="pageTitle text-center">
-      <p>My Collections</p>
-      <h2>{{ user.username }}のお気に入り</h2>
-    </div>
-    <section class="product_description_area mb-5">
-      <div class="container">
-        <ul class="nav nav-tabs" id="myTab" role="tablist">
-          <li class="nav-item">
-            <a class="nav-link active" id="review-tab" data-toggle="tab" href="#review" role="tab" aria-controls="review" aria-selected="false">飲んだ！</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">飲みたい！</a>
-          </li>
-        </ul>
-        <div class="tab-content border-0 p-0" id="myTabContent">
-          <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-            <section class="lattest-product-area pb-40 category-list">
-              <div class="row pt-5 pb-5">
-                {% for item in faved_list %}
-                  <div class="col-md-6 col-lg-4" name="{{ item.product.id }}">
-                    <div class="card text-center card-product">
-                      <div class="card-product__img">
-                        <img class="card-img" src="{{ item.product.ppic.url }}" alt=""/>
-                        <ul class="card-product__imgOverlay">
-                          <li>
-                            <button>
-                              <i class="fas fa-beer"></i>
-                            </i>
-                          </button>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-12 col-md-12">
+        <div class="iq-card">
+          <div class="iq-card-body profile-page">
+            <div class="profile-header">
+              <div class="cover-container row">
+                <div class="col-md-6">
+                  <div class="text-center">
+                    <img src="{{ user.upic.url }}" alt="profile-bg" class="rounded-circle img-fluid" style="width: 40%"/>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="profile-detail mt-3">
+                    <h3>{{ user.username }}</h3>
+                    <p>
+                      Phasellus faucibus mollis pharetra. Proin blandit ac massa.Morbi nulla dolor, ornare at commodo non, feugiat non nisi.
+                    </p>
+                    <div class="iq-social d-inline-block align-items-center text-center mt-3">
+                      <ul class="list-inline d-flex p-0 mb-0 align-items-center">
+                        <li>
+                          <a href="#" class="avatar-40 rounded-circle bg-primary mr-2 facebook">
+                            <i class="fa fa-facebook" aria-hidden="true"></i>
+                          </a>
                         </li>
                         <li>
-                          <form action="{% url 'favp' %}" method="POST">{% csrf_token %}
-                            <button id="favp" name="{{item.product.id}}">
-                              <i class="fas fa-lg red_h fa-heart">飲みたい！</i>
-                            </button>
-                            <!-- {% if item.id in faved_list %} -->
-                            <!-- {% else %} <button id="favp" name="{{item.id}}"> <i class="far fa-lg fa-heart"></i> </button> {% endif %}-->
-                          </form>
+                          <a href="#" class="avatar-40 rounded-circle bg-primary mr-2 twitter">
+                            <i class="fa fa-twitter" aria-hidden="true"></i>
+                          </a>
+                        </li>
+                        <li>
+                          <a href="#" class="avatar-40 rounded-circle bg-primary mr-2 youtube">
+                            <i class="fa fa-youtube-play" aria-hidden="true"></i>
+                          </a>
+                        </li>
+                        <li>
+                          <a href="#" class="avatar-40 rounded-circle bg-primary pinterest">
+                            <i class="fa fa-pinterest-p" aria-hidden="true"></i>
+                          </a>
                         </li>
                       </ul>
                     </div>
-                    <div class="card-body">
-                      <p>{{ item.product.brand }}</p>
-                      <p class="card-product__title">
-                        <a href="{% url 'detail' item.product.pk %}">{{ item.product.pname }}</a>
-                      </p>
-                      <p class="card-product__price">{{ item.product.ptype }}</p>
-                    </div>
                   </div>
                 </div>
-              {% endfor %}
-            </section>
-          </div>
-          <div class="tab-pane fade show active" id="review" role="tabpanel" aria-labelledby="review-tab">
-            <section class="lattest-product-area pb-40 category-list">
-              <div class="row pt-5 pb-5">
-                {% for item in drunk_list %}
-                  <div class="col-md-6 col-lg-4" name="{{ item.product.id }}">
-                    <div class="card text-center card-product">
-                      <div class="card-product__img">
-                        <img class="card-img" src="{{ item.product.ppic.url }}" alt=""/>
-                        <ul class="card-product__imgOverlay">
-                          <li>
-                            <button>
-                              <i class="fas fa-beer"></i>
-                            </i>
-                          </button>
-                        </li>
-                        <li>
-                          <form action="{% url 'favp' %}" method="POST">{% csrf_token %}
-                            <button id="favp" name="{{item.product.id}}">
-                              <i class="fas fa-lg red_h fa-heart">飲みたい！</i>
-                            </button>
-                            <!-- {% if item.id in faved_list %} -->
-                            <!-- {% else %} <button id="favp" name="{{item.id}}"> <i class="far fa-lg fa-heart"></i> </button> {% endif %}-->
-                          </form>
-                        </li>
-                      </ul>
-                    </div>
-                    <div class="card-body">
-                      <p>{{ item.product.brand }}</p>
-                      <p class="card-product__title">
-                        <a href="{% url 'detail' item.product.pk %}">{{ item.product.pname }}</a>
-                      </p>
-                      <p class="card-product__price">{{ item.product.ptype }}</p>
-                    </div>
-                  </div>
-                </div>
-              {% endfor %}
-            </section>
+              </div>
+            </div>
           </div>
         </div>
       </div>
-    </section>
+      <div class="col-12">
+        <div class="iq-card-body">
+          <ul class="nav nav-tabs" id="myTab-two" role="tablist">
+            <li class="nav-item">
+              <a class="nav-link active" id="home-tab-two" data-toggle="tab" href="#home-two" role="tab" aria-controls="home" aria-selected="true">Like</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" id="profile-tab-two" data-toggle="tab" href="#profile-two" role="tab" aria-controls="profile" aria-selected="false">Drunk</a>
+            </li>
+          </ul>
+          <div class="tab-content" id="myTabContent-1">
+            <div class="tab-pane fade active show" id="home-two" role="tabpanel" aria-labelledby="home-tab-two">
+              <div class="iq-card-body">
+                <ul class="list-unstyled row iq-box-hover mb-0">
+                  {% for item in faved_list %}
+                    <li class="col-xl-3 col-lg-4 col-md-5 iq-music-box">
+                      <div class="iq-card">
+                        <div class="iq-card-body p-0">
+                          <div class="iq-thumb">
+                            <a href="detail.html">
+                              <img src="{{ item.product.ppic.url }}" class="img-border-radius img-fluid w-100" style="width:100%;height:160px;" alt=""/>
+                            </a>
+                          </div>
+                          <div class="feature-list text-center">
+                            <a href="{% url 'detail' item.product.pk %}">
+                              <h6 class="font-weight-600 mb-0">
+                                {{ item.product.pname }}
+                              </h6>
+                            </a>
+                            <a href="#">
+                              <small class="mb-0">{{ item.product.brand }}</small>
+                            </a>
+                          </div>
+                        </div>
+                      </div>
+                    </li>
+                  {% endfor %}
+                </ul>
+              </div>
+            </div>
+            <div class="tab-pane fade" id="profile-two" role="tabpanel" aria-labelledby="profile-tab-two">
+              <div class="iq-card-body">
+                <ul class="list-unstyled row iq-box-hover mb-0">
+                  {% for item in drunk_list %}
+                    <li class="col-xl-3 col-lg-4 col-md-5 iq-music-box">
+                      <div class="iq-card">
+                        <div class="iq-card-body p-0">
+                          <div class="iq-thumb">
+                            <a href="detail.html">
+                              <img src="{{ item.product.ppic.url }}" class="img-border-radius img-fluid w-100" style="width:100%;height:160px;" alt=""/>
+                            </a>
+                          </div>
+                          <div class="feature-list text-center">
+                            <a href="{% url 'detail' item.product.pk %}">
+                              <h6 class="font-weight-600 mb-0">
+                                {{ item.product.pname }}
+                              </h6>
+                            </a>
+                            <a href="#">
+                              <small class="mb-0">{{ item.product.brand }}</small>
+                            </a>
+                          </div>
+                        </div>
+                      </div>
+                    </li>
+                  {% endfor %}
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- <div class="col-12 col-md-12 col-lg-8"></div> -->
+    </div>
   </div>
-
 {% endblock content %}
-{% block ext_js %}
-
-  <script type="text/javascript">
-    $(document).ready(function (event) {
-      $(document).on('click', '#favp', function (event) {
-        event.preventDefault();
-        $.ajax({
-          headers: {
-            'X-CSRFToken': csrftoken
-          },
-          type: 'POST',
-          url: "{% url 'favp' %}",
-          data: {
-            'product_id': $(this).attr('name')
-          },
-          dataType: 'json',
-          success: function (response) {
-            selector = document.getElementsByName(response.product_id);
-            $(selector).html("<div style='display : none '></div>")
-          }
-        });
-      });
-    });
-  </script>
-{% endblock ext_js %}
