@@ -40,7 +40,7 @@ NOTE: This file contains the styling for responsive Template.
 
 /*---------------------------------------------------------------------
 import Css
------------------------------------------------------------------------*/
+-----------------------------------------------------------------------
 @import url("variable.css");
 @import url("style-customizer.css");
 @import url("owl.carousel.min.css");
@@ -55,6 +55,8 @@ import Css
 @import url("select2.min.css");
 @import url("magnific-popup.css");
 @import url("animate.css");
+
+*/
 
 /*---------------------------------------------------------------------
 Font
