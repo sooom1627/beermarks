@@ -11,22 +11,6 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 #from users.views import OnlyYouMixin
 #from django.contrib.auth.mixins import LoginRequiredMixin
 
-class Cre(CreateView):
-    template_name = "./product/create.html"
-    model = Product
-    fields = ("pName", "bName_p", "pPic", "desc", "pType")
-    success_url = reverse_lazy("list")
-
-class Cre_b(CreateView):
-    template_name = "./product/create_b.html"
-    model = Brand
-    fields = ("bName", )
-    success_url = reverse_lazy("list")
-
-class Det(DeleteView):
-    template_name = "./product/detail.html"
-    model = Product
-
 def detail(request, pk):
     user = request.user
     product = Product.objects.get(pk=pk)

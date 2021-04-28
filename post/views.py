@@ -1,7 +1,7 @@
 from django.views.generic import ListView, DetailView, CreateView, DeleteView, UpdateView
 from .models import Favp
 from django.shortcuts import render, get_object_or_404, redirect
-from product.models import Product
+from product.models import Product, Brand
 from .models import Favp, PostOb, Drunk
 from django.http import JsonResponse
 from django.contrib.auth.decorators import login_required
@@ -77,5 +77,15 @@ def drunk(request, pk):
     
     return redirect("detail", pk=pk)
         
-        
-        
+def index(request):
+    posts = PostOb.objects.all().order_by('-id')[:8]
+    products = Product.objects.all().order_by("-id")[:4]
+    brands = Brand.objects.all().order_by("-id")[:4]
+
+    context={
+        "posts":posts,
+        "products":products,
+        "brands":brands
+    }
+
+    return render(request, "index.html", context)
