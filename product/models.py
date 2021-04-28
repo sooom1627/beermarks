@@ -21,7 +21,7 @@ class Type(models.Model):
 class Product(models.Model):
     pname = models.CharField(max_length=50)
     ptype = models.ForeignKey(Type, on_delete=models.CASCADE)
-    brand = models.ForeignKey(Brand, on_delete=models.CASCADE)
+    brand = models.ForeignKey(Brand, on_delete=models.CASCADE, related_name="brand_n")
     desc = models.TextField(max_length=200)
     ppic = models.ImageField(upload_to='images/product', height_field=None, width_field=None, max_length=None)
 

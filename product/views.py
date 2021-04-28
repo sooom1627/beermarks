@@ -31,6 +31,23 @@ def detail(request, pk):
 
     return render(request, "./product/detail.html", context)
 
+class BrandDetail(DeleteView):
+    model = Brand
+    template_name = "product/detail_b.html"
+
+def brandDetail(request, pk):
+    user = request.user
+    brand = Brand.objects.get(pk=pk)
+    products = brand.brand_n.all()[:4]
+
+    context = {
+        "object":brand,
+        "items":products
+    }
+
+    return render(request, "./product/detail_b.html", context)
+    
+
 
 @login_required
 def productView(request):
@@ -70,9 +87,6 @@ class BrandView(ListView):
     model = Brand
     template_name = "product/list_b.html"
 
-class BrandDetail(DeleteView):
-    model = Brand
-    template_name = "product/detail_b.html"
 
 def searchproduct(request):
     query = request.GET.get("q")

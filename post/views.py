@@ -78,7 +78,7 @@ def drunk(request, pk):
     return redirect("detail", pk=pk)
         
 def index(request):
-    posts = PostOb.objects.all().order_by('-id')[:8]
+    posts = PostOb.objects.all().order_by('-id')[:4]
     products = Product.objects.all().order_by("-id")[:4]
     brands = Brand.objects.all().order_by("-id")[:4]
 

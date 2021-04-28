@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% block content %}
+  <div class="pageTitle text-center">
+    <p>Brewery Detail</p>
+    <h2></h2>
+  </div>
+  <div class="product_image_area">
+    <div class="container">
+      <div class="row s_product_inner">
+        <div class="col-lg-6">
+          <div class="single-prd-item text-center">
+            <img class="img-fluid" src="{{object.bpic.url}}" alt=""/>
+            <!-- <img class="backpic" src="../../media/{{object.pPic}}" alt=""/> -->
+          </div>
+        </div>
+        <div class="col-lg-5 offset-lg-1">
+          <div class="s_product_text">
+            <h2>{{object.bname}}</h2>
+            <p>
+              {{ object.bdesc }}
+            </p>
+            <div class="card_area d-flex align-items-center">
+              <a class="icon_btn" href="#">
+                <i class="lnr lnr lnr-diamond"></i>
+              </a>
+              <a class="icon_btn" href="#">
+                <i class="lnr lnr lnr-heart"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+{% endblock content %}

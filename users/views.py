@@ -14,7 +14,6 @@ class UserIndex(DetailView):
     model = User
     template_name = "base.html"
 
-
 class OnlyYouMixin(UserPassesTestMixin):
     raise_exception = True
 
@@ -97,3 +96,20 @@ def mypage(request, pk):
     }
 
     return render(request, 'users/mypage.html', context)
+
+def userEdit(request):
+    user = request.user
+    if request.method == "POST":
+        newname = request.POST["username"]
+        if user.username != newname:
+            user.username = newname
+        
+        newemail = request.POST["email"]
+        if user.email != newemail:
+            user.email = newemail
+
+        newupic = request.POST["upic"]
+        if user.upic != newupic:
+            user.upic = newupic
+        user.save()
+    return

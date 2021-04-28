@@ -1,36 +1,87 @@
 {% extends 'base.html' %}
 {% block content %}
-  <div class="pageTitle text-center">
-    <p>Brewery Detail</p>
-    <h2></h2>
-  </div>
-  <div class="product_image_area">
-    <div class="container">
-      <div class="row s_product_inner">
-        <div class="col-lg-6">
-          <div class="single-prd-item text-center">
-            <img class="img-fluid" src="{{object.bpic.url}}" alt=""/>
-            <!-- <img class="backpic" src="../../media/{{object.pPic}}" alt=""/> -->
-          </div>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="text-center">
+          <h2 class="mb-3">Detail</h2>
         </div>
-        <div class="col-lg-5 offset-lg-1">
-          <div class="s_product_text">
-            <h2>{{object.bname}}</h2>
-            <p>
-              {{ object.bdesc }}
-            </p>
-            <div class="card_area d-flex align-items-center">
-              <a class="icon_btn" href="#">
-                <i class="lnr lnr lnr-diamond"></i>
-              </a>
-              <a class="icon_btn" href="#">
-                <i class="lnr lnr lnr-heart"></i>
-              </a>
+        <div class="iq-card">
+          <div class="iq-card-body">
+            <div class="row">
+              <div class="col-lg-6">
+                <img src="{{object.bpic.url}}" class="img-fluid w-100" alt=""/>
+              </div>
+              <div class="col-lg-6" style="position: relative">
+                <div class="d-flex align-items-top justify-content-between iq-music-play-detail">
+                  <div class="music-detail">
+                    <h3 class="mainc">{{object.bname}}</h3>
+                    <p>
+                      {{ object.bdesc }}
+                    </p>
+                  </div>
+                  <div class="music-right" style="position: absolute; bottom: 20px; left: 20px">
+                    <div class="d-flex align-items-center">
+                      <div class="iq-circle mr-2 share">
+                        <a href="javascript:void();">
+                          <i class="las la-share-alt-square text-secondary"></i>
+                        </a>
+                      </div>
+                      <div class="iq-circle mr-2">
+                        <button id="favp" name="{{object.pk}}">
+                          <i class="ri-heart-fill text-primary"></i>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </div>
+      <div class="col-lg-12">
+        <div class="iq-card">
+          <div class="iq-card-header d-flex justify-content-between">
+            <div class="iq-header-title">
+              <h4 class="card-title">Recent Post</h4>
+            </div>
+            <div class="d-flex align-items-center iq-view">
+              <b class="mb-0 text-primary">
+                <a href="beerlist.html">View More
+                  <i class="las la-angle-right"></i>
+                </a>
+              </b>
+            </div>
+          </div>
+          <div class="iq-card-body">
+            <ul class="list-unstyled row iq-box-hover mb-0">
+              {% for item in items %}
+                <li class="col-xl-3 col-lg-4 col-md-5 iq-music-box">
+                  <div class="iq-card">
+                    <div class="iq-card-body p-0">
+                      <div class="iq-thumb">
+                        <a href="detail.html">
+                          <img src="{{ item.ppic.url }}" class="img-border-radius img-fluid w-100" style="width:100%;height:160px;" alt=""/>
+                        </a>
+                      </div>
+                      <div class="feature-list text-center">
+                        <a href="detail.html">
+                          <h6 class="font-weight-600 mb-0">
+                            {{ item.pname }}
+                          </h6>
+                        </a>
+                        <a href="#">
+                          <small class="mb-0">{{ item.brand }}</small>
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </li>
+              {% endfor %}
+            </ul>
+          </div>
+        </div>
+      </div>
     </div>
-  </div>
-
-{% endblock content %}
+  {% endblock content %}
