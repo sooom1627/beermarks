@@ -153,6 +153,7 @@ NOTE: This file contains the styling for responsive Template.
 	.iq-music-img1 { height: 321px; }
 	.details1 { top: -323px; }
 	.buttons1 { padding: 0px 0px; }
+	.pbset{padding-bottom: 50px;}
 }
 @media(max-width:991px) {
 	.iq-navbar-custom { margin-top: 11px; }
@@ -207,6 +208,7 @@ NOTE: This file contains the styling for responsive Template.
 	.iq-top-navbar .navbar .iq-search-bar { display: none; }
 	li.nav-item.nav-icon.search-content { display: block; }
 	.search-box .search-audio{display: none;}
+	.pbset{padding-bottom: 50px;}
 }
 @media(max-width:979px) {
 	.iq-circle-progressbar .percent { font-size: 2.5rem !important; }
@@ -228,6 +230,7 @@ NOTE: This file contains the styling for responsive Template.
 	.iq-musc-icone { display: none; }
 	.iq-music-time { display: none; }
 	.iq-music-play-detail { margin-top: 30px; }
+	.pbset{padding-bottom: 50px;}
 
 
 }
@@ -240,6 +243,7 @@ NOTE: This file contains the styling for responsive Template.
 	.iq-top-navbar .iq-sub-dropdown { top: 85px; }
 	#top-tab-list li a { margin: 0 7px; }
 	.wizard-step span { font-size: 14px; }
+	.pbset{padding-bottom: 50px;}
 }
 @media(max-width:767px) {
 	.table { width: 100%; max-width: 100%; margin-bottom: 1rem; display: block; overflow-x: auto; }
@@ -314,6 +318,7 @@ NOTE: This file contains the styling for responsive Template.
 @media(min-width:576px) {
 	.card-columns .iq-card { display: inline-block; width: 100%; }
 	.iq-top-navbar .search-box { left: 0; right: 0; }
+	.pbset{padding-bottom: 50px;}
 }
 @media(max-width:580px) {
 	.welcome-text { width: 100%; }
@@ -321,6 +326,7 @@ NOTE: This file contains the styling for responsive Template.
 	.chat-detail-block.right-border-block::before { display: none; }
 	.chat-detail-block.right-border-block { text-align: center; }
 	.chat-detail-block.right-border-block .avatar-30 { margin: 0 auto; }
+	.pbset{padding-bottom: 50px;}
 }
 @media(max-width:479px) {
 	.display-1 { font-size: 2.0rem; font-weight: 500; }
@@ -374,6 +380,7 @@ NOTE: This file contains the styling for responsive Template.
 	.iq-card .iq-card-header > .d-flex { display: block !important; margin-top: 10px; }
 	.player { padding: 20px 0 0px 0px; }
 	.iq-footer, body.sidebar-main .iq-footer { padding: 40px 10px 12px; }
+	.pbset{padding-bottom: 50px;}
 
 }
 @media(max-width:359px) {
@@ -386,4 +393,5 @@ NOTE: This file contains the styling for responsive Template.
 	.iq-footer, body.sidebar-main .iq-footer { padding: 30px 10px 12px; margin-left: 0; width: 100%; }
 	.playpause-track, .prev-track, .next-track { font-size: 14px; }
 	.player { padding: 20px 0 0px 0px; }
+	.pbset{padding-bottom: 50px;}
 }
