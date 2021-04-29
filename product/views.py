@@ -117,4 +117,3 @@ def searchproduct(request):
     print(ctx)
 
     return render(request, 'product/search-list.html', ctx )
-       
