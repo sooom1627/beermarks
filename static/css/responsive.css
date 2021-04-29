@@ -124,6 +124,7 @@ NOTE: This file contains the styling for responsive Template.
 	body.two-sidebar .iq-top-navbar .iq-navbar-custom .iq-menu-bt { display: none !important }
 	ul.list-unstyled.iq-menu-top.d-flex.justify-content-between { display: none !important; }
 	.iq-page-menu-horizontal .iq-top-navbar:before, .iq-page-menu-horizontal .iq-top-navbar:after { top: 85px; z-index: -1; }
+	.sidebar-delete-sp{display: block;}
 
 	/*-----------------------------------------------------------------
 	                          Horizontal Top Menu Page
@@ -154,6 +155,7 @@ NOTE: This file contains the styling for responsive Template.
 	.details1 { top: -323px; }
 	.buttons1 { padding: 0px 0px; }
 	.pbset{padding-bottom: 50px;}
+	.sidebar-delete-sp{display: block;}
 }
 @media(max-width:991px) {
 	.iq-navbar-custom { margin-top: 11px; }
@@ -209,6 +211,7 @@ NOTE: This file contains the styling for responsive Template.
 	li.nav-item.nav-icon.search-content { display: block; }
 	.search-box .search-audio{display: none;}
 	.pbset{padding-bottom: 50px;}
+	.sidebar-delete-sp{display: block;}
 }
 @media(max-width:979px) {
 	.iq-circle-progressbar .percent { font-size: 2.5rem !important; }
@@ -231,6 +234,7 @@ NOTE: This file contains the styling for responsive Template.
 	.iq-music-time { display: none; }
 	.iq-music-play-detail { margin-top: 30px; }
 	.pbset{padding-bottom: 50px;}
+	.sidebar-delete-sp{display: block;}
 
 
 }
@@ -313,6 +317,7 @@ NOTE: This file contains the styling for responsive Template.
 	.iq-footer, body.sidebar-main .iq-footer { padding: 30px 10px 12px; margin-left: 0; width: 100%; }
 	.playpause-track, .prev-track, .next-track { font-size: 14px; }
 	.player { padding: 20px 0 0px 0px; }
+	.sidebar-delete-sp{display: block;}
 
 }
 @media(min-width:576px) {
@@ -327,6 +332,7 @@ NOTE: This file contains the styling for responsive Template.
 	.chat-detail-block.right-border-block { text-align: center; }
 	.chat-detail-block.right-border-block .avatar-30 { margin: 0 auto; }
 	.pbset{padding-bottom: 50px;}
+	.sidebar-delete-sp{display: block;}
 }
 @media(max-width:479px) {
 	.display-1 { font-size: 2.0rem; font-weight: 500; }
@@ -381,6 +387,7 @@ NOTE: This file contains the styling for responsive Template.
 	.player { padding: 20px 0 0px 0px; }
 	.iq-footer, body.sidebar-main .iq-footer { padding: 40px 10px 12px; }
 	.pbset{padding-bottom: 50px;}
+	.sidebar-delete-sp{display: block;}
 
 }
 @media(max-width:359px) {
@@ -394,4 +401,5 @@ NOTE: This file contains the styling for responsive Template.
 	.playpause-track, .prev-track, .next-track { font-size: 14px; }
 	.player { padding: 20px 0 0px 0px; }
 	.pbset{padding-bottom: 50px;}
+	.sidebar-delete-sp{display: block;}
 }

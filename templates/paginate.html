@@ -1,23 +1,20 @@
 {% if products.has_other_pages %}
-  <div class="pagination d-flex w-100 align-items-center flex-row justify-content-center pb-5">
-    <ul class="pagination">
+  <nav aria-label="Page navigation example">
+    <ul class="pagination mb-0 d-flex justify-content-center">
       {% for page_num in pages.paginator.page_range %}
         {% if page_num %}
           {% if page_num == pages.number %}
-            <a href="#" class="is-active">
-              <li>{{ page_num }}</li>
-            </a>
+            <li class="page-item" style="width:30px">
+              <a class="page-link" href="#">{{ page_num }}</a>
+            </li>
           {% else %}
-            <a href="?page={{page_num}}" class="">
-              <li>{{ page_num }}</li>
-            </a>
+            <li class="page-item" style="width:30px">
+              <a class="page-link" href="?page={{page_num}}">{{ page_num }}</a>
+            </li>
           {% endif %}
         {% else %}
-          <li class="disabled">
-            <a class="page-link text-secondary d-inline-block text-muted" href="#">・・・</a>
-          </li>
         {% endif %}
       {% endfor %}
     </ul>
-  </div>
+  </nav>
 {% endif %}
