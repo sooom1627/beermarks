@@ -30,7 +30,7 @@ def signupFunc(request):
         try:
              user = User.objects.create_user(username, email, password)
              login(request, user)
-             return redirect("timeline")
+             return redirect("index")
         except IntegrityError:
             return render(request, "signup.html", {"error":"This user is already registerd"})
     return render(request, "./users/signup.html", {})
@@ -42,7 +42,7 @@ def loginFunc(request):
         user = authenticate(request, username=username, password=password)
         if user is not None:
             login(request, user)
-            return redirect("timeline")
+            return redirect("index")
         else:
             return render(request, "./users/login.html", {})
     return render(request, "./users/login.html", {})
