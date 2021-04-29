@@ -120,6 +120,13 @@
                     </li>
                   </ul>
                 </li>
+                {% if user.is_superuser %}
+                  <li>
+                    <a href="admin" class="iq-waves-effect disable">
+                      <i class="ri-admin-line iq-arrow-left"></i>
+                      <span>Admin</span></a>
+                  </li>
+                {% endif %}
               </ul>
             </nav>
           </div>
