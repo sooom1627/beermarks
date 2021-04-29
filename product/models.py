@@ -6,6 +6,7 @@ class Brand(models.Model):
     bdesc = models.TextField(max_length=500)
     bpic = models.ImageField(upload_to='images/brand/', height_field=None, width_field=None, max_length=None)
     bname_search_index = models.TextField(blank=True)
+    locate = models.CharField(max_length=50, null=True, blank=True)
     
     def __str__(self):
         return self.bname

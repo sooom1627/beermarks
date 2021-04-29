@@ -25,7 +25,7 @@
                 <div class="iq-card">
                   <div class="iq-card-body p-0">
                     <div class="iq-thumb">
-                      <a href="{% url 'detail' item.pk %}">
+                      <a href="{% url 'detail' item.favp.product.pk %}">
                         <img src="{{ item.favp.product.ppic.url }}" class="img-border-radius img-fluid w-100" style="width:100%;height:160px;" alt=""/>
                       </a>
                     </div>
@@ -47,17 +47,17 @@
                 <div class="iq-card">
                   <div class="iq-card-body p-0">
                     <div class="iq-thumb">
-                      <a href="detail.html">
+                      <a href="{% url 'detail' item.drunk.product.pk %}">
                         <img src="{{ item.drunk.product.ppic.url }}" class="img-border-radius img-fluid w-100" style="width:100%;height:160px;" alt=""/>
                       </a>
                     </div>
                     <div class="feature-list text-center">
-                      <a href="detail.html">
+                      <a href="{% url 'detail' item.drunk.product.pk %}">
                         <h6 class="font-weight-600 mb-0">
                           {{ item.drunk.product.pname }}
                         </h6>
                       </a>
-                      <a href="#">
+                      <a href="{% url 'branddetail' item.drunk.product.pk %}">
                         <small class="mb-0">{{ item.drunk.product.brand }}</small>
                       </a>
                     </div>
@@ -141,7 +141,7 @@
                           <h6 class="mb-0 iq-song-title">
                             {{ item.bname }}
                           </h6>
-                          <small>Shizuoka/Japan</small>
+                          <small>{{ item.locate }}</small>
                         </div>
                       </div>
                     </div>
