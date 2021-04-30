@@ -21,10 +21,13 @@ def detail(request, pk):
     if faved.exists():
         faved_list = product.id
 
+    if product.fav_product.filter(user=user):
+        faved = True
+
     context = {
         "object":product,
         "avg":avg,
-        'faved_list':faved_list,
+        'faved_list':faved,
     }
     faved_list = []
     
