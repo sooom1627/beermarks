@@ -350,7 +350,7 @@ div#lottie-beil svg path, div#lottie-mail svg path, div#lottie-fullscreen svg pa
 .iq-top-navbar .iq-navbar-custom .iq-menu-bt { display: none; }
 
 /*---------- Sidebar Logo --------------*/
-.iq-sidebar-logo { padding-top: 12px; padding-left: 12px; width: 260px; float: left; position: relative; background: var(--iq-white); -webkit-transition: all 0.3s ease-out 0s; -moz-transition: all 0.3s ease-out 0s; -ms-transition: all 0.3s ease-out 0s; -o-transition: all 0.3s ease-out 0s; transition: all 0.3s ease-out 0s; background: transparent; }
+.iq-sidebar-logo { padding-top: 12px; width: 260px; float: left; position: relative; background: var(--iq-white); -webkit-transition: all 0.3s ease-out 0s; -moz-transition: all 0.3s ease-out 0s; -ms-transition: all 0.3s ease-out 0s; -o-transition: all 0.3s ease-out 0s; transition: all 0.3s ease-out 0s; background: transparent; }
 .iq-sidebar-logo a { display: flex; align-items: flex-start; }
 .iq-sidebar-logo a span { margin-left: 10px; font-size: 24px; line-height: 45px; color: var(--iq-body-text); text-transform: lowercase; flex: 1; -webkit-transition: all 0.3s ease-out 0s; -moz-transition: all 0.3s ease-out 0s; -ms-transition: all 0.3s ease-out 0s; -o-transition: all 0.3s ease-out 0s; transition: all 0.3s ease-out 0s; }
 .iq-sidebar-logo a:hover, .iq-sidebar-logo a:focus { text-decoration: none; }
