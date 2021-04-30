@@ -165,11 +165,11 @@
                 <ul class="navbar-nav ml-auto navbar-list">
                   <li class="nav-item nav-icon">
                     <div class="iq-search-bar">
-                      <form action="#" class="searchbox">
-                        <input type="text" class="text search-input" placeholder="ビールを探す"/>
-                        <a class="search-link" href="#">
+                      <form action="{% url 'search' %}" class="searchbox" method="GET">
+                        <input type="text" class="text search-input" name="q" value="{{request.GET.q}}" placeholder="ビールを探す"/>
+                        <button class="search-link" href="#" type="submit" value="search">
                           <i class="ri-search-line text-black"></i>
-                        </a>
+                        </button>
                       </form>
                     </div>
                   </li>
