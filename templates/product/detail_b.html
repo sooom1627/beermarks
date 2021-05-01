@@ -28,9 +28,17 @@
                         </a>
                       </div>
                       <div class="iq-circle mr-2">
-                        <button id="favp" name="{{object.pk}}">
-                          <i class="ri-heart-fill text-primary"></i>
-                        </button>
+                        <form action="{% url 'favb' %}" method="POST">{% csrf_token %}
+                          {% if faved_list %}
+                            <button id="favb" name="{{object.pk}}">
+                              <i class="ri-heart-fill text-primary"></i>
+                            </button>
+                          {% else %}
+                            <button id="favb" name="{{object.pk}}">
+                              <i class="ri-heart-fill text-secondary"></i>
+                            </button>
+                          {% endif %}
+                        </form>
                       </div>
                     </div>
                   </div>
@@ -85,3 +93,33 @@
       </div>
     </div>
   {% endblock content %}
+  {% block ext_js %}
+    <script type="text/javascript">
+      $(document).ready(function (event) {
+        $(document).on('click', '#favb', function (event) {
+          event.preventDefault();
+          $.ajax({
+            headers: {
+              'X-CSRFToken': csrftoken
+            },
+            type: 'POST',
+            url: "{% url 'favb' %}",
+            data: {
+              'brand_id': $(this).attr('name')
+            },
+            dataType: 'json',
+            success: function (response) {
+              selector = document.getElementById("favb");
+              if (response.faved) {
+                $(selector).html("<i class='ri-heart-fill text-primary'></i>");
+              } else {
+                $(selector).html("<i class='ri-heart-fill text-secondary'></i>");
+              }
+              selector2 = document.getElementsByName(response.product_id + "-count");
+              $(selector2).text("いいね!!：" + response.count + "個");
+            }
+          });
+        });
+      });
+    </script>
+  {% endblock ext_js %}

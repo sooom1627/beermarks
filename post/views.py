@@ -2,7 +2,7 @@ from django.views.generic import ListView, DetailView, CreateView, DeleteView, U
 from .models import Favp
 from django.shortcuts import render, get_object_or_404, redirect
 from product.models import Product, Brand
-from .models import Favp, PostOb, Drunk
+from .models import Favp, PostOb, Drunk, Favb
 from django.http import JsonResponse
 from django.contrib.auth.decorators import login_required
 from django.db import IntegrityError
@@ -43,7 +43,6 @@ def favp(request):
             fav.delete()
         else:
             fav.create(product=product, user=user)
-            print(fav)
             for favs in fav:
                 obs.create(favp=favs, drunk=None)
             #obs.save()
@@ -53,6 +52,28 @@ def favp(request):
             'product_id':product.id,
             'faved':faved,
             'count': product.fav_product.count(),
+        }
+
+    # if request.is_ajax():
+    return JsonResponse(context)
+
+@login_required
+def favb(request):
+    if request.method == "POST":
+        brand = get_object_or_404(Brand, pk=request.POST.get('brand_id'))
+        user = request.user
+        faved = False
+        fav = Favb.objects.filter(brand=brand, user=user)
+        if fav.exists():
+            fav.delete()
+        else:
+            fav.create(brand=brand, user=user)
+            faved=True
+        
+        context={
+            'brand_id':brand.id,
+            'faved':faved,
+            'count': brand.fav_brand.count(),
         }
 
     # if request.is_ajax():

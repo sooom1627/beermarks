@@ -31,21 +31,22 @@ def detail(request, pk):
     }
     faved_list = []
     
-
     return render(request, "./product/detail.html", context)
-
-class BrandDetail(DeleteView):
-    model = Brand
-    template_name = "product/detail_b.html"
 
 def brandDetail(request, pk):
     user = request.user
     brand = Brand.objects.get(pk=pk)
     products = brand.brand_n.all()[:4]
+    faved_list = 0
+    if brand.fav_brand.filter(user=user):
+        faved = True
+    else:
+        faved = False
 
     context = {
         "object":brand,
-        "items":products
+        "items":products,
+        "faved_list":faved
     }
 
     return render(request, "./product/detail_b.html", context)

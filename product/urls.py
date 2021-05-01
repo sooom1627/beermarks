@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.urls import path, include
-from .views import  productView, BrandView, searchproduct, BrandDetail, detail, brandDetail
+from .views import  productView, BrandView, searchproduct, detail, brandDetail
 
 urlpatterns = [
     path("detail/<int:pk>", detail, name="detail"),
