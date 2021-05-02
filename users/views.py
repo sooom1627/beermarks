@@ -57,21 +57,18 @@ def logoutFunc(request):
 def userdetail(request, pk):
     user = User.objects.get(pk=pk)
     products = Product.objects.all()
-    fav_objects = user.faved_p_user.order_by('-id')
-    faved_list = []
+    faved = user.faved_p_user.order_by('-day')
+    drunk = user.drunk_user.order_by('-day')
+    faved_b = user.faved_b_user.order_by("-day")
     
-    for product in products:
-        faved = product.fav_product.filter(user=request.user)
-        if faved.exists():
-            faved_list.append(product.id)
-
     context = {
-        'faved_list':faved_list,
+        'faved_list':faved,
         'object':user,
-        "fav_objects":fav_objects
+        'drunk_list':drunk,
+        'faved_b_list':faved_b
     }
-
-    return render(request, 'users/udetexe.html', context)  
+    
+    return render(request, 'users/udet.html', context)  
 
 class UserList(ListView):
     model = User

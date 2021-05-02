@@ -16,7 +16,7 @@
                   <div class="profile-detail mt-3">
                     <h3>{{ object.uname }}</h3>
                     <p>
-                      Phasellus faucibus mollis pharetra. Proin blandit ac massa.Morbi nulla dolor, ornare at commodo non, feugiat non nisi.
+                      {{ object.udesc }}
                     </p>
                     <div class="iq-social d-inline-block align-items-center text-center mt-3">
                       <ul class="list-inline d-flex p-0 mb-0 align-items-center">
@@ -58,12 +58,15 @@
             <li class="nav-item">
               <a class="nav-link" id="profile-tab-two" data-toggle="tab" href="#profile-two" role="tab" aria-controls="profile" aria-selected="false">Drunk</a>
             </li>
+            <li class="nav-item">
+              <a class="nav-link" id="brand-tab-two" data-toggle="tab" href="#brand-two" role="tab" aria-controls="brand" aria-selected="false">Brewery</a>
+            </li>
           </ul>
           <div class="tab-content" id="myTabContent-1">
             <div class="tab-pane fade active show" id="home-two" role="tabpanel" aria-labelledby="home-tab-two">
               <div class="iq-card-body">
                 <ul class="list-unstyled row iq-box-hover mb-0">
-                  {% for item in fav_objects %}
+                  {% for item in faved_list %}
                     <li class="col-xl-3 col-lg-4 col-md-5 iq-music-box">
                       <div class="iq-card">
                         <div class="iq-card-body p-0">
@@ -109,6 +112,32 @@
                             </a>
                             <a href="#">
                               <small class="mb-0">{{ item.product.brand }}</small>
+                            </a>
+                          </div>
+                        </div>
+                      </div>
+                    </li>
+                  {% endfor %}
+                </ul>
+              </div>
+            </div>
+            <div class="tab-pane fade" id="brand-two" role="tabpanel" aria-labelledby="brand-tab-two">
+              <div class="iq-card-body">
+                <ul class="list-unstyled row iq-box-hover mb-0">
+                  {% for item in faved_b_list %}
+                    <li class="col-xl-3 col-lg-4 col-md-5 iq-music-box">
+                      <div class="iq-card">
+                        <div class="iq-card-body p-0">
+                          <div class="iq-thumb">
+                            <a href="{% url 'branddetail' item.brand.pk %}">
+                              <img src="{{ item.brand.bpic.url }}" class="img-border-radius img-fluid w-100" style="width:100%;height:160px;" alt=""/>
+                            </a>
+                          </div>
+                          <div class="feature-list text-center">
+                            <a href="{% url 'branddetail' item.brand.pk %}">
+                              <h6 class="font-weight-600 mb-0">
+                                {{ item.brand.bname }}
+                              </h6>
                             </a>
                           </div>
                         </div>
