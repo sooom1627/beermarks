@@ -7,6 +7,7 @@ from django.db import IntegrityError
 from django.contrib.auth import authenticate, login, logout
 from django.views.generic import ListView, DetailView, CreateView, DeleteView, UpdateView
 from product.models import Product
+from django.urls import reverse
 
 # Create your views here.
 
@@ -96,19 +97,40 @@ def mypage(request, pk):
 
 def userEdit(request):
     user = request.user
+    context = {
+        "object":user
+    }
     if request.method == "POST":
-        newname = request.POST["username"]
-        newupic = request.POST["upic"]
-        newudesc = request.POST["udesc"]
+        try:
+            print("good bye")
+            newname = request.POST["uname"]
+            newupic = request.FILES["upic"]
+            newudesc = request.POST["udesc"]
 
-        if user.uname != newname:
-            user.uname = newname
+            if user.uname != newname:
+                user.uname = newname
 
-        if user.upic != newupic:
-            user.upic = newupic
-        
-        if user.udesc != newudesc:
-            user.udesc = newudesc
-        
-        user.save()
-    return
+            if user.upic != newupic:
+                user.upic = newupic
+
+            if user.udesc != newudesc:
+                user.udesc = newudesc
+            
+            user.save()
+        except:
+            print("hello")
+            newname = request.POST["uname"]
+            newudesc = request.POST["udesc"]
+            if user.uname != newname:
+                user.uname = newname
+
+            if user.udesc != newudesc:
+                user.udesc = newudesc
+            user.save()
+
+
+        context={
+            "object":user
+        }
+
+    return redirect("mypage", pk=user.pk)

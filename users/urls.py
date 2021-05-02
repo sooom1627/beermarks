@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.urls import path, include
-from .views import signupFunc, loginFunc, logoutFunc, mypage, UserList, userdetail
+from .views import signupFunc, loginFunc, logoutFunc, mypage, UserList, userdetail, userEdit
 
 urlpatterns = [
     path('signup/',signupFunc, name="signup"), 
@@ -9,4 +9,5 @@ urlpatterns = [
     path('mypage/<int:pk>/', mypage, name="mypage"),
     path('userlist/', UserList.as_view(), name="userlist"),
     path("udet/<int:pk>/", userdetail, name="udet"),
+    path('useredit',userEdit, name="useredit" ),
 ]

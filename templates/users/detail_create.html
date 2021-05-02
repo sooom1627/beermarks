@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block content %}
+  <form action="#/" method="POST" enctype="multipart/form-data">{% csrf_token %}
+    <div class="form-group">
+      <label for="">ユーザー名</label>
+      <input type="text" class="form-control mb-0" id="uname" name="uname" value="{{ object.uname }}" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Username'">
+    </div>
+    <div class="form-group">
+      <label for="">自己紹介</label>
+      <textarea name="udesc" id="udesc" cols="30" rows="5" value="{{ object.udesc }}">{{object.udesc}}</textarea>
+    </div>
+    <div class="form-group">
+      <label for="">アイコン</label>
+      <input type="file" src="" alt="" name="upic" id="upic" accept="image/png, image/jpeg">
+    </div>
+    <div class="sign-info">
+      <button type="submit" class="btn btn-primary mb-2">
+        送信
+      </button>
+    </div>
+  </form>
+{% endblock content %}
