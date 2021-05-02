@@ -71,7 +71,7 @@
                       <div class="iq-card">
                         <div class="iq-card-body p-0">
                           <div class="iq-thumb">
-                            <a href="{% url 'detail' item.product.detail %}">
+                            <a href="{% url 'detail' item.product.pk %}">
                               <img src="{{ item.product.ppic.url }}" class="img-border-radius img-fluid w-100" style="width:100%;height:160px;" alt=""/>
                             </a>
                           </div>
@@ -100,7 +100,7 @@
                       <div class="iq-card">
                         <div class="iq-card-body p-0">
                           <div class="iq-thumb">
-                            <a href="{% url 'detail' item.product.detail %}">
+                            <a href="{% url 'detail' item.product.pk%}">
                               <img src="{{ item.product.ppic.url }}" class="img-border-radius img-fluid w-100" style="width:100%;height:160px;" alt=""/>
                             </a>
                           </div>
@@ -129,7 +129,7 @@
                       <div class="iq-card">
                         <div class="iq-card-body p-0">
                           <div class="iq-thumb">
-                            <a href="{% url 'branddetai' item.brand.pk %}">
+                            <a href="{% url 'branddetail' item.brand.pk %}">
                               <img src="{{ item.brand.bpic.url }}" class="img-border-radius img-fluid w-100" style="width:100%;height:160px;" alt=""/>
                             </a>
                           </div>
