@@ -117,6 +117,7 @@ def userEdit(request):
                 user.udesc = newudesc
             
             user.save()
+            return redirect("mypage", pk=user.pk)
         except:
             print("hello")
             newname = request.POST["uname"]
@@ -128,9 +129,6 @@ def userEdit(request):
                 user.udesc = newudesc
             user.save()
 
+            return redirect("mypage", pk=user.pk)
 
-        context={
-            "object":user
-        }
-
-    return redirect("mypage", pk=user.pk)
+    return render(request, "./users/detail_create.html", context)

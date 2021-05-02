@@ -1,22 +1,38 @@
 {% extends 'base.html' %}
 {% block content %}
-  <form action="#/" method="POST" enctype="multipart/form-data">{% csrf_token %}
-    <div class="form-group">
-      <label for="">ユーザー名</label>
-      <input type="text" class="form-control mb-0" id="uname" name="uname" value="{{ object.uname }}" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Username'">
+  <div class="iq-card">
+    <div class="iq-card-header d-flex justify-content-between">
+      <div class="iq-header-title">
+        <h4 class="card-title">Personal Information</h4>
+      </div>
     </div>
-    <div class="form-group">
-      <label for="">自己紹介</label>
-      <textarea name="udesc" id="udesc" cols="30" rows="5" value="{{ object.udesc }}">{{object.udesc}}</textarea>
-    </div>
-    <div class="form-group">
-      <label for="">アイコン</label>
-      <input type="file" src="" alt="" name="upic" id="upic" accept="image/png, image/jpeg">
-    </div>
-    <div class="sign-info">
-      <button type="submit" class="btn btn-primary mb-2">
-        送信
-      </button>
-    </div>
-  </form>
+    <div class="iq-card-body">
+      <form action="#/" method="POST" enctype="multipart/form-data">{% csrf_token %}
+        <div class="form-group row align-items-center">
+          <div class="col-md-12">
+            <div class="profile-img-edit">
+              <img class="profile-pic" src="{{ object.upic.url }}" alt="profile-pic">
+              <div class="p-image">
+                <i class="ri-pencil-line upload-button"></i>
+                <input class="file-upload" type="file" name="upic" id="upic" accept="image/*"/>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="form-group col-sm-6">
+          <label for="uname">ユーザー名:</label>
+          <input type="text" class="form-control" id="uname" value="{{ object.uname }}" name="uname">
+        </div>
+        <div class="form-group col-sm-12">
+          <label>自己紹介:</label>
+          <textarea class="form-control" name="udesc" id="udesc" rows="5" style="line-height: 22px;">
+            {{ object.udesc }}
+          </textarea>
+        </div>
+      </div>
+      <button type="submit" class="btn btn-primary mr-2">Submit</button>
+      <button type="reset" class="btn iq-bg-danger">Cancel</button>
+    </form>
+  </div>
+</div>
 {% endblock content %}

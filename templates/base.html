@@ -281,14 +281,13 @@
                               </div>
                             </div>
                           </a>
-                          <a href="profile-edit.html" class="iq-sub-card iq-bg-primary-hover">
+                          <a href="{% url 'useredit' %}" class="iq-sub-card iq-bg-primary-hover">
                             <div class="media align-items-center">
                               <div class="rounded iq-card-icon iq-bg-primary">
                                 <i class="ri-profile-line"></i>
                               </div>
                               <div class="media-body ml-3">
                                 <h6 class="mb-0 font-weight-bold">プロフィールを編集する</h6>
-
                               </div>
                             </div>
                           </a>
@@ -330,6 +329,7 @@
     <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <script src="{% static './js/nav_cust.js' %}"></script>
     <script src="{% static './js/ajax.js' %}"></script>
     {% block ext_js %}{% endblock ext_js %}
