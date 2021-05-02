@@ -16,7 +16,8 @@
                 <div class="d-flex align-items-top justify-content-between iq-music-play-detail">
                   <div class="music-detail">
                     <h3 class="mainc">{{object.pname}}</h3>
-                    <span>{{ object.brand }}</span>
+                    <a href="{% url 'branddetail' object.brand.pk %}">
+                      <span>{{ object.brand }}</span></a>
                     <p>
                       {{ object.desc }}
                     </p>

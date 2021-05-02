@@ -28,9 +28,9 @@ def signupFunc(request):
         password = request.POST["password"]
         email = request.POST["email"]
         try:
-             user = User.objects.create_user(username, email, password)
-             login(request, user)
-             return redirect("index")
+            user = User.objects.create_user(username, email, password)
+            login(request, user)
+            return redirect("index")
         except IntegrityError:
             return render(request, "signup.html", {"error":"This user is already registerd"})
     return render(request, "./users/signup.html", {})
@@ -87,12 +87,14 @@ def mypage(request, pk):
     product = Product.objects.get(pk=pk)
     faved = user.faved_p_user.order_by("-day")
     drunk = user.drunk_user.order_by("-day")
+    faved_b = user.faved_b_user.order_by("-day")
     #faved = product.fav_product.filter(user=request.user)
     faved_list = faved
     context = {
         'products':product,
         'faved_list':faved_list,
-        'drunk_list':drunk
+        'drunk_list':drunk,
+        'faved_b_list':faved_b,
     }
 
     return render(request, 'users/mypage.html', context)
