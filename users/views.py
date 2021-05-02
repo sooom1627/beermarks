@@ -47,8 +47,6 @@ def loginFunc(request):
             return render(request, "./users/login.html", {})
     return render(request, "./users/login.html", {})
 
-
-
 def logoutFunc(request):
     logout(request)
     # Redirect to a success page.
@@ -72,7 +70,7 @@ def userdetail(request, pk):
         "fav_objects":fav_objects
     }
 
-    return render(request, 'users/udetexe.html', context)
+    return render(request, 'users/udetexe.html', context)  
 
 class UserList(ListView):
     model = User
@@ -100,15 +98,17 @@ def userEdit(request):
     user = request.user
     if request.method == "POST":
         newname = request.POST["username"]
-        if user.username != newname:
-            user.username = newname
-        
-        newemail = request.POST["email"]
-        if user.email != newemail:
-            user.email = newemail
-
         newupic = request.POST["upic"]
+        newudesc = request.POST["udesc"]
+
+        if user.uname != newname:
+            user.uname = newname
+
         if user.upic != newupic:
             user.upic = newupic
+        
+        if user.udesc != newudesc:
+            user.udesc = newudesc
+        
         user.save()
     return
