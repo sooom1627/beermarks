@@ -54,9 +54,6 @@ def logoutFunc(request):
     # Redirect to a success page.
     return redirect("login")
 
-class UserDetail(DetailView):
-    model = User
-    template_name = './users/udet.html'
 
 def userdetail(request, pk):
     user = User.objects.get(pk=pk)
