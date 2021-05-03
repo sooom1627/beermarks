@@ -52,10 +52,7 @@ def mypage(request):
     #faved = product.fav_product.filter(user=request.user)
     faved_list = faved
     context = {
-<<<<<<< HEAD
-=======
         "user":user,
->>>>>>> 1be0006eff5113a64c943499b46ff53a4581757d
         'faved_list':faved_list,
         'drunk_list':drunk,
         'faved_b_list':faved_b,
