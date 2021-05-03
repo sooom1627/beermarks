@@ -303,8 +303,11 @@
                             </div>
                           </a>
                           <div class="d-inline-block w-100 text-center p-3">
-                            <a class="bg-primary iq-sign-btn" href="{% url 'account_logout' %}" role="button">Sign out<i class="ri-login-box-line ml-2"></i>
-                            </a>
+                            <form method="post" action="{% url 'account_logout' %}">
+                              {% csrf_token %}
+                              <button type="submit" class="bg-primary iq-sign-btn">Sign Out<i class="ri-login-box-line ml-2"></i>
+                              </button>
+                            </form>
                           </div>
                         </div>
                       </div>
