@@ -75,7 +75,7 @@ class UserList(ListView):
     template_name = "./users/ulist.html"
 
 @login_required
-def mypage(request, pk):
+def mypage(request):
     user = request.user
     faved = user.faved_p_user.order_by("-day")
     drunk = user.drunk_user.order_by("-day")
@@ -83,6 +83,7 @@ def mypage(request, pk):
     #faved = product.fav_product.filter(user=request.user)
     faved_list = faved
     context = {
+        "user":user,
         'faved_list':faved_list,
         'drunk_list':drunk,
         'faved_b_list':faved_b,
