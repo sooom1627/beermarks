@@ -23,37 +23,6 @@ class OnlyYouMixin(UserPassesTestMixin):
         user = self.request.user
         return user.pk == self.kwargs['pk'] #or user.is_superuser
 
-def signupFunc(request):
-    if request.method == "POST":
-        username = request.POST["username"]
-        password = request.POST["password"]
-        email = request.POST["email"]
-        try:
-            user = User.objects.create_user(username, email, password)
-            login(request, user)
-            return redirect("index")
-        except IntegrityError:
-            return render(request, "signup.html", {"error":"This user is already registerd"})
-    return render(request, "./users/signup.html", {})
-
-def loginFunc(request):
-    if request.method == "POST":
-        username = request.POST['username']
-        password = request.POST['password']
-        user = authenticate(request, username=username, password=password)
-        if user is not None:
-            login(request, user)
-            return redirect("index")
-        else:
-            return render(request, "./users/login.html", {})
-    return render(request, "./users/login.html", {})
-
-def logoutFunc(request):
-    logout(request)
-    # Redirect to a success page.
-    return redirect("login")
-
-
 def userdetail(request, pk):
     user = User.objects.get(pk=pk)
     products = Product.objects.all()
@@ -75,7 +44,7 @@ class UserList(ListView):
     template_name = "./users/ulist.html"
 
 @login_required
-def mypage(request, pk):
+def mypage(request):
     user = request.user
     faved = user.faved_p_user.order_by("-day")
     drunk = user.drunk_user.order_by("-day")
@@ -83,6 +52,10 @@ def mypage(request, pk):
     #faved = product.fav_product.filter(user=request.user)
     faved_list = faved
     context = {
+<<<<<<< HEAD
+=======
+        "user":user,
+>>>>>>> 1be0006eff5113a64c943499b46ff53a4581757d
         'faved_list':faved_list,
         'drunk_list':drunk,
         'faved_b_list':faved_b,
@@ -112,7 +85,7 @@ def userEdit(request):
                 user.udesc = newudesc
             
             user.save()
-            return redirect("mypage", pk=user.pk)
+            return redirect("mypage")
         except:
             print("hello")
             newname = request.POST["uname"]
@@ -124,6 +97,6 @@ def userEdit(request):
                 user.udesc = newudesc
             user.save()
 
-            return redirect("mypage", pk=user.pk)
+            return redirect("mypage")
 
     return render(request, "./users/detail_create.html", context)
