@@ -96,7 +96,7 @@ hostname = gethostname()
 
 if "SoomMacBook-Air" in hostname:
     # デバッグ環境
-    DEBUG = True 
+    DEBUG = False
     DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
