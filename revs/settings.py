@@ -160,7 +160,7 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
 
 AWS_ACCESS_KEY_ID = "AKIA46DKMER3VJ3PXIOC"
 AWS_SECRET_ACCESS_KEY = "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"
