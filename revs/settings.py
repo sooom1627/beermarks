@@ -83,7 +83,6 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'revs.wsgi.application'
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
@@ -93,14 +92,14 @@ hostname = gethostname()
 
 if "SoomMacBook-Air" in hostname:
     # デバッグ環境
-    DEBUG = True
+    DEBUG = False
     DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
         }
     }
-    ALLOWED_HOSTS = ['*'] 
+    ALLOWED_HOSTS = ['127.0.0.1'] 
     MEDIA_URL = '/media/'
     MEDIA_ROOT = os.path.join(BASE_DIR, 'media')    
 else:
@@ -111,7 +110,7 @@ else:
     DATABASES = {
         'default': dj_database_url.config()
     }
-    ALLOWED_HOSTS = ['*']
+    ALLOWED_HOSTS = ['beermarks.herokuapp.com']
     DEFAULT_FILE_STORAGE = "revs.storages.MediaStorage"
     PUBLIC_MEDIA_LOCATION = 'media'
     MEDIA_URL = "https://beermarksmedia.s3-ap-northeast-1.amazonaws.com/media/"  
@@ -159,6 +158,7 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, "static"),
 )
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 AWS_ACCESS_KEY_ID = "AKIA46DKMER3VJ3PXIOC"
 AWS_SECRET_ACCESS_KEY = "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"
