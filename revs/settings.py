@@ -30,6 +30,7 @@ SECRET_KEY = '61^vb8kfk3(ob_ym5vtj*wg9uj=a75hr#m_q^q!6cdts_2n06*'
 # Application definition
 
 INSTALLED_APPS = [
+    'whitenoise.runserver_nostatic',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
