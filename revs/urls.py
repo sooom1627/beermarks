@@ -3,6 +3,7 @@ from django.urls import path, include
 from django.conf.urls.static import static
 from django.conf import settings
 from socket import gethostname
+from django.conf.urls import handler500
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -14,3 +15,6 @@ urlpatterns = [
 
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)    
+
+from post.views import my_customized_server_error
+handler500 = my_customized_server_error

@@ -92,7 +92,7 @@ hostname = gethostname()
 
 if "SoomMacBook-Air" in hostname:
     # デバッグ環境
-    DEBUG = False
+    DEBUG = True
     DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
@@ -188,3 +188,8 @@ ACCOUNT_USERNAME_REQUIRED = False
 # ユーザ登録時に確認メールを送信するか(none=送信しない, mandatory=送信する)
 ACCOUNT_EMAIL_VERIFICATION = 'none'
 ACCOUNT_EMAIL_REQUIRED = True   # ユーザ登録にメルアド必須にする
+
+from django.views.decorators.csrf import requires_csrf_token
+from django.http import (
+    HttpResponseBadRequest, HttpResponseForbidden, HttpResponseNotFound,
+    HttpResponseServerError,)
