@@ -24,9 +24,6 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '61^vb8kfk3(ob_ym5vtj*wg9uj=a75hr#m_q^q!6cdts_2n06*'
 
 
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-
 #ALLOWED_HOSTS = ["*"]
 
 
@@ -96,7 +93,7 @@ hostname = gethostname()
 
 if "SoomMacBook-Air" in hostname:
     # デバッグ環境
-    DEBUG = False
+    DEBUG = True
     DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
@@ -108,7 +105,7 @@ if "SoomMacBook-Air" in hostname:
     MEDIA_ROOT = os.path.join(BASE_DIR, 'media')    
 else:
     # 本番環境
-    DEBUG = True
+    DEBUG = False
     import dj_database_url
     db_from_env = dj_database_url.config()
     DATABASES = {
