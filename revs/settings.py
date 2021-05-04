@@ -108,7 +108,7 @@ if "SoomMacBook-Air" in hostname:
     MEDIA_ROOT = os.path.join(BASE_DIR, 'media')    
 else:
     # 本番環境
-    DEBUG = False
+    DEBUG = True
     import dj_database_url
     db_from_env = dj_database_url.config()
     DATABASES = {
