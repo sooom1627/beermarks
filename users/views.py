@@ -96,4 +96,4 @@ def userEdit(request):
 
             return redirect("mypage")
 
-    return render(request, "./users/detail_create.html", context)
+    return render(request, "./users/detail_edit.html", context)

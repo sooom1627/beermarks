@@ -1,0 +1,204 @@
+{% extends 'base.html' %}
+{% block content %}
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="iq-card">
+          <div class="iq-card-body p-0">
+            <div class="iq-edit-list">
+              <ul class="iq-edit-profile d-flex nav nav-pills">
+                <li class="col-md-3 p-0">
+                  <a class="nav-link active" data-toggle="pill" href="#personal-information">
+                    プロフィール編集
+                  </a>
+                </li>
+                <li class="col-md-3 p-0">
+                  <a class="nav-link" data-toggle="pill" href="#manage-contact">
+                    SNS設定
+                  </a>
+                </li>
+                <li class="col-md-3 p-0">
+                  <a class="nav-link" data-toggle="pill" href="#emailandsms">
+                    メールアドレス変更
+                  </a>
+                </li>
+                <li class="col-md-3 p-0">
+                  <a class="nav-link" data-toggle="pill" href="#chang-pwd">
+                    パスワード変更
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-12">
+        <div class="iq-edit-list-data">
+          <div class="tab-content">
+            <div class="tab-pane fade active show" id="personal-information" role="tabpanel">
+              <div class="iq-card">
+                <div class="iq-card-header d-flex justify-content-between">
+                  <div class="iq-header-title">
+                    <h4 class="card-title font-weight-bold">プロフィール編集</h4>
+                  </div>
+                </div>
+                <div class="iq-card-body">
+                  <form action="#/" method="POST" enctype="multipart/form-data">{% csrf_token %}
+                    <div class="form-group row align-items-center">
+                      <div class="col-md-12">
+                        <div class="profile-img-edit">
+                          <img class="profile-pic" src="{{ object.upic.url }}" alt="profile-pic">
+                          <div class="p-image">
+                            <i class="ri-pencil-line upload-button"></i>
+                            <input class="file-upload" type="file" name="upic" id="upic" accept="image/*"/>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="form-group col-sm-6">
+                      <label for="uname">ユーザー名:</label>
+                      <input type="text" class="form-control" id="uname" value="{{ object.uname }}" name="uname">
+                    </div>
+                    <div class="form-group col-sm-12">
+                      <label>自己紹介:</label>
+                      <textarea class="form-control" name="udesc" id="udesc" rows="5" style="line-height: 22px;">
+                        {{ object.udesc }}
+                      </textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary mr-2">送信</button>
+                    <button type="reset" class="btn iq-bg-danger">Cancel</button>
+                  </form>
+                </div>
+              </div>
+            </div>
+            <div class="tab-pane fade" id="manage-contact" role="tabpanel">
+              <div class="iq-card">
+                <div class="iq-card-header d-flex justify-content-between">
+                  <div class="iq-header-title">
+                    <h4 class="card-title">SNS設定</h4>
+                  </div>
+                </div>
+                <div class="iq-card-body">
+                  <form>
+                    <div class="form-group">
+                      <label for="cno">
+                        <i class="fab fa-twitter-square mr-2"></i>Twitter</label>
+                      <input type="text" class="form-control" id="cno" placeholder="アカウントIDを入力してください(@除く)">
+                    </div>
+                    <div class="form-group">
+                      <label for="email">
+                        <i class="fab fa-facebook-square mr-2"></i>Facebook</label>
+                      <input type="text" class="form-control" id="email" value="Barryjone@demo.com">
+                    </div>
+                    <div class="form-group">
+                      <label for="url">
+                        <i class="fab fa-instagram-square mr-2"></i>Instagram</label>
+                      <input type="text" class="form-control" id="url" placeholder="アカウントIDを入力してください(@除く)">
+                    </div>
+                    <button type="submit" class="btn btn-primary mr-2">Submit</button>
+                    <button type="reset" class="btn iq-bg-danger">Cancel</button>
+                  </form>
+                </div>
+              </div>
+            </div>
+            <div class="tab-pane fade" id="emailandsms" role="tabpanel">
+              <div class="iq-card">
+                <div class="iq-card-header d-flex justify-content-between">
+                  <div class="iq-header-title">
+                    <h4 class="card-title">Email and SMS</h4>
+                  </div>
+                </div>
+                <div class="iq-card-body">
+                  <form>
+                    <div class="form-group row align-items-center">
+                      <label class="col-8 col-md-3" for="emailnotification">Email Notification:</label>
+                      <div class="col-4 col-md-9 custom-control custom-switch">
+                        <input type="checkbox" class="custom-control-input" id="emailnotification" checked="">
+                        <label class="custom-control-label" for="emailnotification"></label>
+                      </div>
+                    </div>
+                    <div class="form-group row align-items-center">
+                      <label class="col-8 col-md-3" for="smsnotification">SMS Notification:</label>
+                      <div class="col-4 col-md-9 custom-control custom-switch">
+                        <input type="checkbox" class="custom-control-input" id="smsnotification" checked="">
+                        <label class="custom-control-label" for="smsnotification"></label>
+                      </div>
+                    </div>
+                    <div class="form-group row align-items-center">
+                      <label class="col-md-3" for="npass">When To Email</label>
+                      <div class="col-md-9">
+                        <div class="custom-control custom-checkbox">
+                          <input type="checkbox" class="custom-control-input" id="email01">
+                          <label class="custom-control-label" for="email01">You have new notifications.</label>
+                        </div>
+                        <div class="custom-control custom-checkbox">
+                          <input type="checkbox" class="custom-control-input" id="email02">
+                          <label class="custom-control-label" for="email02">You're sent a direct message</label>
+                        </div>
+                        <div class="custom-control custom-checkbox">
+                          <input type="checkbox" class="custom-control-input" id="email03" checked="">
+                          <label class="custom-control-label" for="email03">Someone adds you as a connection</label>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="form-group row align-items-center">
+                      <label class="col-md-3" for="npass">When To Escalate Emails</label>
+                      <div class="col-md-9">
+                        <div class="custom-control custom-checkbox">
+                          <input type="checkbox" class="custom-control-input" id="email04">
+                          <label class="custom-control-label" for="email04">
+                            Upon new order.</label>
+                        </div>
+                        <div class="custom-control custom-checkbox">
+                          <input type="checkbox" class="custom-control-input" id="email05">
+                          <label class="custom-control-label" for="email05">
+                            New membership approval</label>
+                        </div>
+                        <div class="custom-control custom-checkbox">
+                          <input type="checkbox" class="custom-control-input" id="email06" checked="">
+                          <label class="custom-control-label" for="email06">
+                            Member registration</label>
+                        </div>
+                      </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary mr-2">Submit</button>
+                    <button type="reset" class="btn iq-bg-danger">Cancel</button>
+                  </form>
+                </div>
+              </div>
+            </div>
+            <div class="tab-pane fade" id="chang-pwd" role="tabpanel">
+              <div class="iq-card">
+                <div class="iq-card-header d-flex justify-content-between">
+                  <div class="iq-header-title">
+                    <h4 class="card-title">パスワードを変更する</h4>
+                  </div>
+                </div>
+                <div class="iq-card-body">
+                  <form method="POST" action="{% url 'account_change_password' %}" class="password_change">
+                    {% csrf_token %}
+                    <div class="form-group">
+                      <label for="id_oldpassword">現在のパスワード</label>
+                      <a href="javascripe:void();" class="float-right">Forgot Password</a>
+                      <input type="Password" class="form-control" name="oldpassword" placeholder="現在のパスワード" autocomplete="current-password" required="required" id="id_oldpassword">
+                    </div>
+                    <div class="form-group">
+                      <label for="id_password1">新しいパスワード</label>
+                      <input type="Password" name="password1" class="form-control" id="id_password1" placeholder="新しいパスワード" required="required" autocomplete="new-password">
+                    </div>
+                    <div class="form-group">
+                      <label for="id_password2">新しいパスワード(確認用)</label>
+                      <input type="Password" class="form-control" name="password2" id="id_password2" placeholder="新しいパスワード（再入力）" required="required">
+                    </div>
+                    <button type="submit" class="btn btn-primary mr-2" name="action">パスワードを変更</button>
+                    <button type="reset" class="btn iq-bg-danger">Cancel</button>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock content %}
