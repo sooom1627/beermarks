@@ -1,0 +1,39 @@
+body{
+    font-family: 'Poppins', sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 16px;
+    line-height: 1.8;
+    padding: 0;
+    margin: 0;
+    color: #4a525f;
+    background: #ffffff;
+}
+
+a:hover{
+    text-decoration: none;
+    color: #f9ae02;
+}
+
+.mainc{
+    color: #f9ae02;
+}
+
+img{
+    object-fit: contain;
+}
+
+p{
+    margin: 0;
+}
+
+button {
+	background: none;
+	border: none;
+	outline: none;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
+}
+
+.sidebar-delete-sp{display: none;}
