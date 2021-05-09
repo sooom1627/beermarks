@@ -83,11 +83,21 @@ def favb(request):
 def drunk(request, pk):
     if request.method == "POST":
         user = request.user 
-        com = request.POST["com"]
-        rate = request.POST["rating"]
+        #com = request.POST["com"]
+        #rate = request.POST["rating"]
         product = Product.objects.get(pk=pk)
         drunk = Drunk.objects.filter(product=product, user=user)
         obs = PostOb.objects.filter(drunk=drunk)
+        
+        if request.POST["com"]:
+            request.POST["com"]
+        else:
+            com = "記録用(Just for Recording)"
+            
+        try:
+            rate = request.POST["rating"]
+        except:
+            rate = 3
 
         try: 
             drunk.create(user=user, product=product, com=com, rate=rate)
