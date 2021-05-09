@@ -313,7 +313,7 @@ body.sidebar-main .iq-top-navbar { width: calc(100% - 80px); }
 .navbar-list li.nav-item.nav-icon > a { color: var(--iq-white); padding: 0; height: 35px; width: 35px; text-align: center; font-size: 20px; line-height: 35px; margin: 25px 10px; }
 .menu-tag { position: absolute; background: var(--iq-body-text); color: var(--iq-white); display: inline-block; top: 18px; left: 18px; font-size: 12px; border-radius: 90px; line-height: normal; height: 18px; width: 18px; line-height: 18px; text-align: center; display: inline-block; }
 .navbar-list li a:hover { text-decoration: none; }
-.navbar-list li > a > img { width: 50px; height: 50px; }
+.navbar-list li > a > img { width: 50px; height: 50px; object-fit: cover;}
 .navbar-list li.iq-nav-user { display: flex; align-items: flex-start; }
 .navbar-list li.iq-nav-user span { flex: 1; font-size: 14px; }
 .iq-breadcrumb { display: none; }
@@ -1157,7 +1157,7 @@ form.comment-text input { padding-right: 130px; }
 /*---------------------------------------------------------------------
 Profile Edit 
 -----------------------------------------------------------------------*/
-.profile-pic { max-width: 100%; display: block; border-radius: 50%; -webkit-border-radius: 50%; }
+.profile-pic { width: 150px; display: block; border-radius: 50%; -webkit-border-radius: 50%; height:150px;object-position: center;object-fit: cover;}
 .profile-img-edit { position: relative; display: inline-block; height: 150px; width: 150px; }
 .file-upload { display: none; }
 .p-image { position: absolute; top: auto; right: 8px; bottom: 10px; transition: all .3s cubic-bezier(.175, .885, .32, 1.275); background: var(--iq-color13); color: var(--iq-white); border-radius: 50%; height: 30px; width: 30px; line-height: 28px; text-align: center; font-size: 12px; cursor: pointer; }
