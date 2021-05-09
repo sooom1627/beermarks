@@ -1,35 +1,36 @@
 {% extends 'base.html' %}
 
 {% block content %}
-  <div class="container text-center">
-    <div class="pageTitle">
-      <p>Find the Beer Freak</p>
-      <h2>ユーザーを探す</h2>
-    </div>
-    <div class="row pt-5 pb-2">
-      <div class="col-md-8 offset-md-2">
-        {% for user in object_list %}
-          <div class="people-nearby">
-            <div class="nearby-user">
-              <div class="row align-items-center">
-                <div class="col-md-2 col-sm-2">
-                  <img src="{{user.upic.url}}" alt="user" class="profile-photo-lg">
-                </div>
-                <div class="col-md-7 col-sm-7">
-                  <h5>
-                    <a href="#" class="profile-link">{{user.uname}}</a>
-                  </h5>
-                  <!-- <p>Software Engineer</p> <p class="text-muted">500m away</p> -->
-                </div>
-                <div class="col-md-3 col-sm-3">
-                  <a class="btn btn-userview" href="{% url 'udet' user.pk%}">
-                    <span>Collectionをみる</span>
-                  </a>
+  <div class="col-12">
+    <div class="iq-card iq-card-block iq-card-stretch iq-card-height">
+      <div class="iq-card-header d-flex justify-content-between align-items-center">
+        <div class="iq-header-title">
+          <h4 class="card-title">User List
+          </h4>
+        </div>
+      </div>
+      <div class="iq-card-body">
+        <ul class="list-unstyled row hot-songs mb-0 slick-initialized slick-slider">
+          {% for user in object_list %}
+            <li class="col-lg-12" style="width: 100%; display: inline-block">
+              <div class="iq-card iq-card-transparent">
+                <div class="iq-card-body p-0">
+                  <div class="media align-items-center">
+                    <div class="iq-thumb-hotsong">
+                      <a href="{% url 'udet' user.pk %}" tabindex="0"><img src="{{ user.upic.url }}" class="img-fluid avatar-60" alt="">
+                      </a>
+                    </div>
+                    <div class="media-body ml-3">
+                      <h6 class="mb-0 iq-song-title">
+                        {{ user.uname }}
+                      </h6>
+                    </div>
+                  </div>
                 </div>
               </div>
-            </div>
-          </div>
-        {% endfor %}
+            </li>
+          {% endfor %}
+        </ul>
       </div>
     </div>
   </div>
