@@ -56,7 +56,7 @@ def brandDetail(request, pk):
 @login_required
 def productView(request):
     products = Product.objects.all().order_by("-id")
-    paginator = Paginator(products, 9)
+    paginator = Paginator(products, 12)
     page = request.GET.get('page', 1) 
     try:
         pages = paginator.page(page)
@@ -117,7 +117,5 @@ def searchproduct(request):
         'query':query,
         'faved_list':faved_list,
     }
-
-    print(ctx)
 
     return render(request, 'product/search-list.html', context )
