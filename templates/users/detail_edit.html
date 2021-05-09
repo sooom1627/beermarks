@@ -7,12 +7,13 @@
           <div class="iq-card-body p-0">
             <div class="iq-edit-list">
               <ul class="iq-edit-profile d-flex nav nav-pills">
-                <li class="col-md-3 p-0">
-                  <a class="nav-link active" data-toggle="pill" href="#personal-information">
+                {% comment %} <li class="col-md-3 p-0"> {% endcomment %}
+                <li class="w-100 p-0">
+                  <a class="nav-link active rounded" data-toggle="pill" href="#personal-information">
                     プロフィール編集
                   </a>
                 </li>
-                <li class="col-md-3 p-0">
+                {% comment %} <li class="col-md-3 p-0">
                   <a class="nav-link" data-toggle="pill" href="#manage-contact">
                     SNS設定
                   </a>
@@ -26,7 +27,7 @@
                   <a class="nav-link" data-toggle="pill" href="#chang-pwd">
                     パスワード変更
                   </a>
-                </li>
+                </li> {% endcomment %}
               </ul>
             </div>
           </div>
@@ -71,7 +72,7 @@
                 </div>
               </div>
             </div>
-            <div class="tab-pane fade" id="manage-contact" role="tabpanel">
+            {% comment %} <div class="tab-pane fade" id="manage-contact" role="tabpanel">
               <div class="iq-card">
                 <div class="iq-card-header d-flex justify-content-between">
                   <div class="iq-header-title">
@@ -195,7 +196,7 @@
                   </form>
                 </div>
               </div>
-            </div>
+            </div> {% endcomment %}
           </div>
         </div>
       </div>
