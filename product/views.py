@@ -87,10 +87,21 @@ def productView(request):
 
     return render(request, 'product/list.html', context)
 
-class BrandView(ListView):
-    model = Brand
-    template_name = "product/list_b.html"
+def brandView(request):
+    brands = Brand.objects.all().order_by("-id")
+    faved_list = []
 
+    for brand in brands:
+        faved = brand.fav_brand.filter(user=request.user)
+        if faved.exists():
+            faved_list.append(brand.id)
+            
+    context={
+        "object_list":brands,
+        "faved_list":faved_list
+    }
+
+    return render(request, 'product/list_b.html', context)
 
 def searchproduct(request):
     query = request.GET.get("q")

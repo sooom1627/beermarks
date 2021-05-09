@@ -25,6 +25,28 @@
                         {{ brand.bname }}
                       </h6>
                     </a>
+                    <div class="music-right w-100">
+                      <div class="d-flex align-items-center justify-content-center">
+                        <div class="iq-circle mr-2 share">
+                          <a href="javascript:void();">
+                            <i class="las la-share-alt-square text-secondary"></i>
+                          </a>
+                        </div>
+                        <div class="iq-circle mr-2">
+                          <form action="{% url 'favb' %}" method="POST">{% csrf_token %}
+                            {% if brand.pk in faved_list %}
+                              <button id="favb" name="{{brand.pk}}">
+                                <i class="ri-heart-fill text-primary"></i>
+                              </button>
+                            {% else %}
+                              <button id="favb" name="{{brand.pk}}">
+                                <i class="ri-heart-fill text-secondary"></i>
+                              </button>
+                            {% endif %}
+                          </form>
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -36,29 +58,27 @@
   </div>
 {% endblock content %}
 {% block ext_js %}
-
   <script type="text/javascript">
     $(document).ready(function (event) {
-      $(document).on('click', '#favp', function (event) {
+      $(document).on('click', '#favb', function (event) {
         event.preventDefault();
         $.ajax({
           headers: {
             'X-CSRFToken': csrftoken
           },
           type: 'POST',
-          url: "{% url 'favp' %}",
+          url: "{% url 'favb' %}",
           data: {
-            'product_id': $(this).attr('name')
+            'brand_id': $(this).attr('name')
           },
           dataType: 'json',
           success: function (response) {
-            selector = document.getElementsByName(response.product_id);
+            selector = document.getElementsByName(response.brand_id);
             if (response.faved) {
-              $(selector).html("<i class='fas fa-lg fa-heart'></i>");
+              $(selector).html("<i class='ri-heart-fill text-primary'></i>");
             } else {
-              $(selector).html("<i class='far fa-lg fa-heart'></i>");
+              $(selector).html("<i class='ri-heart-fill text-secondary'></i>");
             }
-
           }
         });
       });
