@@ -112,7 +112,7 @@ def searchproduct(request):
     else:
         products_result = Product.objects.all()
 
-    ctx = {
+    context = {
         'products':products_result,
         'query':query,
         'faved_list':faved_list,
@@ -120,4 +120,4 @@ def searchproduct(request):
 
     print(ctx)
 
-    return render(request, 'product/search-list.html', ctx )
+    return render(request, 'product/search-list.html', context )
