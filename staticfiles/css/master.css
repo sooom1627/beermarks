@@ -37,3 +37,11 @@ button {
 }
 
 .sidebar-delete-sp{display: none;}
+
+.fa-star{
+    color: #ffdd31;
+}
+
+.fa-star.disable{
+    color:#4a525f;
+}
