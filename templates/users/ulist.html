@@ -21,9 +21,11 @@
                       </a>
                     </div>
                     <div class="media-body ml-3">
-                      <h6 class="mb-0 iq-song-title">
-                        {{ user.uname }}
-                      </h6>
+                      <a href="{% url 'udet' user.pk %}">
+                        <h6 class="mb-0 iq-song-title">
+                          {{ user.uname }}
+                        </h6>
+                      </a>
                     </div>
                   </div>
                 </div>
