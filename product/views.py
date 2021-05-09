@@ -72,7 +72,7 @@ def productView(request):
         faved = product.fav_product.filter(user=request.user)
         if faved.exists():
             faved_list.append(product.id)
-
+            
     drunk_list=[]
     for product in products:
         drunk = product.drunk_product.filter(user=request.user)

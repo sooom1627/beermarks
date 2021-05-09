@@ -28,7 +28,35 @@
                     <a href="{% url 'branddetail' item.brand.pk %}">
                       <small class="mb-0">{{ item.brand }}</small>
                     </a>
+                    <div class="w-100">
+                      <div class="d-flex align-items-center justify-content-center">
+                        <div class="iq-circle mr-2 share">
+                          <a href="javascript:void();">
+                            <i class="las la-share-alt-square text-secondary"></i>
+                          </a>
+                        </div>
+                        <div class="iq-circle mr-2">
+                          <form action="{% url 'favp' %}" method="POST">{% csrf_token %}
+                            {% if item.pk in faved_list %}
+                              <button id="favp" name="{{item.pk}}">
+                                <i class="ri-heart-fill text-primary"></i>
+                              </button>
+                            {% else %}
+                              <button id="favp" name="{{item.pk}}">
+                                <i class="ri-heart-fill text-secondary"></i>
+                              </button>
+                            {% endif %}
+                          </form>
+                        </div>
+                        <div class="iq-circle">
+                          <a href="{% url 'detail' item.pk %}#anchor1">
+                            <i class="las la-comment text-secondary"></i>
+                          </a>
+                        </div>
+                      </div>
+                    </div>
                   </div>
+
                 </div>
               </div>
             </li>
@@ -60,11 +88,10 @@
           success: function (response) {
             selector = document.getElementsByName(response.product_id);
             if (response.faved) {
-              $(selector).html("<i class='fas fa-lg fa-heart'>飲みたい！</i>");
+              $(selector).html("<i class='ri-heart-fill text-primary'></i>");
             } else {
-              $(selector).html("<i class='far fa-lg fa-heart'>飲みたい！</i>");
+              $(selector).html("<i class='ri-heart-fill text-secondary'></i>");
             }
-
           }
         });
       });
