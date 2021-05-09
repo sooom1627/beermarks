@@ -28,8 +28,8 @@ class Drunk(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="drunk_user")
     product = models.ForeignKey(Product , on_delete=models.CASCADE, related_name="drunk_product")
     day = models.DateTimeField(auto_now=False, auto_now_add=True)
-    com = models.TextField(max_length=140, null=True, blank=True)
-    rate = models.IntegerField(blank=True, null=True, default=1)
+    com = models.TextField(max_length=140, null=True, blank=True, default="記録用(Just for recording)")
+    rate = models.IntegerField(blank=True, null=True, default=3)
 
     class Meta:
         constraints =[
