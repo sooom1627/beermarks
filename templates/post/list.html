@@ -24,7 +24,7 @@
             <div class="col-md-7" style="position: relative">
               <div class="iq-card-body" style="padding-bottom: 70px">
                 <p class="card-text">
-                  {{post.favp.product.pname}}/{{post.favp.product.brand}}をLike!!
+                  {{post.favp.product.pname}}/{{post.favp.product.brand}}をConnect!!
                 </p>
                 <p class="card-text text-right" style="position: absolute; bottom: 20px; right: 20px">
                   <small class="text-muted">{{ post.favp.day|date:"y/m/d/ H:i" }}</small>
@@ -84,6 +84,40 @@
                   <h4 class="card-title mainc">{{post.drunk.product.pname}}</h4>
                 </a>
                 <h5>{{post.drunk.product.brand}}</h5>
+                <div>
+                  {% if post.drunk.rate == 5 %}
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                  {% elif post.drunk.rate == 4 %}
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star disable"></i>
+                  {% elif post.drunk.rate == 3 %}
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star disable"></i>
+                    <i class="fa fa-star disable"></i>
+                  {% elif post.drunk.rate == 2 %}
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star disable"></i>
+                    <i class="fa fa-star disable"></i>
+                    <i class="fa fa-star disable"></i>
+                  {% elif post.drunk.rate == 1 %}
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star disable"></i>
+                    <i class="fa fa-star disable"></i>
+                    <i class="fa fa-star disable"></i>
+                    <i class="fa fa-star disable"></i>
+                  {% endif %}
+                  <i>{{ post.drunk.rate }}</i>
+                </div>
                 <p class="card-text">
                   {{ post.drunk.com }}
                 </p>
