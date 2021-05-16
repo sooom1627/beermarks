@@ -55,6 +55,8 @@ def brandDetail(request, pk):
 
 @login_required
 def productView(request):
+    ptype = Type.objects.all()
+    brand = Brand.objects.all()
     products = Product.objects.all().order_by("-id")
     paginator = Paginator(products, 12)
     page = request.GET.get('page', 1) 
@@ -83,6 +85,8 @@ def productView(request):
         'faved_list':faved_list,
         'pages': pages,
         'drunk_list':drunk_list,
+        'types':ptype,
+        'brands':brand,
     }
 
     return render(request, 'product/list.html', context)

@@ -14,6 +14,7 @@ class Brand(models.Model):
 class Type(models.Model):
     ptype = models.CharField(max_length=50)
     ptype_search_index = models.TextField(blank=True)
+    ptype_color = models.CharField(max_length=50, default="greenyellow")
 
     def __str__(self):
         return self.ptype
