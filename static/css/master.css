@@ -214,3 +214,7 @@ button {
 #brand_menu.active{
     right:0;
 }
+
+#main_content.inactive{
+    display: none;
+}

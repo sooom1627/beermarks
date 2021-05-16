@@ -121,7 +121,7 @@
   </div>
 {% endblock sort_menu %}
 {% block content %}
-  <div class="col-lg-12">
+  <div class="col-lg-12" id="main_content">
     <div class="iq-card">
       <div class="iq-card-header d-flex justify-content-between">
         <div class="iq-header-title">
@@ -226,17 +226,24 @@
     const brand_menu = document.getElementById("brand_menu");
     const brand_reset = document.getElementById("brand_reset");
     const brand_toggle = document.getElementById("brand_toggle");
+    const main_content = document.getElementById("main_content");
 
     sort.addEventListener('click', function () {
       sort_menu
         .classList
         .toggle("active");
+      main_content
+        .classList
+        .toggle("inactive")
     })
 
     sort_reset.addEventListener('click', function () {
       sort_menu
         .classList
         .toggle("active");
+      main_content
+        .classList
+        .toggle("inactive")
     })
 
     type_toggle.addEventListener('click', function () {
