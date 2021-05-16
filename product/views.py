@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponse
 from django.views.generic import ListView, DetailView, CreateView, DeleteView, UpdateView
-from .models import Brand, Product
+from .models import Brand, Product, Type
 from django.urls import reverse_lazy
 from django.contrib.auth.decorators import login_required
 from users.models import User
@@ -105,8 +105,11 @@ def brandView(request):
 
 def searchproduct(request):
     query = request.GET.get("q")
+    ptype = request.GET.get("type")
+    brand = request.GET.get("brand")
     products = Product.objects.all()
     faved_list = []
+    
     for product in products:
         faved = product.fav_product.filter(user=request.user)
         if faved.exists():
@@ -121,7 +124,18 @@ def searchproduct(request):
 
         products_result = products_result.order_by("-id")
     else:
-        products_result = Product.objects.all()
+        products_result = products
+
+    if ptype:
+        products_result = products_result.filter(ptype=ptype)
+    else:
+        products_result = products_result
+    
+    
+    if brand:
+        products_result = products_result.filter(brand=brand).order_by("-id")
+    else:
+        products_result = products_result
 
     context = {
         'products':products_result,

@@ -1,5 +1,106 @@
 {% extends 'base.html' %}
 {% block search_active %}active{% endblock search_active %}
+{% block sort_buttom %}
+  <a style="position: fixed;bottom:32px; right:32px; cursor: pointer;z-index:8;" id="sort_button">
+    <div class="d-flex flex-column justify-content-center p-2 rounded-circle" style="background-color: #a09e9e;width:60px;height:60px;box-shadow: 0px 4px 20px 0px rgb(44 101 144 / 10%);">
+      <div class="text-center" style="color: white;">
+        <p style="font-size: 8px;" class="d-flex flex-column">
+          <i class="las la-sliders-h" style="color: white;font-size:28px"></i>絞り込む</p>
+      </div>
+    </div>
+  </a>
+{% endblock sort_buttom %}
+{% block sort_menu %}
+  <div class="col-12" id="sort_menu">
+    <div class="search-header w-100 text-center mb-3" style="position: relative;">
+      <a id="sort_reset" style="position: absolute; left: 10px;cursor: pointer;">
+        <i class="las la-angle-left"></i>戻る</a>
+      <h6 class="font-weight-bold">こだわり検索</h4>
+    </div>
+    <div>
+      <form action="">
+        <div class="row form-group">
+          <div class="col-lg-3">
+            <p class="font-weight-bold">キーワード</p>
+          </div>
+          <div class="col-lg-9">
+            <input class="w-100 form-control" type="text">
+          </div>
+        </div>
+        <div class="row form-group">
+          <div class="col-6">
+            <p class="font-weight-bold">ビールのタイプ</p>
+          </div>
+          <div class="col-6 d-flex justify-content-end">
+            <a id="type_toggle" style="cursor: pointer;">選択する<i class="las la-angle-right"></i>
+            </a>
+          </div>
+          <div class="col-12" id="type_menu">
+            <div class="search-header w-100 text-center mb-3" style="position: relative;">
+              <a id="type_reset" style="position: absolute; left: 10px;cursor: pointer;">
+                <i class="las la-angle-left"></i>戻る</a>
+              <h6 class="font-weight-bold">ビールのタイプ</h4>
+            </div>
+            <ul class="row type-list">
+              <li class="col-xl-3 col-lg-3 col-md-4 col-4 mb-3">
+                <div>
+                  <div class="rounded-circle" style="background-color: greenyellow;width: 60px;height:60px;margin:0 auto;"></div>
+                  <div class="text-center">
+                    <p>IPA</p>
+                  </div>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="row form-group">
+          <div class="col-6">
+            <p class="font-weight-bold">ブルワリー</p>
+          </div>
+          <div class="col-6 d-flex justify-content-end">
+            <a id="brand_toggle" style="cursor: pointer;">選択する<i class="las la-angle-right"></i>
+            </a>
+          </div>
+          <div class="col-12" id="brand_menu">
+            <div class="search-header w-100 text-center mb-3" style="position: relative;">
+              <a id="brand_reset" style="position: absolute; left: 10px;cursor: pointer;">
+                <i class="las la-angle-left"></i>戻る</a>
+              <h6 class="font-weight-bold">ブルワリー</h4>
+            </div>
+            <div class="row">
+              <div class="px-3">
+                <div class="iq-card iq-card-transparent">
+                  <div class="iq-card-body p-0">
+                    <div class="media align-items-center">
+                      <div class="iq-thumb-hotsong">
+                        <a tabindex="0"><img src="./image/other-half-brewing.jpeg" class="img-fluid avatar-60" alt="">
+                        </a>
+                      </div>
+                      <div class="media-body ml-3">
+                        <h6 class="mb-0 iq-song-title">
+                          Revision Brewing Company
+                        </h6>
+                        <small>Nevada/USA</small>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-6">
+            <button type="button" class="btn btn-secondary btn-block">クリア</button>
+          </div>
+          <div class="col-6">
+            <button type="button" class="btn btn-primary btn-block">検索する</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+{% endblock sort_menu %}
 {% block content %}
   <div class="col-lg-12">
     <div class="iq-card">
@@ -70,7 +171,6 @@
   </div>
 {% endblock content %}
 {% block ext_js %}
-
   <script type="text/javascript">
     $(document).ready(function (event) {
       $(document).on('click', '#favp', function (event) {
@@ -96,5 +196,52 @@
         });
       });
     });
+  </script>
+  <script>
+    const sort = document.getElementById("sort_button");
+    const sort_menu = document.getElementById("sort_menu");
+    const sort_reset = document.getElementById("sort_reset");
+    const type_toggle = document.getElementById("type_toggle");
+    const type_reset = document.getElementById("type_reset");
+    const type_menu = document.getElementById("type_menu");
+    const brand_menu = document.getElementById("brand_menu");
+    const brand_reset = document.getElementById("brand_reset");
+    const brand_toggle = document.getElementById("brand_toggle");
+
+    sort.addEventListener('click', function () {
+      sort_menu
+        .classList
+        .toggle("active");
+    })
+
+    sort_reset.addEventListener('click', function () {
+      sort_menu
+        .classList
+        .toggle("active");
+    })
+
+    type_toggle.addEventListener('click', function () {
+      type_menu
+        .classList
+        .toggle("active");
+    })
+
+    type_reset.addEventListener('click', function () {
+      type_menu
+        .classList
+        .toggle("active");
+    })
+
+    brand_toggle.addEventListener('click', function () {
+      brand_menu
+        .classList
+        .toggle("active")
+    })
+
+    brand_reset.addEventListener('click', function () {
+      brand_menu
+        .classList
+        .toggle("active")
+    })
   </script>
 {% endblock ext_js %}

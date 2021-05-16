@@ -50,6 +50,7 @@
     <!-- End Google Tag Manager (noscript) -->
     {% if request.user.is_authenticated %}
       <div class="wrapper">
+        {% block sort_buttom %}{% endblock sort_buttom %}
         <div class="iq-sidebar" id="sidebar">
           <div class="iq-sidebar-logo d-flex justify-content-between align-items-center" style="position:relative;">
             <a href="{% url 'index' %}" class="header-logo">
@@ -320,6 +321,9 @@
           </div>
         </div>
         <!-- TOP Nav Bar END -->
+        <!-- sort_menu -->
+        {% block sort_menu %}{% endblock sort_menu %}
+        <!-- sort_menu end -->
         <div class="content-page" id="content-page">
           {% block content %}{% endblock content %}
         </div>
