@@ -112,6 +112,8 @@ def searchproduct(request):
     ptype = request.GET.get("type")
     brand = request.GET.get("brand")
     products = Product.objects.all()
+    brands = Brand.objects.all()
+    ptypes = Type.objects.all()
     faved_list = []
     
     for product in products:
@@ -128,7 +130,7 @@ def searchproduct(request):
 
         products_result = products_result.order_by("-id")
     else:
-        products_result = products
+        products_result = products.order_by("-id")
 
     if ptype:
         products_result = products_result.filter(ptype=ptype)
@@ -141,10 +143,22 @@ def searchproduct(request):
     else:
         products_result = products_result
 
+    paginator = Paginator(products_result, 12)
+    page = request.GET.get('page', 1) 
+    try:
+        pages = paginator.page(page)
+    except PageNotAnInteger:
+        pages = paginator.page(1)
+    except EmptyPage:
+        pages = paginator.page(1)
+
     context = {
-        'products':products_result,
-        'query':query,
+        'products':pages,
         'faved_list':faved_list,
+        'pages': pages,
+        'types':ptypes,
+        'brands':brands,
+        'query':query,
     }
 
-    return render(request, 'product/search-list.html', context )
+    return render(request, 'product/list.html', context )

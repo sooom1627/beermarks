@@ -18,7 +18,7 @@
       <h6 class="font-weight-bold">こだわり検索</h4>
     </div>
     <div>
-      <form action="" method="GET">{% csrf_token %}
+      <form action="{% url 'search' %}" method="GET">
         <div class="row form-group">
           <div class="col-lg-3">
             <p class="font-weight-bold">キーワード</p>
@@ -32,7 +32,9 @@
             <p class="font-weight-bold">ビールのタイプ</p>
           </div>
           <div class="col-6 d-flex justify-content-end">
-            <a id="type_toggle" style="cursor: pointer;">選択する<i class="las la-angle-right"></i>
+            <a id="type_toggle" style="cursor: pointer;">
+              <span id="selected_type">選択する</span>
+              <i class="las la-angle-right"></i>
             </a>
           </div>
           <div class="col-12" id="type_menu">
@@ -43,24 +45,29 @@
             </div>
             <ul class="row type-list p-0 m-0">
               {% for type in types %}
-                <li class="col-xl-3 col-lg-3 col-md-4 col-4 mb-3">
-                  <div>
-                    <div class="rounded-circle" style="background-color: {{ type.ptype_color }};width: 60px;height:60px;margin:0 auto;"></div>
-                    <div class="text-center">
-                      <p>{{ type.ptype }}</p>
+                <li class="col-xl-3 col-lg-3 col-md-4 col-4 mb-3 p-0 text-center types">
+                  <input class="type_check" type="radio" name="type" value="{{ type.pk }}" id="{{ type.ptype }}">
+                  <label for="{{ type.ptype }}" name="{{type.ptype}}{{type.id}}" onclick="type(this)">
+                    <div class="rounded-circle d-flex align-items-center justify-content-center" style="background-color: {{ type.ptype_color }};width: 60px;height:60px;margin:0 auto;">
+                      <i class="fas fa-check" style="color:white;font-size:36px"></i>
                     </div>
-                  </div>
+                    <div class="text-center">
+                      <p id="{{type.ptype}}{{type.id}}">{{ type.ptype }}</p>
+                    </div>
+                  </label>
                 </li>
               {% endfor %}
             </ul>
           </div>
         </div>
         <div class="row form-group">
-          <div class="col-6">
+          <div class="col-4">
             <p class="font-weight-bold">ブルワリー</p>
           </div>
-          <div class="col-6 d-flex justify-content-end">
-            <a id="brand_toggle" style="cursor: pointer;">選択する<i class="las la-angle-right"></i>
+          <div class="col-8 d-flex justify-content-end">
+            <a id="brand_toggle" style="cursor: pointer;">
+              <span id="selected_brand">選択する</span>
+              <i class="las la-angle-right"></i>
             </a>
           </div>
           <div class="col-12" id="brand_menu">
@@ -73,22 +80,28 @@
               <ul class="px-3 brand-list">
                 {% for brand in brands %}
                   <li>
-                    <div class="iq-card iq-card-transparent">
-                      <div class="iq-card-body p-0">
-                        <div class="media align-items-center">
-                          <div class="iq-thumb-hotsong">
-                            <a tabindex="0"><img src="{{ brand.bpic.url }}" class="img-fluid avatar-60" alt="">
-                            </a>
-                          </div>
-                          <div class="media-body ml-3">
-                            <h6 class="mb-0 iq-song-title">
-                              {{ brand.bname }}
-                            </h6>
-                            <small>{{ brand.locate }}</small>
+                    <input type="radio" name="brand" value="{{ brand.pk }}" id="{{ brand.bname }}">
+                    <label for="{{ brand.bname}}" name="{{brand.pk}}-{{brand.pk}}" onclick="brand(this)">
+                      <div class="iq-card iq-card-transparent">
+                        <div class="iq-card-body p-0">
+                          <div class="media align-items-center">
+                            <div class="iq-thumb-hotsong">
+                              <a tabindex="0"><img src="{{ brand.bpic.url }}" class="img-fluid avatar-60" alt="">
+                              </a>
+                            </div>
+                            <div class="media-body ml-3">
+                              <h6 class="mb-0 iq-song-title" id="{{ brand.pk }}-{{brand.pk}}">
+                                {{ brand.bname }}
+                              </h6>
+                              <small>{{ brand.locate }}</small>
+                            </div>
+                            <div class="" style="position:absolute;right:20px">
+                              <i class="fas fa-check"></i>
+                            </div>
                           </div>
                         </div>
                       </div>
-                    </div>
+                    </label>
                   </li>
                 {% endfor %}
               </div>
@@ -97,10 +110,10 @@
         </div>
         <div class="row">
           <div class="col-6">
-            <button type="button" class="btn btn-secondary btn-block">クリア</button>
+            <button type="submit" class="btn btn-secondary btn-block">クリア</button>
           </div>
           <div class="col-6">
-            <button type="button" class="btn btn-primary btn-block">検索する</button>
+            <button type="submit" class="btn btn-primary btn-block">検索する</button>
           </div>
         </div>
       </form>
@@ -249,5 +262,29 @@
         .classList
         .toggle("active")
     })
+  </script>
+  <script>
+    function type(e) {
+      const getId = e.getAttribute("name");
+      const getCtx = document
+        .getElementById(getId)
+        .innerHTML;
+      const selected_type = document.getElementById("selected_type")
+
+      selected_type.innerText = getCtx
+
+    }
+
+    function brand(e) {
+      const getId = e.getAttribute("name");
+      console.log(getId)
+      const getCtx = document
+        .getElementById(getId)
+        .innerText;
+
+      const selected_brand = document.getElementById("selected_brand");
+
+      selected_brand.innerText = getCtx
+    }
   </script>
 {% endblock ext_js %}
