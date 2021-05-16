@@ -81,7 +81,7 @@
                 {% for brand in brands %}
                   <li>
                     <input type="radio" name="brand" value="{{ brand.pk }}" id="{{ brand.bname }}">
-                    <label for="{{ brand.bname}}" name="{{brand.pk}}-{{brand.pk}}" onclick="brand(this)" style="cursor: pointer;">
+                    <label for="{{ brand.bname}}" name="{{brand.pk}}-{{brand.pk}}" onmouseup="brand(this)" style="cursor: pointer;">
                       <div class="iq-card iq-card-transparent">
                         <div class="iq-card-body p-0">
                           <div class="media align-items-center">
