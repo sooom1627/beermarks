@@ -27,14 +27,6 @@ p{
     margin: 0;
 }
 
-.type-list li{
-    list-style: none;
-}
-
-.brand-list li{
-    list-style: none;
-}
-
 button {
 	background: none;
 	border: none;
@@ -64,6 +56,42 @@ button {
 }
 
 /*  sort_menus  */
+
+.type-list li{
+    list-style: none;
+}
+
+.brand-list li{
+    list-style: none;
+}
+
+.type-list li input{
+    position: absolute;
+    left:-99999px;
+}
+
+.brand-list li input{
+    position: absolute;
+    left:-99999px;
+}
+
+.types i{
+    display: none;
+}
+
+.brand-list i{
+    display: none;
+}
+
+#type_menu ul li input[type='radio']:checked ~ label i{
+    display: block;
+}
+
+#brand_menu ul li input[type='radio']:checked ~ label i{
+    display: block;
+}
+
+
 @media(min-width:1300px) {
     #sort_menu{
         right:-100vw;
