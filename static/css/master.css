@@ -223,6 +223,6 @@ button {
     right:0;
 }
 
-#main_content.inactive{
+#content-page.inactive{
     display: none;
 }

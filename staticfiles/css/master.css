@@ -125,7 +125,9 @@ button {
         -o-transition: all 0.5s ease-in-out;
         -webkit-transition: all 0.5s ease-in-out;
         margin-top:70px;
-        padding: 30px;
+        padding: 30px 0px 70px 0px;
+        height: 100vh;
+        overflow: scroll;
     }
 
     #brand_menu{
@@ -143,7 +145,9 @@ button {
         -o-transition: all 0.5s ease-in-out;
         -webkit-transition: all 0.5s ease-in-out;
         margin-top:70px;
-        padding: 30px;
+        padding: 30px 0px 70px 0px;
+        height: 100vh;
+        overflow: scroll;
     }
 }
 
@@ -180,7 +184,9 @@ button {
         -o-transition: all 0.3s ease-in-out;
         -webkit-transition: all 0.3s ease-in-out;
         margin-top:70px;
-        padding: 30px 20px 20px 20px;
+        padding: 30px 20px 70px 20px;
+        height: 100vh;
+        overflow: scroll;
     }
 
     #brand_menu{
@@ -198,7 +204,9 @@ button {
         -o-transition: all 0.3s ease-in-out;
         -webkit-transition: all 0.3s ease-in-out;
         margin-top:70px;
-        padding: 30px 20px 20px 20px;
+        padding: 30px 20px 70px 20px;
+        height: 100vh;
+        overflow: scroll;
     }
 }
 
@@ -215,6 +223,6 @@ button {
     right:0;
 }
 
-#main_content.inactive{
+#content-page.inactive{
     display: none;
 }
