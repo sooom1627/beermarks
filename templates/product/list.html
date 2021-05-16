@@ -47,7 +47,7 @@
               {% for type in types %}
                 <li class="col-xl-3 col-lg-3 col-md-4 col-4 mb-3 p-0 text-center types">
                   <input class="type_check" type="radio" name="type" value="{{ type.pk }}" id="{{ type.ptype }}">
-                  <label for="{{ type.ptype }}" name="{{type.ptype}}{{type.id}}" onclick="type(this)">
+                  <label for="{{ type.ptype }}" name="{{type.ptype}}{{type.id}}" onclick="type(this)" style="cursor: pointer;">
                     <div class="rounded-circle d-flex align-items-center justify-content-center" style="background-color: {{ type.ptype_color }};width: 60px;height:60px;margin:0 auto;">
                       <i class="fas fa-check" style="color:white;font-size:36px"></i>
                     </div>
@@ -81,7 +81,7 @@
                 {% for brand in brands %}
                   <li>
                     <input type="radio" name="brand" value="{{ brand.pk }}" id="{{ brand.bname }}">
-                    <label for="{{ brand.bname}}" name="{{brand.pk}}-{{brand.pk}}" onclick="brand(this)">
+                    <label for="{{ brand.bname}}" name="{{brand.pk}}-{{brand.pk}}" onclick="brand(this)" style="cursor: pointer;">
                       <div class="iq-card iq-card-transparent">
                         <div class="iq-card-body p-0">
                           <div class="media align-items-center">
