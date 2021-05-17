@@ -125,9 +125,9 @@ button {
         -o-transition: all 0.5s ease-in-out;
         -webkit-transition: all 0.5s ease-in-out;
         margin-top:70px;
-        padding: 30px 0px 120px 0px;
+        padding: 30px 0px 140px 0px;
         height: 100vh;
-        overflow: scroll;
+        overflow-y: scroll;
     }
 
     #brand_menu{
@@ -145,9 +145,9 @@ button {
         -o-transition: all 0.5s ease-in-out;
         -webkit-transition: all 0.5s ease-in-out;
         margin-top:70px;
-        padding: 30px 0px 120px 0px;
+        padding: 30px 15px 140px 15px;
         height: 100vh;
-        overflow: scroll;
+        overflow-y: scroll;
     }
 }
 
@@ -167,6 +167,7 @@ button {
         -webkit-transition: all 0.3s ease-in-out;
         margin-top:70px;
         padding: 30px 20px 20px 20px;
+        overflow-y: scroll;
     }
 
     #type_menu{
@@ -184,9 +185,10 @@ button {
         -o-transition: all 0.3s ease-in-out;
         -webkit-transition: all 0.3s ease-in-out;
         margin-top:70px;
-        padding: 30px 20px 120px 20px;
+        padding: 30px 20px 140px 20px;
         height: 100vh;
         overflow: scroll;
+        overflow-y: scroll;
     }
 
     #brand_menu{
@@ -204,9 +206,9 @@ button {
         -o-transition: all 0.3s ease-in-out;
         -webkit-transition: all 0.3s ease-in-out;
         margin-top:70px;
-        padding: 30px 20px 120px 20px;
+        padding: 30px 20px 140px 20px;
         height: 100vh;
-        overflow: scroll;
+        overflow-y: scroll;
     }
 }
 
