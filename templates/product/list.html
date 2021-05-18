@@ -47,7 +47,7 @@
               {% for type in types %}
                 <li class="col-xl-3 col-lg-3 col-md-4 col-4 mb-3 p-0 text-center types">
                   <input class="type_check" type="radio" name="type" value="{{ type.pk }}" id="{{ type.ptype }}">
-                  <label for="{{ type.ptype }}" name="{{type.ptype}}{{type.id}}" onclick="type(this)" style="cursor: pointer;">
+                  <label for="{{ type.ptype }}" class="types_label" name="{{type.ptype}}{{type.id}}" onclick="type(this)" style="cursor: pointer;">
                     <div class="rounded-circle d-flex align-items-center justify-content-center" style="background-color: {{ type.ptype_color }};width: 60px;height:60px;margin:0 auto;">
                       <i class="fas fa-check" style="color:white;font-size:36px"></i>
                     </div>
@@ -279,7 +279,6 @@
       const selected_type = document.getElementById("selected_type")
 
       selected_type.innerText = getCtx
-
     }
 
     function brand(e) {
@@ -293,5 +292,19 @@
 
       selected_brand.innerText = getCtx
     }
+  </script>
+  <script>
+    const types = document.getElementsByClassName("types_label");
+    const selectedType = document.getElementById("selected_type");
+
+    for (let i = 0; i < types.length; i++) {
+      const getId = types[i].getAttribute("name");
+      const type = document.getElementById(getId);
+      typeName = type.innerText;
+    }
+
+    type.addEventListener('click', function () {
+      selectedType.innerText = typeName;
+    })
   </script>
 {% endblock ext_js %}

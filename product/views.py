@@ -1,11 +1,7 @@
-from django.shortcuts import render, get_object_or_404, redirect
-from django.http import HttpResponse
-from django.views.generic import ListView, DetailView, CreateView, DeleteView, UpdateView
+from django.shortcuts import render
 from .models import Brand, Product, Type
 from django.urls import reverse_lazy
 from django.contrib.auth.decorators import login_required
-from users.models import User
-from post.models import Favp
 from django.db.models import Q, Avg
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 #from users.views import OnlyYouMixin

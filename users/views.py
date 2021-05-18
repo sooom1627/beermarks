@@ -1,13 +1,9 @@
 from django.shortcuts import render, redirect
 from .models import User
-from django.contrib.auth import get_user_model
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
-from django.db import IntegrityError
-from django.contrib.auth import authenticate, login, logout
-from django.views.generic import ListView, DetailView, CreateView, DeleteView, UpdateView
+from django.contrib.auth.mixins import UserPassesTestMixin
+from django.views.generic import ListView, DetailView
 from product.models import Product
-from django.urls import reverse
 
 # Create your views here.
 

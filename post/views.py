@@ -1,4 +1,3 @@
-from django.views.generic import ListView, DetailView, CreateView, DeleteView, UpdateView
 from .models import Favp
 from django.shortcuts import render, get_object_or_404, redirect
 from product.models import Product, Brand
@@ -6,6 +5,7 @@ from .models import Favp, PostOb, Drunk, Favb
 from django.http import JsonResponse
 from django.contrib.auth.decorators import login_required
 from django.db import IntegrityError
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 # Create your views here.
 
@@ -109,6 +109,7 @@ def drunk(request, pk):
     
     return redirect("detail", pk=pk)
         
+@login_required
 def index(request):
     posts = PostOb.objects.all().order_by('-id')[:4]
     products = Product.objects.all().order_by("-id")[:4]
