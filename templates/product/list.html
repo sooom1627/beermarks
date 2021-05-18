@@ -47,12 +47,12 @@
               {% for type in types %}
                 <li class="col-xl-3 col-lg-3 col-md-4 col-4 mb-3 p-0 text-center types">
                   <input class="type_check" type="radio" name="type" value="{{ type.pk }}" id="{{ type.ptype }}">
-                  <label for="{{ type.ptype }}" class="types_label" name="{{type.ptype}}{{type.id}}" onclick="type(this)" style="cursor: pointer;">
+                  <label for="{{ type.ptype }}" class="types_label" style="cursor: pointer;">
                     <div class="rounded-circle d-flex align-items-center justify-content-center" style="background-color: {{ type.ptype_color }};width: 60px;height:60px;margin:0 auto;">
                       <i class="fas fa-check" style="color:white;font-size:36px"></i>
                     </div>
                     <div class="text-center">
-                      <p id="{{type.ptype}}{{type.id}}">{{ type.ptype }}</p>
+                      <p>{{ type.ptype }}</p>
                     </div>
                   </label>
                 </li>
@@ -81,7 +81,7 @@
                 {% for brand in brands %}
                   <li>
                     <input type="radio" name="brand" value="{{ brand.pk }}" id="{{ brand.bname }}">
-                    <label for="{{ brand.bname}}" name="{{brand.pk}}-{{brand.pk}}" onmouseup="brand(this)" style="cursor: pointer;">
+                    <label for="{{ brand.bname}}" style="cursor: pointer;">
                       <div class="iq-card iq-card-transparent">
                         <div class="iq-card-body p-0">
                           <div class="media align-items-center">
@@ -90,7 +90,7 @@
                               </a>
                             </div>
                             <div class="media-body ml-3">
-                              <h6 class="mb-0 iq-song-title" id="{{ brand.pk }}-{{brand.pk}}">
+                              <h6 class="mb-0 iq-song-title">
                                 {{ brand.bname }}
                               </h6>
                               <small>{{ brand.locate }}</small>
@@ -270,41 +270,35 @@
         .toggle("active")
     })
   </script>
+  <script></script>
   <script>
-    function type(e) {
-      const getId = e.getAttribute("name");
-      const getCtx = document
-        .getElementById(getId)
-        .innerHTML;
-      const selected_type = document.getElementById("selected_type")
-
-      selected_type.innerText = getCtx
-    }
-
-    function brand(e) {
-      const getId = e.getAttribute("name");
-      console.log(getId)
-      const getCtx = document
-        .getElementById(getId)
-        .innerText;
-
-      const selected_brand = document.getElementById("selected_brand");
-
-      selected_brand.innerText = getCtx
-    }
-  </script>
-  <script>
-    const types = document.getElementsByClassName("types_label");
+    const typeInput = document.getElementsByName("type");
     const selectedType = document.getElementById("selected_type");
+    const brandInput = document.getElementsByName("brand");
+    const selectedBrand = document.getElementById("selected_brand");
 
-    for (let i = 0; i < types.length; i++) {
-      const getId = types[i].getAttribute("name");
-      const type = document.getElementById(getId);
-      typeName = type.innerText;
+    for (let i = 0; i < typeInput.length; i++) {
+      const type = typeInput[i];
+      type.addEventListener('click', function () {
+        if (type.checked) {
+          const typeName = type.getAttribute("id");
+          selectedType.innerText = typeName;
+        } else {
+          console.log("boo");
+        }
+      })
     }
 
-    type.addEventListener('click', function () {
-      selectedType.innerText = typeName;
-    })
+    for (let i = 0; i < brandInput.length; i++) {
+      const brand = brandInput[i];
+      brand.addEventListener('click', function () {
+        if (brand.checked) {
+          const brandName = brand.getAttribute("id");
+          selectedBrand.innerText = brandName;
+        } else {
+          console.log("boo");
+        }
+      })
+    }
   </script>
 {% endblock ext_js %}
