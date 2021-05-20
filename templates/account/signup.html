@@ -12,6 +12,7 @@
               <div class="sign-in-from w-100 m-auto pt-5">
                 <h1 class="mb-3 text-center">Sign Up</h1>
                 <form class="mt-4" action="{% url 'account_signup' %}" method="POST" id="signup_form">{% csrf_token %}
+                  {{form.errors}}
                   <div class="form-group">
                     <label for="exampleInputEmail2">メールアドレス</label>
                     <input type="email" class="form-control mb-0" id="id_email" name="email" placeholder="メールアドレス" required="required" autocomplete="email"/>

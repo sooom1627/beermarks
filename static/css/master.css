@@ -228,3 +228,29 @@ button {
 #content-page.inactive{
     display: none;
 }
+
+/*---------------------------------------------------------------------
+                             login_menu
+-----------------------------------------------------------------------*/
+
+#contactForm ul {
+    padding: 0px;
+    width: 100%;
+}
+
+#contactForm ul li{
+    list-style: none;
+    text-align: center;
+    color: #ff5400fa;
+}
+
+#signup_form ul{
+    padding: 0px;
+    width: 100%;
+}
+
+#signup_form ul li{
+    list-style: none;
+    text-align: center;
+    color: #ff5400fa;
+}

@@ -14,6 +14,7 @@
                 <h1 class="mb-3 text-center">Log in</h1>
                 <form class="mt-4" action="{% url 'account_login' %}" method="POST" id="contactForm">
                   {% csrf_token %}
+                  {{ form.non_field_errors }}
                   <div class="form-group">
                     <label for="exampleInputEmail2">メールアドレス</label>
                     <input type="email" class="form-control mb-0" id="id_login" name="login" placeholder="メールアドレス" autocomplete="email" required="required"/>
@@ -22,6 +23,10 @@
                     <label for="exampleInputPassword2">パスワード</label>
                     <input type="password" class="form-control mb-0" id="id_password" name="password" placeholder="パスワード" autocomplete="current_password" required="required"/>
                   </div>
+                  <div class="form-group">
+                    <label for="id_remember">ログインしたままにする:</label>
+                    <input type="checkbox" name="remember" id="id_remember" checked="checked">
+                  </div>
                   <div class="sign-info">
                     <button type="submit" class="btn btn-primary mb-2">
                       ログイン
@@ -29,25 +34,21 @@
                   </div>
                   <!-- <div class="d-inline-block w-100"> <div class="custom-control custom-checkbox d-inline-block mt-2 pt-1"> <input type="checkbox" class="custom-control-input" id="id_remember" name="remember"/> <label class="custom-control-label" for="customCheck1">Remember</label> </div> </div> -->
                 </form>
-                {% if redirect_field_value %}
-                  <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}"/>
-                {% endif %}
               </div>
-            </div>
-            <div class="mt-2">
-              <div class="d-flex justify-content-center links">
-                <a href="{% url 'account_signup' %}" class="ml-2">アカウント作成</a>
-              </div>
-              <div class="d-flex justify-content-center links">
-                <a href="{% url 'account_reset_password' %}">パスワードを忘れましたか?</a>
+              <div class="mt-2">
+                <div class="d-flex justify-content-center links">
+                  <a href="{% url 'account_signup' %}" class="ml-2" style="color:black">アカウント作成</a>
+                </div>
+                <div class="d-flex justify-content-center links">
+                  <a href="{% url 'account_reset_password' %}" style="color:black">パスワードを忘れましたか?</a>
+                </div>
               </div>
             </div>
           </div>
         </div>
+        <!-- Sign in END -->
+        <!-- color-customizer -->
       </div>
-      <!-- Sign in END -->
-      <!-- color-customizer -->
-    </div>
-  </section>
+    </section>
 
-{% endblock %}
+  {% endblock %}
