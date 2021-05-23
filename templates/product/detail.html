@@ -76,9 +76,10 @@
                 </div>
               </div>
               <div class="review_list">
+              <div class="col-sm-12"> 
               <h4 class="mb-2">Review：{{ object.drunk_product.count }}件</h4>
               <div class="row pc-column">
-              {% for review in object.drunk_product.all %}
+              {% for review in reviews %}
                 <div class="col-sm-4 ">
                   <div class="iq-card  iq-mb-3">
                   {% if review.postPic %}

@@ -10,6 +10,7 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 def detail(request, pk):
     user = request.user
     product = Product.objects.get(pk=pk)
+    reviews = product.drunk_product.all().order_by("-day")
     avg = product.drunk_product.aggregate(Avg("rate"))
     avg = avg["rate__avg"]
     avg = round(avg,1)
@@ -25,6 +26,7 @@ def detail(request, pk):
         "object":product,
         "avg":avg,
         'faved_list':faved,
+        "reviews":reviews
     }
     faved_list = []
     
