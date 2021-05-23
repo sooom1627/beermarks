@@ -32,11 +32,11 @@
                       <div class="iq-circle mr-2">
                         <form action="{% url 'favp' %}" method="POST">{% csrf_token %}
                           {% if faved_list %}
-                            <button id="favp" name="{{object.pk}}">
+                            <button id="favp" class="text-center" name="{{object.pk}}">
                               <i class="ri-heart-fill text-primary"></i>
                             </button>
                           {% else %}
-                            <button id="favp" name="{{object.pk}}">
+                            <button id="favp" class="text-center" name="{{object.pk}}">
                               <i class="ri-heart-fill text-secondary"></i>
                             </button>
                           {% endif %}
@@ -64,7 +64,7 @@
                     {% if avg == None %}
                       <h3>-</h4>
                     {% else %}
-                      <h3 style="color: #f9ae02">{{ avg|floatformat }}</h4>
+                      <h3 style="color: #f9ae02">{{ avg|floatformat:1 }}</h4>
                     {% endif %}
                   </div>
                 </div>

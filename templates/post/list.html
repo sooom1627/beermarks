@@ -55,11 +55,11 @@
                     <div class="iq-circle mr-2">
                       <form action="{% url 'favp' %}" method="POST">{% csrf_token %}
                         {% if post.favp.product.id in faved_list %}
-                          <button id="favp" name="{{post.favp.product.id}}">
+                          <button id="favp" class="text-center" name="{{post.favp.product.id}}">
                             <i class="ri-heart-fill text-primary"></i>
                           </button>
                         {% else %}
-                          <button id="favp" name="{{post.favp.product.id}}">
+                          <button id="favp" class="text-center" name="{{post.favp.product.id}}">
                             <i class="ri-heart-fill text-secondary"></i>
                           </button>
                         {% endif %}
@@ -157,11 +157,11 @@
                     <div class="iq-circle mr-2">
                       <form action="{% url 'favp' %}" method="POST">{% csrf_token %}
                         {% if post.drunk.product.id in faved_list %}
-                          <button id="favp" name="{{post.drunk.product.id}}">
+                          <button id="favp" class="text-center" name="{{post.drunk.product.id}}">
                             <i class="ri-heart-fill text-primary"></i>
                           </button>
                         {% else %}
-                          <button id="favp" name="{{post.drunk.product.id}}">
+                          <button id="favp" class="text-center" name="{{post.drunk.product.id}}">
                             <i class="ri-heart-fill text-secondary"></i>
                           </button>
                         {% endif %}

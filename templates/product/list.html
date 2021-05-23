@@ -158,11 +158,11 @@
                         <div class="iq-circle mr-2">
                           <form action="{% url 'favp' %}" method="POST">{% csrf_token %}
                             {% if item.pk in faved_list %}
-                              <button id="favp" name="{{item.pk}}">
+                              <button id="favp" class="text-center" name="{{item.pk}}">
                                 <i class="ri-heart-fill text-primary"></i>
                               </button>
                             {% else %}
-                              <button id="favp" name="{{item.pk}}">
+                              <button id="favp" class="text-center" name="{{item.pk}}">
                                 <i class="ri-heart-fill text-secondary"></i>
                               </button>
                             {% endif %}
