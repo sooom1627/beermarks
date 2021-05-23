@@ -64,7 +64,7 @@
                     {% if avg == None %}
                       <h3>-</h4>
                     {% else %}
-                      <h3 style="color: #f9ae02">{{ avg }}</h4>
+                      <h3 style="color: #f9ae02">{{ avg|floatformat }}</h4>
                     {% endif %}
                   </div>
                 </div>
