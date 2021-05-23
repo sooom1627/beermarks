@@ -254,3 +254,45 @@ button {
     text-align: center;
     color: #ff5400fa;
 }
+
+/*---------------------------------------------------------------------
+                             post validations
+-----------------------------------------------------------------------*/
+.error{
+    color: red;
+    font-size: 12px;
+}
+
+.post-pic{
+    border-radius: 0% !important;
+    -webkit-border-radius: 0% !important;
+}
+
+@media(min-width:1300px){
+    .post-pic{
+        width: 400px !important;
+        height:400px !important;
+    }
+
+    .post-image-edit{
+        height:auto !important;
+    }
+
+    .p-image{
+    right: 15px !important;
+    bottom: 30px !important;
+    height: 50px !important;
+    width: 50px !important;
+    font-size: 16px !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    }
+}
+
+/*---------------------------------------------------------------------
+                            detail column
+-----------------------------------------------------------------------*/
+.pc-column-item{
+    height:275px;
+}

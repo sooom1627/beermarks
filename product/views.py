@@ -12,6 +12,7 @@ def detail(request, pk):
     product = Product.objects.get(pk=pk)
     avg = product.drunk_product.aggregate(Avg("rate"))
     avg = avg["rate__avg"]
+    avg = round(avg,1)
     faved = product.fav_product.filter(user=user)
     faved_list = 0
     if faved.exists():

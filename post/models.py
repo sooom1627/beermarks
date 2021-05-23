@@ -30,6 +30,7 @@ class Drunk(models.Model):
     day = models.DateTimeField(auto_now=False, auto_now_add=True)
     com = models.TextField(max_length=140, null=True, blank=True, default="記録用(Just for recording)")
     rate = models.IntegerField(blank=True, null=True, default=3)
+    postPic = models.ImageField(upload_to='images/post', height_field=None, width_field=None, max_length=None, null=True, blank=True)
 
     class Meta:
         constraints =[

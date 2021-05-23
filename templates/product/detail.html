@@ -56,26 +56,38 @@
         </div>
         <div class="col-12">
           <div class="row">
-            <div class="col-lg-6">
+            <div class="col-lg-12">
               <div class="row total_rate">
-                <div class="col-12 mb-3">
+                <div class=" col-6 mb-3">
                   <div class="box_total text-center">
-                    <h4>Overall</h4>
+                    <h4>Rating</h4>
                     {% if avg == None %}
                       <h3>-</h4>
                     {% else %}
                       <h3 style="color: #f9ae02">{{ avg }}</h4>
                     {% endif %}
-                    <p>レビュー：{{ object.drunk_product.count }}件</p>
+                  </div>
+                </div>
+                <div class=" col-6 mb-3">
+                  <div class="box_total text-center">
+                    <h4>Connect</h4>
+                      <h3 style="color: #f9ae02">{{ object.fav_product.count }}<span class="ml-1" style="color:#4a525f;font-size:16px">人</span></h4>
                   </div>
                 </div>
               </div>
               <div class="review_list">
-                {% for review in object.drunk_product.all %}
-                  <div class="review_item">
-                    <div class="media row">
-                      <div class="col-sm-7">
-                        <div class="d-flex">
+              <h4 class="mb-2">Review：{{ object.drunk_product.count }}件</h4>
+              <div class="row pc-column">
+              {% for review in object.drunk_product.all %}
+                <div class="col-sm-4 ">
+                  <div class="iq-card  iq-mb-3">
+                  {% if review.postPic %}
+                    <img src="{{ review.postPic.url }}" class="card-img-top" alt="#" style="height:200px;object-fit:cover;">
+                  {% else %}
+                    <img src="{{ review.drunk_product.ppic.url }}" class="card-img-top" alt="#" style="height:200px;object-fit:cover;">
+                  {% endif %} 
+                    <div class="iq-card-body">
+                      <div class="d-flex">
                           <img src="{{ review.user.upic.url }}" alt="" class="img-fluid rounded-circle" style="width: 50px; height: 50px"/>
                           <div class="media-body pl-3">
                             <h4>{{ review.user.uname }}</h4>
@@ -110,22 +122,21 @@
                               <i class="fa fa-star disable"></i>
                               <i class="fa fa-star disable"></i>
                             {% endif %}
-                            <i>{{ review.rate }}</i>
+                            <i>{{ review.rate}}</i>
                           </div>
                         </div>
-                      </div>
-                      <div class="col-sm-5">
+                      <p class="card-text" style="height:120px;font-size:14px">{{ review.com }} </p>
+                      <div>
                         <small>{{ review.day }}</small>
                       </div>
                     </div>
-                    <p>
-                      {{ review.com }}
-                    </p>
                   </div>
-                {% endfor %}
+                </div>
+              {% endfor %}
+              </div>
               </div>
             </div>
-            <div class="col-lg-6">
+            {% comment %} <div class="col-lg-6">
               <div class="review_box text-center" id="anchor1">
                 <h4>Add a Review</h4>
                 <form action="{% url 'drunk' object.pk %}" class="form-contact form-review rating-form" method="POST">{% csrf_token %}
@@ -183,7 +194,7 @@
                   </div>
                 </form>
               </div>
-            </div>
+            </div> {% endcomment %}
           </div>
         </div>
       </div>

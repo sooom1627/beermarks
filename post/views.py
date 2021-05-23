@@ -33,6 +33,21 @@ def timeline(request):
     return render(request, 'post/list.html', context)
 
 @login_required
+def newPost(request):
+    brands = Brand.objects.all()
+    products = Product.objects.all()
+
+    for brand in brands:
+        print(brand)
+        print(brand.brand_n.all())
+
+    context = {
+        "brands":brands,
+        "products":products,
+    }
+    return render(request, 'post/post.html', context)
+
+@login_required
 def favp(request):
     if request.method == "POST":
         product = get_object_or_404(Product, pk=request.POST.get('product_id'))
@@ -108,6 +123,44 @@ def drunk(request, pk):
             return redirect("detail", pk=pk)
     
     return redirect("detail", pk=pk)
+
+def posts(request):
+    if request.method == "POST":
+        user = request.user 
+        product = Product.objects.get(pk=request.POST["product"])
+        drunk = Drunk.objects.filter(product=product, user=user)
+        obs = PostOb.objects.filter(drunk=drunk)
+        
+        if request.POST["com"]:
+            com = request.POST["com"]
+        else:
+            com = "記録用(Just for Recording)"
+
+        try:
+            rate = request.POST["rating"]
+        except:
+            rate = 3
+
+        try: 
+            postpic = request.FILES["postpic"]
+            try: 
+                drunk.create(user=user, product=product, com=com, rate=rate, postPic=postpic)
+                for drunks in drunk:
+                    obs.create(drunk=drunks, favp=None)
+                return redirect("timeline")
+            except IntegrityError:
+                return redirect("timeline")
+        except:
+            try: 
+                drunk.create(user=user, product=product, com=com, rate=rate)
+                for drunks in drunk:
+                    obs.create(drunk=drunks, favp=None)
+                return redirect("timeline")
+            except IntegrityError:
+                return redirect("timeline")
+
+    
+    return redirect("timeline")
         
 @login_required
 def index(request):

@@ -3,6 +3,22 @@
   active
 {% endblock post_active %}
 {% block content %}
+  <div class="col-sm-12">
+    <div class="iq-card  iq-mb-3">
+      <div class="iq-card-body  px-lg-5 px-3 d-flex flex-row align-items-center">
+        <div>
+          <a href="{% url 'newPost' %}">
+            <i class="las la-plus-circle mr-lg-5 mr-3" style="font-size:58px;"></i>
+          </a>
+        </div>
+        <div>
+          <h5 class="card-title font-weight-bold mb-0">ビールをレビューする</h5>
+          <p class="card-text" style="font-size:12px;">写真やコメント、評価を投稿しよう！
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
   {% for post in posts %}
     {% if post.drunk is None %}
       <div class="col-lg-12">
@@ -76,7 +92,11 @@
           </div>
           <div class="row no-gutters">
             <div class="col-md-5">
-              <img src="{{ post.drunk.product.ppic.url }}" class="card-img" alt="#" style="max-height:375px"/>
+              {% if post.drunk.postPic %}
+                <img src="{{ post.drunk.postPic.url }}" class="card-img" alt="" style="max-height:375px">
+              {% else %}
+                <img src="{{ post.drunk.product.ppic.url }}" class="card-img" alt="#" style="max-height:375px"/>
+              {% endif %}
             </div>
             <div class="col-md-7" style="position: relative">
               <div class="iq-card-body" style="padding-bottom: 70px">
@@ -163,7 +183,6 @@
   {% endfor %}
 {% endblock content %}
 {% block ext_js %}
-
   <script type="text/javascript">
     $(document).ready(function (event) {
       $(document).on('click', '#favp', function (event) {

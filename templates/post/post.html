@@ -1,0 +1,176 @@
+{% extends 'base.html' %}
+{% block post_active %}
+  active
+{% endblock post_active %}
+{% block content %}
+  {% load static %}
+  <div class="tab-pane fade active show" id="personal-information" role="tabpanel">
+    <div class="iq-card">
+      <div class="iq-card-header d-flex justify-content-between">
+        <div class="iq-header-title">
+          <h4 class="card-title font-weight-bold">レビューを投稿する</h4>
+        </div>
+      </div>
+      <div class="iq-card-body">
+        <form action="{% url 'createpost' %}" method="POST" id="postdrunk" enctype="multipart/form-data">
+          {% csrf_token %}
+          <div class="row align-items-center">
+            <div class="form-group col-12 align-items-center">
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="profile-img-edit w-100 text-center post-image-edit">
+                    <img class="profile-pic post-pic" src="{% static 'noimage.png' %}" alt="profile-pic" style="margin:0px auto;">
+                    <div class="p-image">
+                      <i class="upload-button fas fa-plus font-weight-bold"></i>
+                      <input class="file-upload" type="file" name="postpic" id="upic" accept="image/*"/>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="pulldownset col-12">
+              <div class="row">
+                <div class="form-group col-sm-6">
+                  <label>Brewery:</label>
+                  <select class="form-control mainselect" id="select_brewery" required="required" name="brewery">
+                    <option disabled="disabled" selected="selected" value="value">-- ブルワリーを選んでください --</option>
+                    {% for brand in brands %}
+                      <option value="{{ brand.id }}">{{ brand.bname }}</option>
+                    {% endfor %}
+                  </select>
+                </div>
+                <div class="form-group col-sm-6">
+                  <label>Beer:</label>
+                  <select name="" id="default_select" class="form-control">
+                    <option disabled="disabled" selected="selected" value="value">-- ブルワリーを選んでください --</option>
+                  </select>
+                  {% for brand in brands %}
+                    <select id="{{ brand.id }}" class="subbox form-control" name="product" required="required">
+                      <option disabled="disabled" selected="selected" value="value">-- ビールを選んでください --</option>
+                      {% for product in brand.brand_n.all %}
+                        <option value="{{product.pk}}">{{ product.pname }}</option>
+                      {% endfor %}
+                    </select>
+                  {% endfor %}
+                </div>
+              </div>
+            </div>
+            <div class="form-group form-contact form-review rating-form col-sm-12 mb-0">
+              <label class="mb-0">Rating:</label>
+              <div class="form-item">
+                <input id="rating-5" name="rating" type="radio" value="5">
+                <label for="rating-5" data-value="5">
+                  <span class="rating-star">
+                    <i class="fa fa-star-o" aria-hidden="true"></i>
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                  </span>
+                  <span class="ir">5</span>
+                </label>
+                <input id="rating-4" name="rating" type="radio" value="4">
+                <label for="rating-4" data-value="4">
+                  <span class="rating-star">
+                    <i class="fa fa-star-o" aria-hidden="true"></i>
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                  </span>
+                  <span class="ir">4</span>
+                </label>
+                <input id="rating-3" name="rating" type="radio" value="3">
+                <label for="rating-3" data-value="3">
+                  <span class="rating-star">
+                    <i class="fa fa-star-o" aria-hidden="true"></i>
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                  </span>
+                  <span class="ir">3</span>
+                </label>
+                <input id="rating-2" name="rating" type="radio" value="2">
+                <label for="rating-2" data-value="2">
+                  <span class="rating-star">
+                    <i class="fa fa-star-o" aria-hidden="true"></i>
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                  </span>
+                  <span class="ir">2</span>
+                </label>
+                <input id="rating-1" name="rating" type="radio" value="1">
+                <label for="rating-1" data-value="1">
+                  <span class="rating-star">
+                    <i class="fa fa-star-o" aria-hidden="true"></i>
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                  </span>
+                  <span class="ir">1</span>
+                </label>
+              </div>
+            </div>
+            <div class="form-group col-sm-12">
+              <label>comment:</label>
+              <textarea class="form-control" name="com" rows="5" style="line-height: 22px;"></textarea>
+            </div>
+          </div>
+          <button type="submit" class="btn btn-primary mr-2">Submit</button>
+          <button type="reset" class="btn iq-bg-danger">Cancel</button>
+        </form>
+      </div>
+    </div>
+  </div>
+{% endblock content %}
+{% block ext_js %}
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      var allSubBoxes = document.getElementsByClassName("subbox");
+      for (var i = 0; i < allSubBoxes.length; i++) {
+        allSubBoxes[i].style.display = 'none';
+      }
+    });
+  </script>
+  <script type="text/javascript">
+    // ▼HTMLの読み込み直後に実行：
+    document.addEventListener('DOMContentLoaded', function () {
+
+      // ▼全てのプルダウンメニューセットごとに処理
+      var mainBoxes = document.getElementsByClassName('pulldownset');
+      for (var i = 0; i < mainBoxes.length; i++) {
+
+        var mainSelect = mainBoxes[i].getElementsByClassName("mainselect"); // 1階層目(メイン)のプルダウンメニュー（※後でvalue属性値を参照するので、select要素である必要があります。）
+        mainSelect[0].onchange = function () {
+          // ▼同じ親要素に含まれているすべての2階層目(サブ)要素を消す
+          var subBox = document.getElementsByClassName("subbox"); // 同じ親要素に含まれる.subbox（※select要素に限らず、どんな要素でも構いません。）
+          for (var j = 0; j < subBox.length; j++) {
+            subBox[j].style.display = 'none';
+          }
+
+          var defaultSelect = document.getElementById("default_select");
+          defaultSelect.style.display = "none";
+
+          // ▼指定された2階層目(サブ)要素だけを表示する
+          if (this.value) {
+            var targetSub = document.getElementById(this.value); // 「1階層目のプルダウンメニューで選択されている項目のvalue属性値」と同じ文字列をid属性値に持つ要素を得る
+            targetSub.style.display = 'inline';
+          }
+        }
+
+      }
+
+    });
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.2/jquery.validate.min.js" integrity="sha512-UdIMMlVx0HEynClOIFSyOrPggomfhBKJE28LKl8yR3ghkgugPnG6iLfRfHwushZl1MOPSY6TsuBDGPK2X4zYKg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script>
+    $('#postdrunk').validate({
+      rules: {
+        brewery: {
+          required: true
+        },
+        product: {
+          required: true
+        }
+      },
+
+      messages: {
+        brewery: {
+          required: "ブルワリーを選択してください"
+        },
+        product: {
+          required: "ビールを選択してください"
+        }
+      }
+    })
+  </script>
+{% endblock ext_js %}
