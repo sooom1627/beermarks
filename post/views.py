@@ -90,7 +90,7 @@ def drunk(request, pk):
         obs = PostOb.objects.filter(drunk=drunk)
         
         if request.POST["com"]:
-            request.POST["com"]
+            com = request.POST["com"]
         else:
             com = "記録用(Just for Recording)"
             
