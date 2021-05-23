@@ -169,14 +169,13 @@
                           </form>
                         </div>
                         <div class="iq-circle">
-                          <a href="{% url 'detail' item.pk %}#anchor1">
+                          <a href="{% url 'newPost' %}?product_id={{ item.pk }}&brand_id={{ item.brand.pk }}">
                             <i class="las la-comment text-secondary"></i>
                           </a>
                         </div>
                       </div>
                     </div>
                   </div>
-
                 </div>
               </div>
             </li>

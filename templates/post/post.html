@@ -32,18 +32,46 @@
               <div class="row">
                 <div class="form-group col-sm-6">
                   <label>Brewery:</label>
-                  <select class="form-control mainselect" id="select_brewery" required="required" name="brewery">
-                    <option disabled="disabled" selected="selected" value="value">-- ブルワリーを選んでください --</option>
-                    {% for brand in brands %}
-                      <option value="{{ brand.id }}">{{ brand.bname }}</option>
-                    {% endfor %}
-                  </select>
+                  {% if brand_id %}
+                    <select class="form-control mainselect" id="select_brewery" required="required" name="brewery">
+                      {% for brand in brands %}
+                        {% if brand_id == brand.pk %}
+                          <option value="{{ brand.id }}" selected="selected">{{ brand.bname }}</option>
+                        {% else %}
+                          <option value="{{ brand.id }}">{{ brand.bname }}</option>
+                        {% endif %}
+                      {% endfor %}
+                    </select>
+                  {% else %}
+                    <select class="form-control mainselect" id="select_brewery" required="required" name="brewery">
+                      <option disabled="disabled" selected="selected" value="value">-- ブルワリーを選んでください --</option>
+                      {% for brand in brands %}
+                        <option value="{{ brand.id }}">{{ brand.bname }}</option>
+                      {% endfor %}
+                    </select>
+                  {% endif %}
                 </div>
                 <div class="form-group col-sm-6">
                   <label>Beer:</label>
-                  <select name="" id="default_select" class="form-control">
-                    <option disabled="disabled" selected="selected" value="value">-- ブルワリーを選んでください --</option>
-                  </select>
+                  {% if product_id %}
+                    {% for brand in brands %}
+                      {% if brand.pk == brand_id %}
+                        <select name="product" id="default_select" class="form-control">
+                          {% for product in brand.brand_n.all %}
+                            {% if product_id == product.id %}
+                              <option selected="selected" value="value">{{ product.pname }}</option>
+                            {% else %}
+                              <option value="value">{{ product.pname }}</option>
+                            {% endif %}
+                          {% endfor %}
+                        </select>
+                      {% endif %}
+                    {% endfor %}
+                  {% else %}
+                    <select name="" id="default_select" class="form-control">
+                      <option disabled="disabled" selected="selected" value="value">-- ブルワリーを選んでください --</option>
+                    </select>
+                  {% endif %}
                   {% for brand in brands %}
                     <select id="{{ brand.id }}" class="subbox form-control" name="product" required="required">
                       <option disabled="disabled" selected="selected" value="value">-- ビールを選んでください --</option>

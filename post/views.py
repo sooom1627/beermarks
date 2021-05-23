@@ -34,17 +34,26 @@ def timeline(request):
 
 @login_required
 def newPost(request):
-    brands = Brand.objects.all()
-    products = Product.objects.all()
+    try:
+        product_id = int(request.GET['product_id'])
+        brand_id = int(request.GET['brand_id'])
+        brands = Brand.objects.all()
+        products = Product.objects.all()
+        context = {
+            "brands":brands,
+            "products":products,
+            "brand_id":brand_id,
+            "product_id":product_id,
+        }
+    except:
+        brands = Brand.objects.all()
+        products = Product.objects.all()
+        context = {
+            "brands":brands,
+            "products":products,
+        }
+        print("hello")
 
-    for brand in brands:
-        print(brand)
-        print(brand.brand_n.all())
-
-    context = {
-        "brands":brands,
-        "products":products,
-    }
     return render(request, 'post/post.html', context)
 
 @login_required
@@ -125,6 +134,7 @@ def drunk(request, pk):
     return redirect("detail", pk=pk)
 
 def posts(request):
+
     if request.method == "POST":
         user = request.user 
         product = Product.objects.get(pk=request.POST["product"])
