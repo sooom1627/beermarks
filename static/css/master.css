@@ -28,12 +28,14 @@ p{
 }
 
 button {
-	background: none;
-	border: none;
-	outline: none;
-    -webkit-appearance: none;
+	-webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
+    background: transparent;
+    border: none;
+    border-radius: 0;
+    font: inherit;
+    outline: none;
 }
 
 
@@ -296,4 +298,16 @@ button {
 -----------------------------------------------------------------------*/
 .pc-column-item{
     height:275px;
+}
+
+.iq-circle form{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.iq-circle form button{
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
