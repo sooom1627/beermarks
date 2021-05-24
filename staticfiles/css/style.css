@@ -1160,7 +1160,7 @@ Profile Edit
 .profile-pic { width: 150px; display: block; border-radius: 50%; -webkit-border-radius: 50%; height:150px;object-position: center;object-fit: cover;}
 .profile-img-edit { position: relative; display: inline-block; height: 150px; width: 150px; }
 .file-upload { display: none; }
-.p-image { display: flex;align-items: center;justify-content: center; position: absolute; top: auto; right: 8px; bottom: 10px; transition: all .3s cubic-bezier(.175, .885, .32, 1.275); background: var(--iq-color13); color: var(--iq-white); border-radius: 50%; height: 30px; width: 30px; line-height: 28px; text-align: center; font-size: 12px; cursor: pointer; }
+.p-image { position: absolute; top: auto; right: 8px; bottom: 10px; transition: all .3s cubic-bezier(.175, .885, .32, 1.275); background: var(--iq-color13); color: var(--iq-white); border-radius: 50%; height: 30px; width: 30px; line-height: 28px; text-align: center; font-size: 12px; cursor: pointer; }
 .upload-button { font-size: 1.5em; }
 .iq-edit-profile .nav-link { padding: 20px 15px; border-radius: 0; color: var(--iq-body-text); text-align: center; font-size: 16px; border-left: 1px solid var(--iq-light-primary); }
 .iq-edit-profile.nav-pills .nav-link.active, .iq-edit-profile.nav-pills .show>.nav-link { color: var(--iq-white); background: var(--iq-color13); }

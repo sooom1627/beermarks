@@ -233,7 +233,7 @@ button {
 }
 
 /*---------------------------------------------------------------------
-                             login_menu
+                            login_menu
 -----------------------------------------------------------------------*/
 
 #contactForm ul {
@@ -259,7 +259,7 @@ button {
 }
 
 /*---------------------------------------------------------------------
-                             post validations
+                            post validations
 -----------------------------------------------------------------------*/
 .error{
     color: red;
@@ -281,7 +281,7 @@ button {
         height:auto !important;
     }
 
-    .p-image{
+    .post-image{
     right: 15px !important;
     bottom: 30px !important;
     height: 50px !important;
