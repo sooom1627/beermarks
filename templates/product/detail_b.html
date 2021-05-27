@@ -46,47 +46,46 @@
         </div>
       </div>
       <div class="col-lg-12">
-        <div class="iq-card">
-          <div class="iq-card-header d-flex justify-content-between">
-            <div class="iq-header-title">
-              <h4 class="card-title">Beers List</h4>
-            </div>
-            <div class="d-flex align-items-center iq-view">
-              <b class="mb-0 text-primary">
-                <a href="#">View More
-                  <i class="las la-angle-right"></i>
-                </a>
-              </b>
-            </div>
+        <div class="iq-card-header d-flex justify-content-between">
+          <div class="iq-header-title">
+            <h4 class="card-title">Beers List</h4>
           </div>
-          <div class="iq-card-body">
-            <ul class="list-unstyled row iq-box-hover mb-0">
-              {% for item in items %}
-                <li class="col-xl-3 col-lg-4 col-md-5 iq-music-box">
-                  <div class="iq-card">
-                    <div class="iq-card-body p-0">
-                      <div class="iq-thumb">
-                        <a href="{% url 'detail' item.pk %}">
-                          <img src="{{ item.ppic.url }}" class="img-border-radius img-fluid w-100" style="width:100%;height:160px;" alt=""/>
-                        </a>
-                      </div>
-                      <div class="feature-list text-center">
-                        <a href="{% url 'detail' item.pk %}">
-                          <h6 class="font-weight-600 mb-0">
-                            {{ item.pname }}
-                          </h6>
-                        </a>
-                        <a href="#">
-                          <small class="mb-0">{{ item.brand }}</small>
-                        </a>
-                      </div>
-                    </div>
-                  </div>
-                </li>
-              {% endfor %}
-            </ul>
+          <div class="d-flex align-items-center iq-view">
+            <b class="mb-0 text-primary">
+              <a href="#">View More
+                <i class="las la-angle-right"></i>
+              </a>
+            </b>
           </div>
         </div>
+        <div class="iq-card-body">
+          <ul class="list-unstyled row iq-box-hover mb-0">
+            {% for item in items %}
+              <li class="col-xl-3 col-lg-4 col-md-5 iq-music-box">
+                <div class="iq-card">
+                  <div class="iq-card-body p-0">
+                    <div class="iq-thumb">
+                      <a href="{% url 'detail' item.pk %}">
+                        <img src="{{ item.ppic.url }}" class="img-border-radius img-fluid w-100" style="width:100%;height:160px;" alt=""/>
+                      </a>
+                    </div>
+                    <div class="feature-list text-center">
+                      <a href="{% url 'detail' item.pk %}">
+                        <h6 class="font-weight-600 mb-0">
+                          {{ item.pname }}
+                        </h6>
+                      </a>
+                      <a href="#">
+                        <small class="mb-0">{{ item.brand }}</small>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </li>
+            {% endfor %}
+          </ul>
+        </div>
+
       </div>
     </div>
   {% endblock content %}

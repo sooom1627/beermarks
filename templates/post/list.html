@@ -24,8 +24,8 @@
       <div class="col-lg-12">
         <div class="iq-card iq-mb-3">
           <div class="row no-gutters">
-            <div class="col-md-5 align-items-center d-flex">
-              <img src="{{ post.favp.product.ppic.url}}" class="card-img" alt="#" style="max-height:180px"/>
+            <div class="col-md-5 align-items-center d-flex justify-content-center p-3">
+              <img src="{{ post.favp.product.ppic.url}}" class="card-img w-100" alt="#" style="max-height:200px"/>
             </div>
             <div class="col-md-7" style="position: relative">
               <div class="iq-card-body" style="padding-bottom: 70px">
@@ -76,11 +76,11 @@
       <div class="col-lg-12">
         <div class="iq-card iq-mb-3">
           <div class="row no-gutters">
-            <div class="col-md-5">
+            <div class="col-md-5 p-4 d-flex align-items-center">
               {% if post.drunk.postPic %}
-                <img src="{{ post.drunk.postPic.url }}" class="card-img" alt="" style="max-height:375px">
+                <img src="{{ post.drunk.postPic.url }}" class="card-img w-100" alt="" style="max-height:375px;object-fit:cover;">
               {% else %}
-                <img src="{{ post.drunk.product.ppic.url }}" class="card-img" alt="#" style="max-height:375px"/>
+                <img src="{{ post.drunk.product.ppic.url }}" class="card-img w-100" alt="#" style="max-height:375px;object-fit:cover;"/>
               {% endif %}
             </div>
             <div class="col-md-7" style="position: relative">
