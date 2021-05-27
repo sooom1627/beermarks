@@ -27,7 +27,7 @@
             <div class="col-md-5 align-items-center d-flex justify-content-center p-3">
               <img src="{{ post.favp.product.ppic.url}}" class="card-img w-100" alt="#" style="max-height:200px"/>
             </div>
-            <div class="col-md-7" style="position: relative">
+            <div class="col-md-7" style="position: relative d-flex align-items-center">
               <div class="iq-card-body" style="padding-bottom: 70px">
                 <div class="d-flex align-items-center flex-row py-3">
                   <div class="mr-3">
@@ -137,7 +137,7 @@
                   {{ post.drunk.com }}
                 </p>
                 <div class="mt-4">
-                  <a href="#" class="btn btn-outline-dark rounded-pill mb-1 px-4 mr-3">{{ post.drunk.product.ptype }}</a>
+                  <a href="{% url 'search' %}?type={{ post.drunk.product.ptype.pk }}" class="btn btn-outline-dark rounded-pill mb-1 px-4 mr-3">{{ post.drunk.product.ptype }}</a>
                 </div>
                 <p class="card-text text-right" style="position: absolute; bottom: 20px; right: 20px">
                   <small class="text-muted">{{ post.drunk.day|date:"y/m/d/ H:i" }}</small>
