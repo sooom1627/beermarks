@@ -549,7 +549,6 @@ video { width: 100%; height: 100%; }
 .iq-music-box:hover .iq-music-overlay { opacity: 1; }
 .overlay-music-icon { position: absolute; text-align: center; padding-left: 1em; padding-right: 1em; width: 100%; top: 50%; left: 50%; opacity: 0; -webkit-transform: translate(-50%, -50%); -moz-transform: translate(-50%, -50%); transform: translate(-50%, -50%); -webkit-transition: all 0.3s ease-in-out 0s; -moz-transition: all 0.3s ease-in-out 0s; transition: all 0.3s ease-in-out 0s; }
 .iq-music-box:hover .overlay-music-icon { top: 50%; left: 50%; opacity: 1; }
-.iq-box-hover .iq-card { box-shadow: none; border: 1px solid #f4f4f4; border-radius: 15px 15px; }
 .feature-list { padding: 15px 15px; }
 .iq-thumb .overlay-music-icon a { display: inline-block; background: rgba(255, 255, 255, 0.5); border-radius: 50%; height: 40px; width: 40px; line-height: 43px; font-size: 25px; color: var(--iq-white); }
 .slick-aerrow-block button.slick-arrow { position: static; background: var(--iq-color13) 0% 0% no-repeat padding-box; margin: 0 0 0 20px; line-height: 5px; box-shadow: 0px 9px 19px #01041B0D; font-size: 0; transform: none; color: var(--iq-white); -webkit-transition: all 0.4s ease-in-out 0s; -moz-transition: all 0.4s ease-in-out 0s; transition: all 0.4s ease-in-out 0s; }

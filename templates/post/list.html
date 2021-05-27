@@ -23,22 +23,22 @@
     {% if post.drunk is None %}
       <div class="col-lg-12">
         <div class="iq-card iq-mb-3">
-          <div class="card-header d-flex align-items-center flex-row py-3">
-            <div class="mr-3">
-              <img src="{{ post.favp.user.upic.url }}" class="img-fluid rounded-circle" style="width: 40px; height: 40px" alt=""/>
-            </div>
-            <div>
-              <a href="{% url 'udet' post.favp.user.id %}">
-                <p>{{ post.favp.user.uname }}</p>
-              </a>
-            </div>
-          </div>
           <div class="row no-gutters">
             <div class="col-md-5 align-items-center d-flex">
-              <img src="{{ post.favp.product.ppic.url}}" class="card-img" alt="#" style="max-height:100px"/>
+              <img src="{{ post.favp.product.ppic.url}}" class="card-img" alt="#" style="max-height:180px"/>
             </div>
             <div class="col-md-7" style="position: relative">
               <div class="iq-card-body" style="padding-bottom: 70px">
+                <div class="d-flex align-items-center flex-row py-3">
+                  <div class="mr-3">
+                    <img src="{{ post.favp.user.upic.url }}" class="img-fluid rounded-circle" style="width: 30px; height: 30px" alt=""/>
+                  </div>
+                  <div>
+                    <a href="{% url 'udet' post.favp.user.id %}" class="normal">
+                      <p>{{ post.favp.user.uname }}</p>
+                    </a>
+                  </div>
+                </div>
                 <p class="card-text">
                   {{post.favp.product.pname}}/{{post.favp.product.brand}}をConnect!!
                 </p>
@@ -47,11 +47,6 @@
                 </p>
                 <div class="" style="position: absolute; bottom: 20px; left: 20px">
                   <div class="d-flex align-items-center">
-                    <div class="iq-circle mr-2 share">
-                      <a href="javascript:void();">
-                        <i class="las la-share-alt-square text-secondary"></i>
-                      </a>
-                    </div>
                     <div class="iq-circle mr-2">
                       <form action="{% url 'favp' %}" method="POST">{% csrf_token %}
                         {% if post.favp.product.id in faved_list %}
@@ -80,16 +75,6 @@
     {% else %}
       <div class="col-lg-12">
         <div class="iq-card iq-mb-3">
-          <div class="card-header d-flex align-items-center flex-row py-3">
-            <div class="mr-3">
-              <img src="{{ post.drunk.user.upic.url }}" class="img-fluid rounded-circle" style="width: 40px; height: 40px" alt=""/>
-            </div>
-            <div>
-              <a href="{% url 'udet' post.drunk.user.id %}">
-                <p>{{ post.drunk.user.uname }}</p>
-              </a>
-            </div>
-          </div>
           <div class="row no-gutters">
             <div class="col-md-5">
               {% if post.drunk.postPic %}
@@ -100,6 +85,16 @@
             </div>
             <div class="col-md-7" style="position: relative">
               <div class="iq-card-body" style="padding-bottom: 70px">
+                <div class="d-flex align-items-center flex-row py-2">
+                  <div class="mr-3">
+                    <img src="{{ post.drunk.user.upic.url }}" class="img-fluid rounded-circle" style="width: 30px; height: 30px" alt=""/>
+                  </div>
+                  <div>
+                    <a href="{% url 'udet' post.drunk.user.id %}" class="normal">
+                      <p>{{ post.drunk.user.uname }}</p>
+                    </a>
+                  </div>
+                </div>
                 <a href="{% url 'detail' post.drunk.product.id %}">
                   <h4 class="card-title mainc">{{post.drunk.product.pname}}</h4>
                 </a>
@@ -149,11 +144,6 @@
                 </p>
                 <div class="" style="position: absolute; bottom: 20px; left: 20px">
                   <div class="d-flex align-items-center">
-                    <div class="iq-circle mr-2 share">
-                      <a href="javascript:void();">
-                        <i class="las la-share-alt-square text-secondary"></i>
-                      </a>
-                    </div>
                     <div class="iq-circle mr-2">
                       <form action="{% url 'favp' %}" method="POST">{% csrf_token %}
                         {% if post.drunk.product.id in faved_list %}

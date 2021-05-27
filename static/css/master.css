@@ -10,6 +10,10 @@ body{
     background: #ffffff;
 }
 
+.normal{
+    color:#222428;
+}
+
 a:hover{
     text-decoration: none;
     color: #f9ae02;

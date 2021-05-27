@@ -122,70 +122,64 @@
 {% endblock sort_menu %}
 {% block content %}
   <div class="col-lg-12" id="main_content">
-    <div class="iq-card">
-      <div class="iq-card-header d-flex justify-content-between">
-        <div class="iq-header-title">
-          <h4 class="card-title">Beer List</h4>
-        </div>
+    <div class="iq-card-header d-flex justify-content-between">
+      <div class="iq-header-title">
+        <h4 class="card-title">Beer List</h4>
       </div>
-      <div class="iq-card-body">
-        <ul class="list-unstyled row iq-box-hover mb-0">
-          {% for item in products %}
-            <li class="col-xl-4 col-lg-4 col-md-6 iq-music-box">
-              <div class="iq-card">
-                <div class="iq-card-body p-0">
-                  <div class="iq-thumb" style="padding-top:15px;">
-                    <a href="{% url 'detail' item.pk %}">
-                      <img src="{{ item.ppic.url }}" class="img-border-radius img-fluid w-100" style="width:100%;height:160px;" alt=""/>
-                    </a>
-                  </div>
-                  <div class="feature-list text-center">
-                    <a href="{% url 'detail' item.pk %}">
-                      <h6 class="font-weight-600 mb-0">
-                        {{ item.pname }}
-                      </h6>
-                    </a>
-                    <a href="{% url 'branddetail' item.brand.pk %}">
-                      <small class="mb-0">{{ item.brand }}</small>
-                    </a>
-                    <div class="w-100">
-                      <div class="d-flex align-items-center justify-content-center">
-                        <div class="iq-circle mr-2 share">
-                          <a href="javascript:void();">
-                            <i class="las la-share-alt-square text-secondary"></i>
-                          </a>
-                        </div>
-                        <div class="iq-circle mr-2">
-                          <form action="{% url 'favp' %}" method="POST">{% csrf_token %}
-                            {% if item.pk in faved_list %}
-                              <button id="favp" name="{{item.pk}}">
-                                <i class="ri-heart-fill text-primary"></i>
-                              </button>
-                            {% else %}
-                              <button id="favp" name="{{item.pk}}">
-                                <i class="ri-heart-fill text-secondary"></i>
-                              </button>
-                            {% endif %}
-                          </form>
-                        </div>
-                        <div class="iq-circle">
-                          <a href="{% url 'newPost' %}?product_id={{ item.pk }}&brand_id={{ item.brand.pk }}">
-                            <i class="las la-comment text-secondary"></i>
-                          </a>
-                        </div>
+    </div>
+    <div class="iq-card-body">
+      <ul class="list-unstyled row iq-box-hover mb-0">
+        {% for item in products %}
+          <li class="col-xl-4 col-lg-4 col-md-6 iq-music-box">
+            <div class="iq-card">
+              <div class="iq-card-body p-0">
+                <div class="iq-thumb d-flex align-items-center justify-content-center">
+                  <a href="{% url 'detail' item.pk %}">
+                    <img src="{{ item.ppic.url }}" class="img-border-radius img-fluid" alt="" style="height:375px; object-fit:cover;"/>
+                  </a>
+                </div>
+                <div class="feature-list text-center">
+                  <a href="{% url 'detail' item.pk %}">
+                    <h6 class="font-weight-600 mb-0">
+                      {{ item.pname }}
+                    </h6>
+                  </a>
+                  <a href="{% url 'branddetail' item.brand.pk %}">
+                    <small class="mb-0">{{ item.brand }}</small>
+                  </a>
+                  <div class="w-100">
+                    <div class="d-flex align-items-center justify-content-center">
+                      <div class="iq-circle mr-2">
+                        <form action="{% url 'favp' %}" method="POST">{% csrf_token %}
+                          {% if item.pk in faved_list %}
+                            <button id="favp" name="{{item.pk}}">
+                              <i class="ri-heart-fill text-primary"></i>
+                            </button>
+                          {% else %}
+                            <button id="favp" name="{{item.pk}}">
+                              <i class="ri-heart-fill text-secondary"></i>
+                            </button>
+                          {% endif %}
+                        </form>
+                      </div>
+                      <div class="iq-circle">
+                        <a href="{% url 'newPost' %}?product_id={{ item.pk }}&brand_id={{ item.brand.pk }}">
+                          <i class="las la-comment text-secondary"></i>
+                        </a>
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
-            </li>
-          {% endfor %}
-        </ul>
-        <div class="col-12 text-center w-100 mb-3">
-          {% include "paginate.html" %}
-        </div>
+            </div>
+          </li>
+        {% endfor %}
+      </ul>
+      <div class="col-12 text-center w-100 mb-3">
+        {% include "paginate.html" %}
       </div>
     </div>
+
   </div>
 {% endblock content %}
 {% block ext_js %}
