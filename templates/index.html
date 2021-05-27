@@ -25,9 +25,9 @@
             <li class="col-xl-3 col-lg-4 col-md-5 iq-music-box">
               <div class="iq-card">
                 <div class="iq-card-body p-0">
-                  <div class="iq-thumb">
+                  <div class="iq-thumb d-flex align-items-center justify-content-center">
                     <a href="{% url 'detail' item.favp.product.pk %}">
-                      <img src="{{ item.favp.product.ppic.url }}" class="img-border-radius img-fluid" style="object-fit:cover;" alt=""/>
+                      <img src="{{ item.favp.product.ppic.url }}" class="img-border-radius img-fluid" style="object-fit:cover;height:230px;" alt=""/>
                     </a>
                   </div>
                   <div class="feature-list text-center">
@@ -47,7 +47,7 @@
             <li class="col-xl-3 col-lg-4 col-md-5 iq-music-box">
               <div class="iq-card">
                 <div class="iq-card-body p-0">
-                  <div class="iq-thumb">
+                  <div class="iq-thumb d-flex align-items-center justify-content-center">
                     <a href="{% url 'detail' item.drunk.product.pk %}">
                       <img src="{{ item.drunk.product.ppic.url }}" class="img-border-radius w-100" style="object-fit:cover;height:230px;" alt=""/>
                     </a>
