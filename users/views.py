@@ -4,6 +4,8 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import UserPassesTestMixin
 from django.views.generic import ListView, DetailView
 from product.models import Product
+from post.models import Drunk
+import json
 
 # Create your views here.
 
@@ -21,7 +23,6 @@ class OnlyYouMixin(UserPassesTestMixin):
 
 def userdetail(request, pk):
     user = User.objects.get(pk=pk)
-    products = Product.objects.all()
     faved = user.faved_p_user.order_by('-day')
     drunk = user.drunk_user.order_by('-day')
     faved_b = user.faved_b_user.order_by("-day")
@@ -45,13 +46,38 @@ def mypage(request):
     faved = user.faved_p_user.order_by("-day")
     drunk = user.drunk_user.order_by("-day")
     faved_b = user.faved_b_user.order_by("-day")
-    #faved = product.fav_product.filter(user=request.user)
     faved_list = faved
+    drunks = user.drunk_user.all().order_by("-day","-rate")
+    faved = user.faved_p_user.order_by("-day")
+    faved_b = user.faved_b_user.order_by("-day")
+    drunk_type = []
+    drunk_data = []
+    dic = []
+    rate = []
+
+    for item in drunks:
+        drunk_type.append(item.product.ptype.ptype)
+        rate.append(item.rate)
+
+    for type in list(set(drunk_type)):
+        i = 0
+        drunk_data.append(drunk_type.count(type))
+        dic.append({"x": type, "y":drunk_type.count(type)})
+        i += 1
+
+    dic = json.dumps(dic)
+    rate = sum(rate)/len(rate)
+
     context = {
         "user":user,
         'faved_list':faved_list,
         'drunk_list':drunk,
         'faved_b_list':faved_b,
+        "drunks":drunks,
+        "faved":faved,
+        "faved_b":faved_b,
+        "dic":dic,
+        "rate":rate
     }
 
     return render(request, 'users/mypage.html', context)
@@ -93,3 +119,37 @@ def userEdit(request):
             return redirect("mypage")
 
     return render(request, "./users/detail_edit.html", context)
+
+def dashboard(request):
+    user = request.user
+    drunks = user.drunk_user.all().order_by("-day","-rate")
+    faved = user.faved_p_user.order_by("-day")
+    faved_b = user.faved_b_user.order_by("-day")
+    drunk_type = []
+    drunk_data = []
+    dic = []
+    rate = []
+
+    for item in drunks:
+        drunk_type.append(item.product.ptype.ptype)
+        rate.append(item.rate)
+
+    for type in list(set(drunk_type)):
+        i = 0
+        drunk_data.append(drunk_type.count(type))
+        dic.append({"x": type, "y":drunk_type.count(type)})
+        i += 1
+
+    dic = json.dumps(dic)
+    rate = sum(rate)/len(rate)
+
+    ctx = {
+        "user":user,
+        "drunks":drunks,
+        "faved":faved,
+        "faved_b":faved_b,
+        "dic":dic,
+        "rate":rate
+    }
+
+    return render(request, "./users/dashboard.html", ctx)

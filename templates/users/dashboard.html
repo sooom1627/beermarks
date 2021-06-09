@@ -1,0 +1,143 @@
+{% extends 'base.html' %}
+{% block content %}
+  <div class="row align-items-center">
+    <div class="col-lg-8 col-md-8 col-12">
+      <div class="iq-card iq-card-block iq-card-stretch iq-card-height justify-content-center" style="padding: 20px 0px 5px 22px;">
+        <div id="chart"></div>
+      </div>
+      <input type="hidden" id="data" name="data" value="{{ dic }}">
+    </div>
+    <div class="col-12 col-md-4 col-lg-4">
+      <div class="iq-card iq-card-block iq-card-stretch iq-card-height mb-3">
+        <div class="iq-card-body">
+          <div class="d-flex align-items-center justify-content-between">
+            <h6>レビュー</h6>
+          </div>
+          <div class="
+                      iq-customer-box
+                      d-flex
+                      align-items-center
+                      justify-content-between
+                    ">
+            <div class="iq-map text-success font-size-32">
+              <i class="ri-bar-chart-grouped-line"></i>
+            </div>
+            <div class="d-flex align-items-center">
+              <h2>{{ drunks.count }}</h2>
+              <div class="rounded-circle iq-card-icon iq-bg-success ml-3">
+                <i class="las la-comment"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="iq-card iq-card-block iq-card-stretch iq-card-height mb-3">
+        <div class="iq-card-body">
+          <div class="d-flex align-items-center justify-content-between">
+            <h6>飲みたい！</h6>
+          </div>
+          <div class="
+                      iq-customer-box
+                      d-flex
+                      align-items-center
+                      justify-content-between
+                    ">
+            <div class="iq-map text-primary font-size-32">
+              <i class="ri-bar-chart-grouped-line"></i>
+            </div>
+            <div class="d-flex align-items-center">
+              <h2>{{ faved.count }}</h2>
+              <div class="rounded-circle iq-card-icon iq-bg-primary ml-3">
+                <i class="ri-heart-fill text-primary"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="iq-card iq-card-block iq-card-stretch iq-card-height mb-3">
+        <div class="iq-card-body">
+          <div class="d-flex align-items-center justify-content-between">
+            <h6>ブルワリー</h6>
+          </div>
+          <div class="
+                      iq-customer-box
+                      d-flex
+                      align-items-center
+                      justify-content-between
+                    ">
+            <div class="iq-map text-info font-size-32">
+              <i class="ri-bar-chart-grouped-line"></i>
+            </div>
+            <div class="d-flex align-items-center">
+              <h2>{{ faved_b.count }}</h2>
+              <div class="rounded-circle iq-card-icon iq-bg-info ml-3">
+                <i class="las la-campground"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+{% endblock content %}
+{% block ext_js %}
+  <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+  <script>
+    const typesData = document
+      .getElementById("data")
+      .value;
+    const typeData = JSON.parse(typesData);
+    const options = {
+      series: [
+        {
+          data: typeData
+        }
+      ],
+      legend: {
+        show: false
+      },
+      chart: {
+        height: 400,
+        type: 'treemap'
+      },
+      title: {
+        text: '飲んだビール',
+        align: 'center'
+      },
+      dataLabels: {
+        enabled: true,
+        style: {
+          fontSize: '12px'
+        },
+        formatter: function (text, op) {
+          return [text, op.value]
+        },
+        offsetY: -4
+      },
+      colors: [
+        '#FF4545',
+        '#20E2AB',
+        '#FF7751',
+        '#FFDD31',
+        '#00D0FF',
+        '#00D871',
+        '#F35F3B',
+        '#FA7C03',
+        '#421243',
+        '#7F94B0',
+        '#EF6537',
+        '#C0ADDB'
+      ],
+      plotOptions: {
+        treemap: {
+          distributed: true,
+          enableShades: false
+        }
+      }
+    };
+
+    var chart = new ApexCharts(document.querySelector("#chart"), options);
+    chart.render();
+  </script>
+{% endblock ext_js %}

@@ -10,6 +10,11 @@ body{
     background: #ffffff;
 }
 
+#chartdiv {
+    width: 100%;
+    height: 500px;
+}
+
 .normal{
     color:#222428;
 }
