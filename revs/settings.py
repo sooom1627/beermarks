@@ -179,9 +179,9 @@ AUTH_USER_MODEL = 'users.User'
 SITE_ID = 1
 
 # ログイン・ログアウト時のリダイレクト先
-LOGIN_REDIRECT_URL = 'index'
+LOGIN_REDIRECT_URL = 'timeline'
 ACCOUNT_LOGOUT_REDIRECT_URL = '/accounts/login/'
-SIGNUP_REDIRECT_URL = "useredit"
+ACCOUNT_SIGNUP_REDIRECT_URL='useredit'
 
 # 認証方式を「メルアドとパスワード」に設定
 ACCOUNT_AUTHENTICATION_METHOD = 'email'

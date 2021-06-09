@@ -51,6 +51,7 @@
     {% if request.user.is_authenticated %}
       <div class="wrapper">
         {% block sort_buttom %}{% endblock sort_buttom %}
+        <div id="over-lay"></div>
         <div class="iq-sidebar" id="sidebar">
           <div class="iq-sidebar-logo d-flex justify-content-between align-items-center" style="position:relative;">
             <a href="{% url 'index' %}" class="header-logo">
@@ -74,12 +75,12 @@
                   </a>
                   <ul id="dashboard" class="iq-submenu collapse show" data-parent="#iq-sidebar-toggle">
                     <li class="">
-                      <a href="{% url 'index' %}">
-                        <i class="las la-house-damage"></i>ホーム</a>
-                    </li>
-                    <li class="">
                       <a href="{% url 'timeline' %}">
                         <i class="las la-sms"></i>タイムライン</a>
+                    </li>
+                    <li class="">
+                      <a href="{% url 'index' %}">
+                        <i class="las la-search"></i>検索</a>
                     </li>
                     <li>
                       <a href="{% url 'list' %}">
@@ -155,9 +156,6 @@
               </button>
               <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="list-unstyled iq-menu-top d-flex justify-content-between mb-0 p-0">
-                  <li class="{% block home_active %}{% endblock home_active %}">
-                    <a href="{% url 'index' %}">ホーム</a>
-                  </li>
                   <li class="{% block post_active %}{% endblock post_active %}">
                     <a href="{% url 'timeline' %}">タイムライン</a>
                   </li>
