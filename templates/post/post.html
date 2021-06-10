@@ -59,9 +59,9 @@
                         <select name="product" id="default_select" class="form-control">
                           {% for product in brand.brand_n.all %}
                             {% if product_id == product.id %}
-                              <option selected="selected" value="value">{{ product.pname }}</option>
+                              <option selected="selected" value="{{ product.pk }}">{{ product.pname }}</option>
                             {% else %}
-                              <option value="value">{{ product.pname }}</option>
+                              <option value="{{ product.pk }}">{{ product.pname }}</option>
                             {% endif %}
                           {% endfor %}
                         </select>
