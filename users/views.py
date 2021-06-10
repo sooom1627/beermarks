@@ -45,7 +45,8 @@ def userdetail(request, pk):
         i += 1
 
     dic = json.dumps(dic)
-    rate = sum(rate)/len(rate)
+    # rate = sum(rate)/len(rate)
+    rate = 1
 
     
     context = {
