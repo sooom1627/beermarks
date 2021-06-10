@@ -135,7 +135,7 @@
               <div class="iq-card-body p-0">
                 <div class="iq-thumb d-flex align-items-center justify-content-center">
                   <a href="{% url 'detail' item.pk %}">
-                    <img src="{{ item.ppic.url }}" class="img-border-radius img-fluid" alt="" style="height:375px; object-fit:cover;"/>
+                    <img src="{{ item.ppic.url }}" class="img-border-radius img-fluid" alt="" style="height:375px; object-fit:cover;" loading="lazy"/>
                   </a>
                 </div>
                 <div class="feature-list text-center">

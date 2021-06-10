@@ -25,13 +25,13 @@
         <div class="iq-card iq-mb-3">
           <div class="row no-gutters">
             <div class="col-md-5 align-items-center d-flex justify-content-center p-3">
-              <img src="{{ post.favp.product.ppic.url}}" class="card-img w-100" alt="#" style="max-height:200px"/>
+              <img src="{{ post.favp.product.ppic.url}}" class="card-img w-100" alt="#" style="max-height:200px" loading="lazy"/>
             </div>
             <div class="col-md-7" style="position: relative d-flex align-items-center">
               <div class="iq-card-body" style="padding-bottom: 70px">
                 <div class="d-flex align-items-center flex-row py-3">
                   <div class="mr-3">
-                    <img src="{{ post.favp.user.upic.url }}" class="img-fluid rounded-circle" style="width: 40px; height: 40px; object-fit:cover;" alt=""/>
+                    <img src="{{ post.favp.user.upic.url }}" class="img-fluid rounded-circle" style="width: 40px; height: 40px; object-fit:cover;" alt="" loading="lazy"/>
                   </div>
                   <div>
                     <a href="{% url 'udet' post.favp.user.id %}" class="normal">
@@ -77,16 +77,16 @@
           <div class="row no-gutters">
             <div class="col-md-5 p-4 d-flex align-items-center">
               {% if post.drunk.postPic %}
-                <img src="{{ post.drunk.postPic.url }}" class="card-img w-100" alt="" style="max-height:375px;object-fit:cover;">
+                <img src="{{ post.drunk.postPic.url }}" class="card-img w-100" alt="" style="max-height:375px;object-fit:cover;" loading="lazy">
               {% else %}
-                <img src="{{ post.drunk.product.ppic.url }}" class="card-img w-100" alt="#" style="max-height:375px;object-fit:cover;"/>
+                <img src="{{ post.drunk.product.ppic.url }}" class="card-img w-100" alt="#" style="max-height:375px;object-fit:cover;" loading="lazy"/>
               {% endif %}
             </div>
             <div class="col-md-7" style="position: relative">
               <div class="iq-card-body" style="padding-bottom: 70px">
                 <div class="d-flex align-items-center flex-row py-2">
                   <div class="mr-3">
-                    <img src="{{ post.drunk.user.upic.url }}" class="img-fluid rounded-circle" style="width: 40px; height: 40px;object-fit:cover;" alt=""/>
+                    <img src="{{ post.drunk.user.upic.url }}" class="img-fluid rounded-circle" style="width: 40px; height: 40px;object-fit:cover;" alt="" loading="lazy"/>
                   </div>
                   <div>
                     <a href="{% url 'udet' post.drunk.user.id %}" class="normal">
