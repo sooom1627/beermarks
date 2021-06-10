@@ -26,12 +26,38 @@ def userdetail(request, pk):
     faved = user.faved_p_user.order_by('-day')
     drunk = user.drunk_user.order_by('-day')
     faved_b = user.faved_b_user.order_by("-day")
+    drunks = user.drunk_user.all().order_by("-day","-rate")
+    faved = user.faved_p_user.order_by("-day")
+    faved_b = user.faved_b_user.order_by("-day")
+    drunk_type = []
+    drunk_data = []
+    dic = []
+    rate = []
+
+    for item in drunks:
+        drunk_type.append(item.product.ptype.ptype)
+        rate.append(item.rate)
+
+    for type in list(set(drunk_type)):
+        i = 0
+        drunk_data.append(drunk_type.count(type))
+        dic.append({"x": type, "y":drunk_type.count(type)})
+        i += 1
+
+    dic = json.dumps(dic)
+    rate = sum(rate)/len(rate)
+
     
     context = {
         'faved_list':faved,
         'object':user,
         'drunk_list':drunk,
-        'faved_b_list':faved_b
+        'faved_b_list':faved_b,
+        "drunks":drunks,
+        "faved":faved,
+        "faved_b":faved_b,
+        "dic":dic,
+        "rate":rate
     }
     
     return render(request, 'users/udet.html', context)  
