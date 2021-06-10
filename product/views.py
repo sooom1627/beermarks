@@ -27,14 +27,13 @@ def detail(request, pk):
         'faved_list':faved,
         "reviews":reviews
     }
-    faved_list = []
     
     return render(request, "./product/detail.html", context)
 
 def brandDetail(request, pk):
     user = request.user
     brand = Brand.objects.get(pk=pk)
-    products = brand.brand_n.all()[:4]
+    products = brand.brand_n.all().order_by("-pk")[:4]
     faved_list = 0
     if brand.fav_brand.filter(user=user):
         faved = True

@@ -45,7 +45,7 @@
                 <p class="card-text text-right" style="position: absolute; bottom: 20px; right: 20px">
                   <small class="text-muted">{{ post.favp.day|date:"y/m/d/ H:i" }}</small>
                 </p>
-                <div class="" style="position: absolute; bottom: 20px; left: 20px">
+                <div class="" style="position: absolute; top: 30px; left: 20px">
                   <div class="d-flex align-items-center">
                     <div class="iq-circle mr-2">
                       <form action="{% url 'favp' %}" method="POST">{% csrf_token %}
@@ -136,32 +136,30 @@
                 <p class="card-text">
                   {{ post.drunk.com }}
                 </p>
-                <div class="mt-4">
+                {% comment %} <div class="mt-4">
                   <a href="{% url 'search' %}?type={{ post.drunk.product.ptype.pk }}" class="btn btn-outline-dark rounded-pill mb-1 px-4 mr-3">{{ post.drunk.product.ptype }}</a>
-                </div>
-                <p class="card-text text-right" style="position: absolute; bottom: 20px; right: 20px">
+                </div> {% endcomment %}
+                <p class="card-text text-right" style="position: absolute; top: 30px; right: 20px">
                   <small class="text-muted">{{ post.drunk.day|date:"y/m/d/ H:i" }}</small>
                 </p>
                 <div class="" style="position: absolute; bottom: 20px; left: 20px">
                   <div class="d-flex align-items-center">
-                    <div class="iq-circle mr-2">
-                      <form action="{% url 'favp' %}" method="POST">{% csrf_token %}
-                        {% if post.drunk.product.id in faved_list %}
-                          <button id="favp" class="text-center" name="{{post.drunk.product.id}}">
-                            <i class="ri-heart-fill text-primary"></i>
-                          </button>
-                        {% else %}
-                          <button id="favp" class="text-center" name="{{post.drunk.product.id}}">
-                            <i class="ri-heart-fill text-secondary"></i>
-                          </button>
-                        {% endif %}
-                      </form>
-                    </div>
-                    <div class="iq-circle">
-                      <a href="{% url 'newPost'%}?product_id={{ post.drunk.product.id }}&brand_id={{ post.drunk.product.brand.id }}">
-                        <i class="las la-comment text-secondary"></i>
-                      </a>
-                    </div>
+                    <form action="{% url 'favp' %}" method="POST">{% csrf_token %}
+                      {% if post.drunk.product.id in faved_list %}
+                        <button type="button" class="btn btn-outline-danger mx-1 text-center mb-0" id="favp" name="{{post.drunk.product.id}}">
+                          <i class="ri-heart-fill text-primary"></i>飲みたい！
+                        </button>
+                      {% else %}
+                        <button type="button" class="btn btn-outline-danger mx-1 text-center mb-0" id="favp" name="{{post.drunk.product.id}}">
+                          <i class="ri-heart-line"></i>飲みたい！
+                        </button>
+                      {% endif %}
+                    </form>
+                    <a href="{% url 'newPost'%}?product_id={{ post.drunk.product.id }}&brand_id={{ post.drunk.product.brand.id }}" class="text-secondary">
+                      <button action="" class="btn btn-outline-secondary mx-1">
+                          <i class="las la-comment"></i>投稿する
+                      </button>
+                    </a>
                   </div>
                 </div>
               </div>
@@ -190,9 +188,9 @@
           success: function (response) {
             selector = document.getElementsByName(response.product_id);
             if (response.faved) {
-              $(selector).html("<i class='ri-heart-fill text-primary'></i>");
+              $(selector).html('<i class="ri-heart-fill text-primary"></i>飲みたい！');
             } else {
-              $(selector).html("<i class='ri-heart-fill text-secondary'></i>");
+              $(selector).html("<i class='ri-heart-line'></i>飲みたい！");
             }
           }
         });
