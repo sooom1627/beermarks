@@ -43,7 +43,7 @@ def brandDetail(request, pk):
     context = {
         "object":brand,
         "items":products,
-        "faved_list":faved
+        "faved_list":faved,
     }
 
     return render(request, "./product/detail_b.html", context)

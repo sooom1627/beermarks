@@ -16,6 +16,14 @@ class Loctae_2(models.Model):
     def __str__(self):
         return self.state
 
+
+class Medium(models.Model):
+    website = models.TextField(null=True, blank=True)
+    ecsite = models.TextField( null=True,blank=True )
+    facebook = models.TextField(null=True, blank=True)
+    instagram = models.TextField(null=True, blank=True)
+    twitter = models.TextField(null=True, blank=True)
+
 class Brand(models.Model):
     bname = models.CharField(max_length=50)
     bdesc = models.TextField(max_length=500)
@@ -23,17 +31,10 @@ class Brand(models.Model):
     bname_search_index = models.TextField(blank=True)
     locate = models.CharField(max_length=50, null=True, blank=True)
     locates = models.ForeignKey(Loctae_2, on_delete=models.CASCADE, related_name="brand_locate", null=True)
-
+    medium = models.ForeignKey(Medium, blank=True, null=True,on_delete=models.CASCADE )
+    
     def __str__(self):
         return self.bname
-
-class Medium(models.Model):
-    brand = models.ForeignKey(Brand, on_delete=models.CASCADE)
-    website = models.TextField(null=True, blank=True)
-    ecsite = models.TextField( null=True,blank=True )
-    facebook = models.TextField(null=True, blank=True)
-    instagram = models.TextField(null=True, blank=True)
-    twitter = models.TextField(null=True, blank=True)
 
 class Type(models.Model):
     ptype = models.CharField(max_length=50)
