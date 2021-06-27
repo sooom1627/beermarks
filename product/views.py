@@ -48,8 +48,6 @@ def brandDetail(request, pk):
 
     return render(request, "./product/detail_b.html", context)
     
-
-
 @login_required
 def productView(request):
     ptype = Type.objects.all()
