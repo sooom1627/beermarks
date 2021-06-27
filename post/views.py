@@ -1,7 +1,7 @@
 from .models import Favp
 from django.shortcuts import render, get_object_or_404, redirect
 from product.models import Product, Brand
-from .models import Favp, PostOb, Drunk, Favb
+from .models import Favp, PostOb, Drunk, Favb, Like
 from django.http import JsonResponse
 from django.contrib.auth.decorators import login_required
 from django.db import IntegrityError
@@ -23,12 +23,18 @@ def timeline(request):
         drunk = product.drunk_product.filter(user=request.user)
         if drunk.exists():
             drunk_list.append(product.id)
-            
+    liked_list=[]
+    for post in posts:
+        liked = post.like_set.filter(user=request.user)
+        if liked.exists():
+            liked_list.append(post.id)
+
     context = {
         "posts":posts,
         "products":products,
         'faved_list':faved_list,
         'drunk_list':drunk_list,
+        "liked_list":liked_list
     }
     return render(request, 'post/list.html', context)
 
@@ -133,8 +139,26 @@ def drunk(request, pk):
     
     return redirect("detail", pk=pk)
 
-def posts(request):
+def like(request):
+    if request.method == "POST":
+        post = get_object_or_404(PostOb, pk=request.POST.get('post_id'))
+        user = request.user
+        liked = False
+        like = Like.objects.filter(post=post, user=user)
+        if like.exists():
+            like.delete()
+        else:
+            like.create(post=post, user=user)
+            liked = True
+        
+        ctx = {
+            'post_id': post.id,
+            'liked': liked,
+        }
+    return JsonResponse(ctx)
 
+
+def posts(request):
     if request.method == "POST":
         user = request.user 
         product = Product.objects.get(pk=request.POST["product"])
@@ -185,3 +209,9 @@ def index(request):
     }
 
     return render(request, "index.html", context)
+
+def deletePost(request):
+    keyNum = int(request.GET['drunk_id'])
+    drunk = Drunk.objects.get(pk=keyNum)
+    drunk.delete()
+    return redirect("timeline")

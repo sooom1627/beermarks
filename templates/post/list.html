@@ -27,43 +27,74 @@
             <div class="col-md-5 align-items-center d-flex justify-content-center p-3">
               <img src="{{ post.favp.product.ppic.url}}" class="card-img w-100" alt="#" style="max-height:200px" loading="lazy"/>
             </div>
-            <div class="col-md-7" style="position: relative d-flex align-items-center">
-              <div class="iq-card-body" style="padding-bottom: 70px">
-                <div class="d-flex align-items-center flex-row py-3">
-                  <div class="mr-3">
-                    <img src="{{ post.favp.user.upic.url }}" class="img-fluid rounded-circle" style="width: 40px; height: 40px; object-fit:cover;" alt="" loading="lazy"/>
-                  </div>
-                  <div>
-                    <a href="{% url 'udet' post.favp.user.id %}" class="normal">
-                      <p>{{ post.favp.user.uname }}</p>
-                    </a>
+            <div class="col-md-7 d-flex align-items-center">
+              <div class="iq-card-body w-100">
+                <div class="w-100" style="position:relative">
+                  <div class="d-flex align-items-center justify-content-between">
+                    <div class="d-flex align-items-center flex-row py-3">
+                      <div class="mr-3">
+                        <img src="{{ post.favp.user.upic.url }}" class="img-fluid rounded-circle" style="width: 40px; height: 40px; object-fit:cover;" alt="" loading="lazy"/>
+                      </div>
+                      <div>
+                        <a href="{% url 'udet' post.favp.user.id %}" class="normal">
+                          <p>{{ post.favp.user.uname }}</p>
+                        </a>
+                      </div>
+                      <div class="post-menu" style="position:absolute;z-index:5;right:5px; top:90%">
+                        <ul class="list-groups">
+                          <li>
+                            <form action="{% url 'favp' %}" method="POST">{% csrf_token %}
+                              {% if post.favp.product.id in faved_list %}
+                                <button type="button" class="btn  mx-1 text-center mb-0" id="favp" name="{{post.favp.product.id}}">
+                                  <i class="ri-heart-fill text-primary"></i>飲みたい！
+                                </button>
+                              {% else %}
+                                <button type="button" class="btn mx-1 text-center mb-0" id="favp" name="{{post.favp.product.id}}">
+                                  <i class="ri-heart-line"></i>飲みたい！
+                                </button>
+                              {% endif %}
+                            </form>
+                          </li>
+                          <li>
+                            <a href="{% url 'newPost'%}?product_id={{ post.favp.product.id }}&brand_id={{ post.favp.product.brand.id }}" class="text-secondary">
+                              <button action="" class="btn mx-1">
+                                  <i class="las la-comment"></i>このビールを投稿する
+                              </button>
+                            </a> 
+                          </li>
+                          <li>
+                            <button action="" class="btn mx-1 menu-close">
+                              <i class="las la-times"></i>閉じる
+                            </button>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                    <div style="cursor: pointer;" class="list-menu-toggle">
+                      <i class="las la-ellipsis-h font-weight-bold" style="font-size:30px"></i>
+                    </div>
                   </div>
                 </div>
                 <p class="card-text">
                   {{post.favp.product.pname}}/{{post.favp.product.brand}}をConnect!!
                 </p>
-                <p class="card-text text-right" style="position: absolute; top: 30px; right: 20px">
-                  <small class="text-muted">{{ post.favp.day|date:"y/m/d/ H:i" }}</small>
-                </p>
-                <div class="" style="position: absolute; bottom: 20px; left: 20px">
-                  <div class="d-flex align-items-center">
-                    
-                      <form action="{% url 'favp' %}" method="POST">{% csrf_token %}
-                      {% if post.favp.product.id in faved_list %}
-                        <button type="button" class="btn btn-outline-danger mx-1 text-center mb-0" id="favp" name="{{post.favp.product.id}}">
-                          <i class="ri-heart-fill text-primary"></i>飲みたい！
-                        </button>
+                <div class="w-100 mt-3">
+                  <div class="d-flex align-items-center justify-content-between">
+                    <div>
+                      <form action="{% url 'like' %}" method="POST">
+                      {% csrf_token %}
+                      {% if post.id in liked_list %}
+                        <button class="btn btn-outline-danger mx-1 text-center mb-0" type="button" id="like" name="{{post.pk}}"><i class="fas fa-thumbs-up text-primary"></i>投稿をいいね！</button>
                       {% else %}
-                        <button type="button" class="btn btn-outline-danger mx-1 text-center mb-0" id="favp" name="{{post.favp.product.id}}">
-                          <i class="ri-heart-line"></i>飲みたい！
-                        </button>
+                        <button class="btn btn-outline-danger mx-1 text-center mb-0" type="button" id="like" name="{{post.pk}}"><i class="far fa-thumbs-up"></i>投稿をいいね！</button>      
                       {% endif %}
-                    </form>
-                    <a href="{% url 'newPost'%}?product_id={{ post.favp.product.id }}&brand_id={{ post.favp.product.brand.id }}" class="text-secondary">
-                      <button action="" class="btn btn-outline-secondary mx-1">
-                          <i class="las la-comment"></i>投稿する
-                      </button>
-                    </a>
+                      </form>
+                    </div>
+                    <div>
+                      <p class="card-text text-right">
+                        <small class="text-muted">{{ post.favp.day|date:"y/m/d/ H:i" }}</small>
+                      </p>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -82,16 +113,61 @@
                 <img src="{{ post.drunk.product.ppic.url }}" class="card-img w-100" alt="#" style="max-height:375px;object-fit:cover;" loading="lazy"/>
               {% endif %}
             </div>
-            <div class="col-md-7" style="position: relative">
-              <div class="iq-card-body" style="padding-bottom: 70px">
-                <div class="d-flex align-items-center flex-row py-2">
-                  <div class="mr-3">
-                    <img src="{{ post.drunk.user.upic.url }}" class="img-fluid rounded-circle" style="width: 40px; height: 40px;object-fit:cover;" alt="" loading="lazy"/>
+            <div class="col-md-7 d-flex align-items-center">
+              <div class="iq-card-body w-100">
+                <div class="w-100" style="position:relative">
+                  <div class="d-flex align-items-center flex-row py-2 justify-content-between">
+                    <div class="d-flex flex-row align-items-center">
+                      <div class="mr-3">
+                        <img src="{{ post.drunk.user.upic.url }}" class="img-fluid rounded-circle" style="width: 40px; height: 40px;object-fit:cover;" alt="" loading="lazy"/>
+                      </div>
+                      <div>
+                        <a href="{% url 'udet' post.drunk.user.id %}" class="normal">
+                          <p>{{ post.drunk.user.uname }}</p>
+                        </a>
+                      </div>
                   </div>
-                  <div>
-                    <a href="{% url 'udet' post.drunk.user.id %}" class="normal">
-                      <p>{{ post.drunk.user.uname }}</p>
-                    </a>
+                  <div style="cursor: pointer;" class="list-menu-toggle">
+                    <i class="las la-ellipsis-h font-weight-bold" style="font-size:30px"></i>
+                  </div>
+                  <div class="post-menu" style="position:absolute;z-index:5;right:5px; top:90%">
+                    <ul class="list-groups">
+                      <li>
+                        <form action="{% url 'favp' %}" method="POST">{% csrf_token %}
+                        {% if post.drunk.product.id in faved_list %}
+                          <button type="button" class="btn mx-1 text-center mb-0" id="favp" name="{{post.drunk.product.id}}">
+                            <i class="ri-heart-fill text-primary"></i>飲みたい！
+                          </button>
+                        {% else %}
+                          <button type="button" class="btn text-center mb-0" id="favp" name="{{post.drunk.product.id}}">
+                            <i class="ri-heart-line"></i>飲みたい！
+                          </button>
+                        {% endif %}
+                        </form>
+                      </li>
+                      <li>
+                        <a href="{% url 'newPost'%}?product_id={{ post.drunk.product.id }}&brand_id={{ post.drunk.product.brand.id }}" class="text-secondary">
+                          <button action="" class="btn mx-1">
+                            <i class="las la-comment"></i>このビールを投稿する
+                          </button>
+                        </a>
+                      </li>
+                      {% if user == post.drunk.user %}
+                      <li>
+                        <form action="{% url 'deletepost' %}?drunk_id={{ post.drunk.pk }}" method="POST">{% csrf_token %}
+                          <button class="btn mx-1">
+                            <i class="las la-trash"></i>投稿を削除
+                          </button>        
+                        </form>        
+                      </li>
+                      {% endif %} 
+                      <li>
+                        <button action="" class="btn mx-1 menu-close">
+                          <i class="las la-times"></i>閉じる
+                        </button>
+                      </li>
+                    </ul>          
+                    </div>
                   </div>
                 </div>
                 <a href="{% url 'detail' post.drunk.product.id %}">
@@ -138,27 +214,23 @@
                 {% comment %} <div class="mt-4">
                   <a href="{% url 'search' %}?type={{ post.drunk.product.ptype.pk }}" class="btn btn-outline-dark rounded-pill mb-1 px-4 mr-3">{{ post.drunk.product.ptype }}</a>
                 </div> {% endcomment %}
-                <p class="card-text text-right" style="position: absolute; top: 30px; right: 20px">
-                  <small class="text-muted">{{ post.drunk.day|date:"y/m/d/ H:i" }}</small>
-                </p>
-                <div class="" style="position: absolute; bottom: 20px; left: 20px">
-                  <div class="d-flex align-items-center">
-                    <form action="{% url 'favp' %}" method="POST">{% csrf_token %}
-                      {% if post.drunk.product.id in faved_list %}
-                        <button type="button" class="btn btn-outline-danger mx-1 text-center mb-0" id="favp" name="{{post.drunk.product.id}}">
-                          <i class="ri-heart-fill text-primary"></i>飲みたい！
-                        </button>
+                <div class="w-100 mt-3" style="">
+                  <div class="d-flex align-items-center justify-content-between">
+                    <div>
+                      <form action="{% url 'like' %}" method="POST">
+                      {% csrf_token %}
+                      {% if post.id in liked_list %}
+                        <button class="btn btn-outline-danger mx-1 text-center mb-0" type="button" id="like" name="{{post.pk}}"><i class="fas fa-thumbs-up text-primary"></i>投稿をいいね！</button>
                       {% else %}
-                        <button type="button" class="btn btn-outline-danger mx-1 text-center mb-0" id="favp" name="{{post.drunk.product.id}}">
-                          <i class="ri-heart-line"></i>飲みたい！
-                        </button>
+                        <button class="btn btn-outline-danger mx-1 text-center mb-0" type="button" id="like" name="{{post.pk}}"><i class="far fa-thumbs-up"></i>投稿をいいね！</button>      
                       {% endif %}
-                    </form>
-                    <a href="{% url 'newPost'%}?product_id={{ post.drunk.product.id }}&brand_id={{ post.drunk.product.brand.id }}" class="text-secondary">
-                      <button action="" class="btn btn-outline-secondary mx-1">
-                          <i class="las la-comment"></i>投稿する
-                      </button>
-                    </a>
+                      </form>
+                    </div>
+                    <div>
+                      <p class="card-text text-right" style="">
+                        <small class="text-muted">{{ post.drunk.day|date:"y/m/d/ H:i" }}</small>
+                      </p>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -195,5 +267,52 @@
         });
       });
     });
+  </script>
+  <script type="text/javascript">
+    $(document).ready(function (event) {
+      $(document).on('click', '#like', function (event) {
+        event.preventDefault();
+        $.ajax({
+          headers: {
+            'X-CSRFToken': csrftoken
+          },
+          type: 'POST',
+          url: "{% url 'like' %}",
+          data: {
+            'post_id': $(this).attr('name')
+          },
+          dataType: 'json',
+          success: function (response) {
+            selector = document.getElementsByName(response.post_id);
+            if (response.liked) {
+              $(selector).html('<i class="fas fa-thumbs-up text-primary"></i>投稿をいいね！');
+            } else {
+              $(selector).html('<i class="far fa-thumbs-up"></i>投稿をいいね！');
+            }
+          }
+        });
+      });
+    });
+  </script>
+  <script type="text/javascript">
+    const menuButtons = document.getElementsByClassName("list-menu-toggle");
+    const menus =  document.getElementsByClassName("post-menu");
+    const menuCloseButtons = document.getElementsByClassName("menu-close");
+    
+    for(let i = 0; i < menuButtons.length; i++){
+      const menuButton = menuButtons[i];
+      const menu = menus[i];
+      menuButton.addEventListener('click', function(){
+        menu.classList.toggle("active");
+      })
+    }
+
+    for(let i = 0; i < menuCloseButtons.length; i++){
+      const menuCloseButton = menuCloseButtons[i];
+      const menu = menus[i];
+      menuCloseButton.addEventListener('click', function(){
+        menu.classList.toggle("active");
+      })
+    }
   </script>
 {% endblock ext_js %}

@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.urls import path, include
-from .views import favp, timeline, drunk, index, favb, newPost, posts
+from .views import favp, timeline, drunk, index, favb, newPost, posts,deletePost, like
 
 urlpatterns = [
      path('favp/', favp, name="favp"),
@@ -9,7 +9,9 @@ urlpatterns = [
      path("search-home", index, name="index"),
      path('favb/', favb, name="favb"),
      path('new-post', newPost, name="newPost"),
-     path('create_post/', posts, name="createpost")
+     path('create_post/', posts, name="createpost"),
+     path("delete_post/",  deletePost, name="deletepost"),
+     path("like/", like, name="like" )
 ]
 
 

@@ -41,3 +41,6 @@ class PostOb(models.Model):
     favp = models.OneToOneField(Favp, on_delete=models.CASCADE, null=True, blank=True, related_name="fav_post")
     drunk = models.OneToOneField(Drunk, on_delete=models.CASCADE, null=True, blank=True)
     
+class Like(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="like_user")
+    post = models.ForeignKey(PostOb, on_delete=models.CASCADE, related_name="like_set")
