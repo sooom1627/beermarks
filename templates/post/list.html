@@ -108,9 +108,9 @@
           <div class="row no-gutters">
             <div class="col-md-5 p-4 d-flex align-items-center">
               {% if post.drunk.postPic %}
-                <img src="{{ post.drunk.postPic.url }}" class="card-img w-100" alt="" style="max-height:375px;object-fit:cover;" loading="lazy">
+                <img src="{{ post.drunk.postPic.url }}" class="card-img w-100" alt="" style="max-height:375px;object-fit:scale-down;" loading="lazy">
               {% else %}
-                <img src="{{ post.drunk.product.ppic.url }}" class="card-img w-100" alt="#" style="max-height:375px;object-fit:cover;" loading="lazy"/>
+                <img src="{{ post.drunk.product.ppic.url }}" class="card-img w-100" alt="#" style="max-height:375px;object-fit:scale-down;" loading="lazy"/>
               {% endif %}
             </div>
             <div class="col-md-7 d-flex align-items-center">
